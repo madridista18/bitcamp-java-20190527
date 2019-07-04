@@ -72,4 +72,4 @@ tasks.withType(JavaCompile) {
 
 ```
 [~/git/eomcs-study/eomcs-java-project]$ gradle run
-```
+``` 
