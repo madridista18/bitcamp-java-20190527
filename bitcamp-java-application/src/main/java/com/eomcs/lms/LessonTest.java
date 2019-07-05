@@ -28,8 +28,8 @@ public class LessonTest {
     lesson.totalHours = 200;
     lesson.dayHours = 4;
     
-    System.out.printf("&s -- %s\n", no, lesson.no);
-    System.out.printf("&s -- %s\n", title, lesson.title);
+    System.out.printf("%s -- %s\n", no, lesson.no);
+    System.out.printf("%s -- %s\n", title, lesson.title);
     
     
   }

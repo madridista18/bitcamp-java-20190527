@@ -1,5 +1,6 @@
 package com.eomcs.lms;
 
+
 import java.util.Scanner;
 
 public class App2 {
@@ -40,13 +41,6 @@ public class App2 {
           no[i2], name[i2], email[i2], phoneNumber[i2], "2019-01-01" );
       
     }
-//    System.out.println("번호: " + no);
-//    System.out.println("이름: " + name);
-//    System.out.println("이메일: " + email);
-//    System.out.println("암호: " + password);
-//    System.out.println("사진: " + photo);
-//    System.out.println("전화: " + phoneNumber);
-//    System.out.println("가입일: 2019-01-01");
 
   }
 
@@ -60,6 +54,8 @@ public class App2 {
       }
     }
   }
+  
+ 
 
   private static String getStringValue(String message) {
     System.out.print(message);
