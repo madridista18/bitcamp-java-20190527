@@ -14,7 +14,7 @@ public class Test01 {
     System.out.println(0x4e);
     
     // => 2진수
-    System.out.println(0b01001110);
+    System.out.println(0b1001110);
     
     // 2) 부동소수점을 출력하라.
     // => 12.345
