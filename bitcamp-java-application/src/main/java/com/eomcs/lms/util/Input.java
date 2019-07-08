@@ -1,13 +1,13 @@
-package com.eomcs.lms;
+package com.eomcs.lms.util;
 
 import java.sql.Date;
 import java.util.Scanner;
 
 public class Input {
 
-  static Scanner keyScan;
+  public static Scanner keyScan;
 
-  static int getIntValue(String message) {
+  public static int getIntValue(String message) {
     while (true) {
       try { 
         System.out.print(message);
@@ -19,7 +19,7 @@ public class Input {
   }
 
   // copy(복사) & paste(붙여넣기)
-  static Date getDateValue(String message) {
+  public static Date getDateValue(String message) {
     while (true) {
       try { 
         System.out.print(message);
@@ -30,7 +30,7 @@ public class Input {
     }
   }
 
-  static String getStringValue(String message) {
+  public static String getStringValue(String message) {
     System.out.print(message);
     return keyScan.nextLine();
   }
