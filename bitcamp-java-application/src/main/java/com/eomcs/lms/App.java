@@ -17,6 +17,9 @@ public class App {
 
     int i = 0;
     for ( ; i<lessons.length; i++) {
+      
+      System.out.print("명령> ");
+      String command = keyScan.nextLine();
 
       // 수업 데이터를 저장할 메모리를 Lesson 설계도에 따라 만든다.
       Lesson lesson = new Lesson();
@@ -51,6 +54,8 @@ public class App {
       // 그 인스턴스 주소로 찾아가서 인스턴스의 각 변수 값을 꺼내 출력한다. 
       System.out.printf("%s, %s, %s ~ %s, %s\n", 
           lesson.no, lesson.title, lesson.contents, lesson.startDate, lesson.endDate, lesson.totalHours);
+      // lessons[i2].no -> 배열로 바로 넣을수도 있지만 속도가 느리더라도 가독성이 좋고 좀 더 객체 지향적인 측면때문에 
+      // 이 방법을 이용한다는 것을 알아야 한다. 초보는 속도에 신경쓰지 말아야한다. 
     }
   }
 

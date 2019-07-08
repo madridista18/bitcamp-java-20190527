@@ -1,6 +1,7 @@
 package com.eomcs.lms;
 
 
+import java.sql.Date;
 import java.util.Scanner;
 
 public class App2 {
@@ -11,37 +12,36 @@ public class App2 {
     java.io.InputStream keyboard = System.in;
     keyScan = new Scanner(keyboard);
 
-    int[] no = new int[100]; 
-    String[] name = new String[100]; 
-    String[] email = new String[100]; 
-    int[] password = new int[100]; 
-    String[] photo = new String[100]; 
-    String[] phoneNumber = new String[100]; 
+    Member[] memberArr = new Member[100];
 
     int i = 0;
-    for ( ; i<no.length; i++) {
-      no[i] = getIntValue("번호? ");
-      name[i] = getStringValue("이름? ");
-      email[i] = getStringValue("이메일? ");
-      password[i] = getIntValue("암호? ");
-      photo[i] = getStringValue("사진? ");
-      phoneNumber[i] = getStringValue("전화? ");
-      
+    for (; i < memberArr.length; i++) {
+      Member member = new Member();
+      member.no = getIntValue("번호? ");
+      member.name = getStringValue("이름? ");
+      member.email = getStringValue("이메일? ");
+      member.password = getStringValue("암호? ");
+      member.photo = getStringValue("사진? ");
+      member.phoneNumber = getStringValue("전화? ");
+      member.registeredDate = new Date(System.currentTimeMillis());
+
+      memberArr[i] = member;
+
+
       System.out.println("계속 입력하시겠습니까?(Y/n) ");
       String reponse = keyScan.nextLine();
-      
+
       if(reponse.equals("n")) 
         break;
     }
 
     System.out.println();
-    
-    for (int i2 = 0; i2<=i; i2++) {
-      System.out.printf("%s, %s, %s, %s, %s\n",
-          no[i2], name[i2], email[i2], phoneNumber[i2], "2019-01-01" );
-      
-    }
 
+    for (int i2 = 0; i2<=i; i2++) {
+      Member member = memberArr[i2];
+      System.out.printf("%s, %s, %s, %s, %s\n",
+          member.no, member.name, member.email, member.phoneNumber, member.registeredDate );
+    }
   }
 
   private static int getIntValue(String message) {
@@ -54,8 +54,7 @@ public class App2 {
       }
     }
   }
-  
- 
+
 
   private static String getStringValue(String message) {
     System.out.print(message);

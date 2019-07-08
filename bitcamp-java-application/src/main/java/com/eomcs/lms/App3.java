@@ -1,5 +1,6 @@
 package com.eomcs.lms;
 
+import java.sql.Date;
 import java.util.Scanner;
 
 public class App3 {
@@ -9,27 +10,30 @@ public class App3 {
 
     java.io.InputStream keyboard = System.in;
     keyScan = new Scanner(keyboard);
-    
-    int[] no = new int[100];
-    String[] content = new String[100];
-    
+
+    Board[] boards = new Board[100];
+
     int i = 0;
-    for ( ; i<no.length; i++) {
-      no[i] = getIntValue("번호? ");
-      content[i] = getStringValue("내용? ");
-      i++;
-      
+    for ( ; i < boards.length; i++) {
+      Board board = new Board();
+      board.no = getIntValue("번호? ");
+      board.contents = getStringValue("내용? ");
+      board.createdDate = new Date(System.currentTimeMillis());
+
+      boards[i] = board;
+
       System.out.println("계속 하시겠습니까?(Y/n) ");
       String reponse = keyScan.nextLine();
-      
+
       if (reponse.equals("n"))
         break;
     }
 
     System.out.println();
     for (int i2 = 0; i2<=i; i2++) {
-      System.out.printf("%s, %s, %s, %s\n", 
-          no[i2], content[i2], "2019-01-01" , "0");
+      Board board = boards[i2];
+      System.out.printf("%s, %s, %s\n", 
+          board.no, board.contents, board.createdDate);
     }
   }
 
