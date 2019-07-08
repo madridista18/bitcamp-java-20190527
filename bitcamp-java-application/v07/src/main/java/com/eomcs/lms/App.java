@@ -22,8 +22,6 @@ public class App {
       Lesson lesson = new Lesson();
 
 
-
-
       // 사용자가 입력한 값을 Lesson 인스턴스의 각 변수에 저장한다.
       lesson.no = getIntValue("번호? ");
       lesson.title = getStringValue("수업명? ");
@@ -44,30 +42,9 @@ public class App {
       if (response.equals("n")) 
         break;
 
-
     }
 
-
-
-    //    System.out.print("설명? ");
-    //    java.lang.String description = keyScan.nextLine(); 
-    // lang package는 자주 사용하기 때문에 알려주지 않아도 됨
-
-
-    //    int startDate = 0;
-    //    while (true) {
-    //      try {
-    //        System.out.print("시작일? ");
-    //        startDate = Integer.parseInt(keyScan.nextLine());
-    //        break;
-    //      } catch (NumberFormatException e){
-    //        System.out.println("숫자 입력");
-    //      }
-    //    }
-
-
     System.out.println();
-
 
     for (int i2 = 0; i2 <= i; i2++) {
 
@@ -78,16 +55,6 @@ public class App {
       System.out.printf("%s, %s, %s ~ %s, %s\n", 
           lesson.no, lesson.title, lesson.contents, lesson.startDate, lesson.endDate, lesson.totalHours);
     }
-
-    //    System.out.printf("번호: %s\n", no);
-    //    System.out.printf("수업명: %s\n", lectureName);
-    //    System.out.printf("설명: %s\n", description);
-    //    System.out.printf("시작일: %s\n", startDate);
-    //    System.out.printf("종료일: %s\n", endDate);
-    //    System.out.printf("총수업시간: %s\n", totalHours);
-    //    System.out.printf("일수업시간: %s\n", dayHours);
-
-
   }
 
   private static int getIntValue(String message) {
