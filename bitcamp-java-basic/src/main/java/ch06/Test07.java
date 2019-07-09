@@ -14,7 +14,6 @@ public class Test07 {
     plus2(new int[] {10});
     plus2(new int[] {10, 20});
     
-    
   }
   
   // 가변 파라미터 

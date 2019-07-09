@@ -4,7 +4,7 @@ package ch06;
 public class Test13 {
   public static void main(String[] args) {
     System.out.println("---------------");
-    for (String arg : args)
+    for (String arg : args) 
       System.out.println(arg);
     System.out.println("---------------");
   }
@@ -21,7 +21,7 @@ public class Test13 {
 - 아규먼트는 공백으로 구분한다.
 - JVM은 아규먼트의 개수만큼 문자열 배열을 만들어 저장한다.
 - 아규먼트가 없으면 빈 배열을 만든다.
-- 그런후 main()을 호출할 때 그 배열의 주소를 넘겨준다.
+- 그런 후 main()을 호출할 때 그 배열의 주소를 넘겨준다.
  */
 
 

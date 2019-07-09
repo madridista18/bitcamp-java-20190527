@@ -14,8 +14,9 @@ public class Test12 {
     // r = 5
     
     // && 와 &의 차이점
+    // 두개짜리는 뒤에까지 확인 안한다. 하나짜리는 뒤에까지 확인한다. 
     boolean b1 = true;
-    boolean b2 = false && (b1 = false);
+    boolean b2 = false && (b1 = false); // 앞에 나온값이 이미 false기 때문에 뒷 문장은 보지도 않는다. Dead code.
     System.out.printf("b1=%b, b2=%b\n", b1, b2);
     // && 연산자는 l-value의 값으로 결과를 유추할 수 있다면, r-value를 실행하지 않는다.
     
@@ -25,7 +26,7 @@ public class Test12 {
     // & 연산자는 l-value의 값으로 결과가 결정되었다 하더라도 r-value를 끝까지 실행한다.
     
     b1 = true;
-    b2 = true || (b1 = false);
+    b2 = true || (b1 = false); 
     System.out.printf("b1=%b, b2=%b\n", b1, b2);
     
     b1 = true;

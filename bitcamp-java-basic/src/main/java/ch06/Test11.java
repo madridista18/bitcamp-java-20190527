@@ -7,7 +7,7 @@ public class Test11 {
     
     // 1) call by value
     // 메서드를 호출할 때 파라미터의 값으로 
-    // 기본 데이터 타입(byte,short,int,long,float,double,boolean,char)의 값을 넘겨주는 경우
+    // 기본 데이터 타입(primitive type)(byte,short,int,long,float,double,boolean,char)의 값을 넘겨주는 경우
     // call by value 라 부른다.
     // 변수의 주소가 넘어가는 것이 아니라 변수의 값이 넘어 간다.
     m1(value);

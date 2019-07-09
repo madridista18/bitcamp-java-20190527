@@ -33,7 +33,7 @@ public class Test02 {
     // if 문만 작성할 수 있지만, else 문은 홀로 존재할 수 없다.
     /*
     else  // 컴파일 오류!
-      System.out.println("Ok?");
+      System.out.println("ok?");
     */ 
   }
 }
