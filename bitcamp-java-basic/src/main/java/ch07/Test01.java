@@ -11,12 +11,16 @@ public class Test01 {
     // 해결책? 
     // 낱개의 데이터를 저장할 변수를 여러 개 선언하는 수 밖에 없다!
     // 그래서 우리는 성적 데이터를 저장할 변수를 다음과 같이 낱개로 선언하였다.
+    
     String name = "홍길동";
     int kor = 100;
     int eng = 100;
     int math = 100;
     int sum = kor + eng + math;
     float aver = sum / 3f;
+    
+    // 암시적 형변환 
+    // byte, short, char > int > long > float > double
     
     System.out.printf("%s: %d, %d, %d, %d, %f\n", name, kor, eng, math, sum, aver);
     // 음.. 할만하다!

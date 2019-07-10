@@ -2,16 +2,19 @@ package ch06;
 
 public class TestX {
   public static void main(String[] args) {
-
-    String value1 = System.getProperty("name");
-    String value2 = System.getProperty("kor");
-    String value3 = System.getProperty("eng");
-    String value4 = System.getProperty("math");
     
+    String name = System.getProperty("name");
+    int kor = Integer.parseInt(System.getProperty("kor"));
+    int eng = Integer.parseInt(System.getProperty("eng"));
+    int math = Integer.parseInt(System.getProperty("math"));
     
-    int sum = Integer.parseInt(value2) + Integer.parseInt(value3) +Integer.parseInt(value4);
-    System.out.printf("이름: %s\n",value1);
-    System.out.printf("총점: %s\n", sum);
-    System.out.printf("평균: %.2f\n", (float)sum/3);
+    int sum = kor + eng + math;
+    System.out.printf("이름: %s\n", name);
+    System.out.printf("국어: %d\n", kor);
+    System.out.printf("영어: %d\n", eng);
+    System.out.printf("수학: %d\n", math);
+    System.out.printf("총점: %d\n", sum);
+    System.out.printf("평균: %.2f\n", sum/3f);
+    
   }
 }

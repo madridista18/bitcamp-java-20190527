@@ -2,7 +2,7 @@
 package ch07;
 
 public class Test03 {
-  // 학생의 성적 데이터를 담을 새로 구조의 메모리를 정의한다.
+  // 학생의 성적 데이터를 담을 새로운 구조의 메모리를 정의한다.
   // 문법:
   //      class 새데이터타입이름 {
   //        변수 선언;
@@ -10,7 +10,7 @@ public class Test03 {
   //      }
   // - 새데이터타입의이름 : 대문자로 시작하고, 단어의 시작도 대문자로 작성한다. 보통 명사형으로 짓는다.
   //
-  static class Score {
+  static class Score { // 중첩 클래스 
     String name;  // 설계 도면이기 때문에 변수가 존재하는 상태가 아니다.
     int kor;
     int eng;
@@ -36,7 +36,7 @@ public class Test03 {
     s1 = new Score(); // Score 설계도에 따라 메모리(변수들)를 준비시킨다.
                       // 그리고 메모리의 주소를 레퍼런스에 저장한다.
     
-    Class c = Class.forName("ch07.Test03$Score");
+    Class c = Class.forName("ch07.Test03$Score"); // $뒤에있는 클래스가  $앞에있는 클래스에 들어있다는 뜻.
     Score s3 = (Score)c.newInstance();
     
     

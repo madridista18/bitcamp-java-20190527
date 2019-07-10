@@ -18,11 +18,11 @@ public class Test04 {
     
     // 레퍼런스(reference)
     // => 클래스 설계도에 따라 준비된 "메모리의 주소를 담는 변수"
-    Score s1;  
+    Score s1;
     
     // 인스턴스(instance)
     // => 클래스 설계도에 따라 준비된 메모리(변수들)
-    s1 = new Score(); 
+    s1 = new Score();
 
     // 인스턴스 필드(instance field)
     // => 클래스 설계도에 따라 준비된 메모리의 각 항목
@@ -31,7 +31,7 @@ public class Test04 {
     s1.eng = 100;
     s1.math = 100;
     
-    printScore(s1); 
+    printScore(s1);
     
   }
   

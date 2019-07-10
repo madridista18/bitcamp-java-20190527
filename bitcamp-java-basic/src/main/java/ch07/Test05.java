@@ -28,6 +28,8 @@ public class Test05 {
     s1.math = 100;
     
     Score s2 = s1; // s1에 저장된 인스턴스 주소를 s2에 복사한다.
+    System.out.println(s2);
+    System.out.println(s1);
     
     System.out.println(s2.name);
     s1.name = "임꺽정";
@@ -35,6 +37,7 @@ public class Test05 {
     
     // 메서드가 생성한 인스턴스의 주소를 받을 수 있다.
     Score s3 = createScore("유관순", 90, 90, 90);
+    System.out.println(s3);
     System.out.println(s3.name);
     System.out.println(s3.kor);
   }
@@ -44,6 +47,7 @@ public class Test05 {
   // => Score 인스턴스를 생성한 후 그 주소를 리턴한다.
   static Score createScore(String name, int kor, int eng, int math) {
     Score s = new Score();
+    System.out.println(s);
     s.name = name;
     s.kor = kor;
     s.eng = eng;
@@ -57,7 +61,7 @@ public class Test05 {
     // => 예 삭제됩니다.
     // 하나 더요? Score 인스턴스도 삭제되는게 아닌가요?
     // => 삭제되지 않습니다. 인스턴스는 힙(heap) 메모리에 생성됩니다.
-    //    어떤 메서드에서 인스턴스를 생성하든지 간에 힙에 생성된 것은 메서드 호출이 끝나더라도 
+    //    어떤 메서드에서 인스턴스를 생성하든지간에 힙에 생성된 것은 메서드 호출이 끝나더라도 
     //    삭제되지 않습니다.
     //    오직 스택(stack) 메모리에 생성된 로컬 변수만이 삭제됩니다. 
     

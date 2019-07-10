@@ -8,6 +8,7 @@ public class Test10 {
     Score10 s1 = new Score10();
     Score11 s2 = new Score11();
     
+    
     // 공개된 패키지 멤버 클래스는 다른 패키지에서 사용할 수 있다.
     ch07.sub.Score12 s3 = new ch07.sub.Score12();
     
