@@ -14,15 +14,15 @@ public class Test05 {
     Calculator3 c2 = new Calculator3();
         
     Calculator3.plus(c1/*result 변수가 있는 인스턴스 주소*/, 2);
-    Calculator3.plus(c2, 6);
-    
     Calculator3.multiple(c1, 3);
-    Calculator3.divide(c2, 2);
-    
     Calculator3.minus(c1, 2);
+    Calculator3.plus(c1, 7); 
+    
+    
+    Calculator3.plus(c2, 6);
+    Calculator3.divide(c2, 2);
     Calculator3.plus(c2, 9);
     
-    Calculator3.plus(c1, 7); 
     
     System.out.println(c1.result);
     System.out.println(c2.result);

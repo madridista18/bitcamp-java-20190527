@@ -15,17 +15,17 @@ public class Test06 {
         
     // 인스턴스 메서드는 인스턴스 주소를 파라미터로 넘겨주는 것이 아니라
     // 메서드를 호출하는 코드 앞에 둔다.
-    // 즉 메서드가 사용할 인스턴스 주소를 파라미너가 아닌 메서드 호출 앞에 둔다.
+    // 즉 메서드가 사용할 인스턴스 주소를 파라미터가 아닌 메서드 호출 앞에 둔다.
     c1.plus(2);
-    c2.plus(6);
-    
     c1.multiple(3);
-    c2.divide(2);
-    
     c1.minus(2);
+    c1.plus(7); 
+    
+    
+    c2.plus(6);
+    c2.divide(2);
     c2.plus(9);
     
-    c1.plus(7); 
     
     System.out.println(c1.result);
     System.out.println(c2.result);
