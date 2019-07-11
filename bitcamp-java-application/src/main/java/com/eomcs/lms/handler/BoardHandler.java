@@ -1,14 +1,12 @@
 package com.eomcs.lms.handler;
 
 import java.sql.Date;
-import java.util.Scanner;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.util.Input;
 
 public class BoardHandler {
   private Board[] boards = new Board[100];
   private int boardsSize = 0;
-  public static Scanner keyScan;
   
   public void addBoard() {
     Board board = new Board();

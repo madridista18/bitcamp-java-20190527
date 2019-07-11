@@ -1,22 +1,24 @@
 package ch09;
 
 public class Calculator5 {
-   int re = 0;
+  
+  
+  int result = 0; 
   
    void plus(int a) {
-    this.re += a;
+    this.result += a;
   }
   
    void minus(int a) {
-    this.re -= a;
+     this.result -= a;
   }
   
    void multiple(int a) {
-    this.re *= a;
+     this.result *= a;
   }
   
    void divide(int a) {
-    this.re /= a;
+     this.result /= a;
   }
 }
 

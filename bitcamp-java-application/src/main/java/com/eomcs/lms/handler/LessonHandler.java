@@ -1,13 +1,11 @@
 package com.eomcs.lms.handler;
 
-import java.util.Scanner;
 import com.eomcs.lms.domain.Lesson;
 import com.eomcs.lms.util.Input;
 
 public class LessonHandler {
   private Lesson[] lessons = new Lesson[100];
   private int lessonsSize = 0;
-  public static Scanner keyScan;
   
   public void addLesson() {
     // 수업 데이터를 저장할 메모리를 Lesson 설계도에 따라 만든다.

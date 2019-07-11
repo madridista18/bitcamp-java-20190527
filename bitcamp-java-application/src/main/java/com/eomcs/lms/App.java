@@ -18,14 +18,11 @@ public class App {
     Input.keyScan = keyScan;
     
     LessonHandler lessonHandler = new LessonHandler();
-    LessonHandler.keyScan = keyScan;
     
     MemberHandler memberHandler = new MemberHandler();
-    MemberHandler.keyScan = keyScan;
     
     BoardHandler boardHandler = new BoardHandler();
     BoardHandler boardHandler2 = new BoardHandler();
-    BoardHandler.keyScan = keyScan;
 
     while (true) {
 

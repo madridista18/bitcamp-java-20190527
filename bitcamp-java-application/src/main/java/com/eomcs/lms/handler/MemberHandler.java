@@ -1,14 +1,12 @@
 package com.eomcs.lms.handler;
 
 import java.sql.Date;
-import java.util.Scanner;
 import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.util.Input;
 
 public class MemberHandler {
   private Member[] members = new Member[100];
   private int membersSize = 0;
-  public static Scanner keyScan;
   
   public void addMember() {
     Member member = new Member();

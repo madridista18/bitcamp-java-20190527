@@ -9,6 +9,7 @@ class My1 {
   int b;
 }
 
+
 public class Test01 {
   public static void main(String[] args) {
     My1 obj1 = new My1();

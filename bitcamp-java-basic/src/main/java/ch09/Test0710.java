@@ -11,20 +11,22 @@ public class Test0710 {
     Calculator5 c1 = new Calculator5();
     Calculator5 c2 = new Calculator5();
     
-  
     c1.plus(2);
     c1.multiple(3);
     c1.minus(2);
     c1.plus(7);
+   
     
     c2.plus(6);
     c2.divide(2);
     c2.plus(4);
     
+    System.out.println(c1.result);
+    System.out.println(c2.result);
     
     
-    System.out.println(c1.re);
-    System.out.println(c2.re);
+    
+    
     
     
   }

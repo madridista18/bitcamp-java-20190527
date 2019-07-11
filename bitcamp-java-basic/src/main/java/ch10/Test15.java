@@ -17,15 +17,15 @@ public class Test15 {
     Date d3 = new Date(System.currentTimeMillis());
     System.out.println(d3);
     
-    Date d4 = new Date(119, 0, 15);
+    Date d4 = new Date(119, 0, 15); // 기본값: 1900, 1월이 0, 일
     System.out.println(d4);
     
     // java.sql.Date
-    java.sql.Date d5 = new java.sql.Date(System.currentTimeMillis());
+    java.sql.Date d5 = new java.sql.Date(System.currentTimeMillis()); // 생성자에 밀리초를 넣는 방법
     System.out.println(d5);
     
     // 간접적으로 객체를 생성하기
-    java.sql.Date d6 = java.sql.Date.valueOf("2019-1-16");
+    java.sql.Date d6 = java.sql.Date.valueOf("2019-1-16"); // static method 사용 -> 문자열로 날짜 지정
     System.out.println(d6);
   }
 }
