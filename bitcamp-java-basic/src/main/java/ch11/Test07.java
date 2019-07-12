@@ -9,6 +9,7 @@ public class Test07 {
     StringBuffer b2 = b1.replace(2, 4, "xxxxx");
     
     System.out.println(b1 == b2);
+    System.out.println(b2);
     System.out.println(b1.toString());
     System.out.println(b1); // 파라미터에 넘겨주는 값이 String이 아닐 경우에는 
                             // println() 메서드가 내부에서 해당 값에 대해 toString() 호출하여

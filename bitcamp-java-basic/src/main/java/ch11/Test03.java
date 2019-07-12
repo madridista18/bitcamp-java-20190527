@@ -6,8 +6,8 @@ public class Test03 {
     
     String s1 = new String("Hello"); // 힙에 생성된다.
     String sx = "Hello";
-    String s2 = s1.intern(); // s1이 가리키는 인스턴스를 상수풀에도 복제한다.
-                             // 이미 상수풀에 있다면 기존의 객체를 리턴한다.
+    String s2 = s1.intern(); // intern => s1이 가리키는 인스턴스를 상수풀에도 복제한다.
+                             //          이미 상수풀에 있다면 기존의 객체를 리턴한다.
     String s3 = "Hello"; // 위에서 이미 만든 인스턴스 주소를 리턴한다.
     
     if (s1 == s2)

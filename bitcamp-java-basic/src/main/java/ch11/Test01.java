@@ -18,6 +18,9 @@ public class Test01 {
     else
       System.out.println("다르다");
     
+    // == -> 주소값 비교
+    // equals() -> 값만 비교 (문자열 비교는 항상 equals로 비교한다)
+    
   }
 }
 
