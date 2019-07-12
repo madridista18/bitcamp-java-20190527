@@ -1,11 +1,11 @@
-// 캐슐화(encapsulation) 필요성 - 사례 1
+// 캡슐화(encapsulation) 필요성 - 사례 1
 package ch12.a;
 
 public class Test01 {
 
   public static void main(String[] args) {
     // 클래스를 만든 개발자의 의도에 따라 아주 잘 사용한 예:
-    Calculator c = new Calculator();
+    Calculator c = new Calculator(); // 100 + 15 - 27
     c.plus(100);
     c.plus(15);
     c.minus(27);

@@ -8,7 +8,7 @@ public class Test04 {
     Score2 s1 = new Score2();
     
     // 다른 필드의 값은 모두 setter를 통해서 설정하는데 name 필드만 직접 설정한다면
-    // 프로그래밍의 일관성이 없어 유지보수가 불편한다.
+    // 프로그래밍의 일관성이 없어 유지보수가 불편하다.
     // 그래서 실무에서는 굳이 setter나 getter가 필요없는 필드라도 
     // 다른 필드와의 일관성을 위해 getter/setter를 만든다.
     //s1.name = "홍길동";

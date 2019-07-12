@@ -15,7 +15,7 @@ public class Input {
     this.keyScan = keyScan;
   }
   
-  // 기존의 스태틱 메서드를 인스턴스 메서드로 전환하 이유?
+  // 기존의 스태틱 메서드를 인스턴스 메서드로 전환하는 이유?
   // => 각 Input 객체마다 Scanner를 구분해서 다루기 위함이다. 
   public int getIntValue(String message) {
     while (true) {
