@@ -14,3 +14,4 @@ public class A {
     System.out.println("A.m3()");
   }
 }
+
