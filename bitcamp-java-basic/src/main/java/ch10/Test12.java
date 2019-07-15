@@ -50,6 +50,7 @@ public class Test12 {
     System.out.println("-----------------------");
     
     new Monitor10(50, 50, 1920, 1080); 
+    System.out.println("==========================");
     
     // 주의!
     // 일반 메서드처럼 임의로 생성자를 호출할 수는 없다.

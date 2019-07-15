@@ -8,24 +8,20 @@ public class Test0710 {
     // 식1) 2 * 3 - 2 + 7 = ?
     // 식2) 6 / 2 + 4 = ?
     
-    Calculator5 c1 = new Calculator5();
-    Calculator5 c2 = new Calculator5();
-    
-    c1.plus(2);
-    c1.multiple(3);
-    c1.minus(2);
-    c1.plus(7);
+    Calculator5 c5 = new Calculator5();
+    Calculator5 c6 = new Calculator5();
    
+    c5.plus(2);
+    c5.multiple(3);
+    c5.minus(2);
+    c5.plus(7);
     
-    c2.plus(6);
-    c2.divide(2);
-    c2.plus(4);
+    c6.plus(6);
+    c6.divide(2);
+    c6.plus(4);
     
-    System.out.println(c1.result);
-    System.out.println(c2.result);
-    
-    
-    
+    System.out.println("결과: " + c5.result);
+    System.out.println("결과: " + c6.result);
     
     
     

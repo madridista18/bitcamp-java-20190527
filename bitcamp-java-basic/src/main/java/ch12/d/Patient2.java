@@ -32,7 +32,7 @@ public class Patient2 {
   }
 
   public void setHeight(int height) {
-    if (height >1 && height < 300)
+    if (height > 1 && height < 300)
     this.height = height;
   }
 

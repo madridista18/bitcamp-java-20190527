@@ -50,7 +50,6 @@ public class Test08 {
       System.out.printf("a %s 님의 점수는 %d입니다.\n", name[i], value[i]);
     }
   }  
-  
 }
 
 

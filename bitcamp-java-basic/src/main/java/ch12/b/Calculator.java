@@ -15,8 +15,6 @@ public class Calculator {
     return this.result;
   }
   
-  
-  
   public void plus(int value) {
     this.result += value;
   }

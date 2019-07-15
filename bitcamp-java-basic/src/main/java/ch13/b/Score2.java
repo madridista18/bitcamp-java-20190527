@@ -35,7 +35,7 @@ public class Score2 extends Score {
     // 기존 계산 메서드를 호출해서 일단 국,영,수 세 과목의 합계와 평균을 계산한다.
     this.compute();
     
-    this.sum += this.music + this.art;
+    this.sum = this.music + this.art;
     this.aver = this.sum / 5f;
   }
 }

@@ -30,6 +30,7 @@ public class Score2 {
   public String getName() {
     return this.name;
   }
+  
   public void setName(String name) {
     // 이렇게 유효성을 검사하지 않더라도 setter를 그냥 만들라!
     this.name = name;
@@ -48,6 +49,7 @@ public class Score2 {
   public int getEng() {
     return this.eng;
   }
+  
   public void setEng(int eng) {
     if (eng >= 0 && eng <= 100) { // 유효한 점수인 경우에만 저장한다.
       this.eng = eng;
@@ -58,6 +60,7 @@ public class Score2 {
   public int getMath() {
     return this.math;
   }
+  
   public void setMath(int math) {
     if (math >= 0 && math <= 100) {// 유효한 점수인 경우에만 저장한다.
       this.math = math;
