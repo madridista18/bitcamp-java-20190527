@@ -2,10 +2,11 @@ package com.eomcs.lms.handler;
 
 import java.sql.Date;
 import com.eomcs.lms.domain.Board;
-import com.eomcs.lms.util.Input;
+import com.eomcs.util.ArrayList;
+import com.eomcs.util.Input;
 
 public class BoardHandler {
-  private BoardList boardList = new BoardList();
+  private ArrayList boardList = new ArrayList();
   private Input input;
   
   // BoardHandler가 사용하는 Input 객체를 반드시 설정하도록 강제해보자!
@@ -28,10 +29,11 @@ public class BoardHandler {
   }
 
   public void listBoard() {
-    Board[] boards = boardList.toArray();
-    for (Board board : boards) {
-      System.out.printf("%s, %s, %s\n", 
-          board.getNo(), board.getContents(), board.getCreatedDate());
+    Object[] list = boardList.toArray();
+    for (Object obj : list) {
+      Board board = (Board) obj;
+      System.out.printf("%s, %s, %s, %s\n", 
+          board.getNo(), board.getContents(), board.getCreatedDate(), board.getViewCount());
     }
   }
 }

@@ -6,6 +6,7 @@ public class Board {
   private int no;
   private String contents;
   private Date createdDate;
+  private int viewCount;
   
   public int getNo() {
     return no;
@@ -24,6 +25,12 @@ public class Board {
   }
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
+  }
+  public int getViewCount() {
+    return viewCount;
+  }
+  public void setViewCount(int viewcount) {
+    this.viewCount = viewCount;
   }
   
 }

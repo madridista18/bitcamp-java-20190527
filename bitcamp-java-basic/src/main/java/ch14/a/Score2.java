@@ -15,7 +15,7 @@ public class Score2 extends Score {
             // 컴파일러에게 상속 받은 메서드를 재정의 한다는 것을 알려준다. 
             // 만약 개발자가 메서드 이름을 다르게 사용하거나 파라미터를 잘못 선언하면
             // 컴파일러가 즉시 알려준다.
-  public void compute() {
+   public void compute() {
     this.sum = this.kor + this.eng + this.math + this.music + this.art;
     this.aver = this.sum / 5f;
   }

@@ -20,6 +20,6 @@ public abstract class Car {
   public abstract void run();
   
   public void stop() {
-    System.out.println("멈춘다!");
+    System.out.println("멈춘다!***");
   }
 }

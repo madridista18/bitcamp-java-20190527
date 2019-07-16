@@ -1,35 +1,34 @@
-package com.eomcs.lms.handler;
+package com.eomcs.util;
 
-import com.eomcs.lms.domain.Board;
 
-public class BoardList {
+public class ArrayList {
   private static final int DEFAULT_CAPACITY = 100;
 
-  private Board[] list;
+  private Object[] list;
   private int size = 0;
 
-  public BoardList() {
+  public ArrayList() {
     // list = new Board[100];
     this(DEFAULT_CAPACITY); // 생성자에서 다른 생성자를 호출할 수 있다. 
   }
 
-  public BoardList(int initialCapacity) {
+  public ArrayList(int initialCapacity) {
     if (initialCapacity < 50 || initialCapacity > 10000)
-      list = new Board[DEFAULT_CAPACITY];
+      list = new Object[DEFAULT_CAPACITY];
     else 
-      list = new Board[initialCapacity];
+      list = new Object[initialCapacity];
   }
 
-  public void add(Board board) { 
+  public void add(Object obj) { 
     if (this.size == list.length)
       throw new RuntimeException("배열이 꽉 찼습니다!");
 
     // this(100); // 컴파일 오류! 일반 메서드는 생성자를 호출할 수 없다. 
-    this.list[this.size++] = board;
+    this.list[this.size++] = obj;
   }
 
-  public Board[] toArray() {
-    Board[] arr = new Board[this.size];
+  public Object[] toArray() {
+    Object[] arr = new Object[this.size];
     for (int i = 0; i < this.size; i++) {
       arr[i] = this.list[i];
     }
