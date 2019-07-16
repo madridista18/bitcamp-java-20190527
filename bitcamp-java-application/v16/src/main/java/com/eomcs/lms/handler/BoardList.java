@@ -9,8 +9,7 @@ public class BoardList {
   private int size = 0;
 
   public BoardList() {
-    // list = new Board[100];
-    this(DEFAULT_CAPACITY); // 생성자에서 다른 생성자를 호출할 수 있다. 
+    this(DEFAULT_CAPACITY); 
   }
 
   public BoardList(int initialCapacity) {
@@ -23,8 +22,6 @@ public class BoardList {
   public void add(Board board) { 
     if (this.size == list.length)
       throw new RuntimeException("배열이 꽉 찼습니다!");
-
-    // this(100); // 컴파일 오류! 일반 메서드는 생성자를 호출할 수 없다. 
     this.list[this.size++] = board;
   }
 
