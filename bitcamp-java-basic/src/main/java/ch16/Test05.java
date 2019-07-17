@@ -20,7 +20,7 @@ public class Test05 {
     System.out.println(temp == strs2);
     
     // 생성할 배열의 타입 정보를 넘긴다.
-    String[] strs3 = create3(String.class);
+    String[] strs3 = create3(String.class); // 파일명이 아니라 static class이다.
     System.out.println(strs3.length);
   }
   
@@ -28,7 +28,8 @@ public class Test05 {
   
   // 예1) 제네릭의 타입 파라미터로 레퍼런스 배열을 생성할 수 없다.
   static <T> T[] create1() {
-    //T[] arr = new T[10]; // 컴파일 오류!
+    //T[] arr;
+    // arr = new T[10]; // 컴파일 오류! new 명령어를 사용할 때 제네릭의 타입파라미터를 사용할 수 없다.
     return null;
   }
   

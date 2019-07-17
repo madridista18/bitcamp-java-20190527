@@ -92,21 +92,31 @@ public class LessonHandler {
     if (str.length() > 0) {
       lesson.setTitle(str);
     }
-
     str = input.getStringValue("수업내용? ");
     if (str.length() > 0) {
       lesson.setContents(str);
     }
-    
     lesson.setStartDate(input.getDateValue("시작일(" + lesson.getStartDate() + ")? "));
-    
     lesson.setEndDate(input.getDateValue("종료일(" + lesson.getEndDate() + ")? "));
-    
     lesson.setTotalHours(input.getIntValue("총수업시간(" + lesson.getTotalHours() + ")? "));
-
     lesson.setDayHours(input.getIntValue("일수업시간(" + lesson.getDayHours() + ")? "));
     
     System.out.println("데이터를 변경하였습니다. ");
+  }
+
+  public void deleteLesson() {
+    int no = input.getIntValue("번호? ");
+
+    // 사용자가 입력한 번호를 가지고 목록에서 그 번호에 해당하는 Lesson 객체를 찾는다.
+    for (int i = 0; i < lessonList.size(); i++) {
+      Lesson temp = lessonList.get(i);
+      if (temp.getNo() == no) {
+        lessonList.remove(i);
+        System.out.println("데이터를 삭제하였습니다. ");
+        return;
+      }
+    }
+      System.out.println("해당 번호의 데이터가 없습니다.");
   }
 }
 
