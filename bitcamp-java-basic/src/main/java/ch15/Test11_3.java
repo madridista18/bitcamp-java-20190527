@@ -1,4 +1,4 @@
-// Object 클래스 - getClass() 와 배열의 항목 이름
+// Object 클래스 - getClass()와 배열의 항목 이름
 package ch15;
 
 public class Test11_3 {
@@ -17,6 +17,8 @@ public class Test11_3 {
     // 체인(chain) 방식으로 호출한다.
     System.out.println(obj2.getClass().getComponentType().getName()); //java.lang.String
     //System.out.println(배열항목의 클래스 이름); //java.lang.String
+    
+    
   }
 }
 

@@ -24,7 +24,8 @@ public class Test11_2 {
     double[] obj5 = new double[10];
     classInfo = obj5.getClass();
     System.out.println(classInfo.getName()); //[D
- 
+    
+    
     System.out.println(new byte[10].getClass().getName());
     System.out.println(new short[10].getClass().getName());
     System.out.println(new long[10].getClass().getName());

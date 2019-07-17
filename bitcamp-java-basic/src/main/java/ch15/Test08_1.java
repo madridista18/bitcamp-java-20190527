@@ -37,7 +37,7 @@ public class Test08_1 {
     set.add(s3);
     set.add(s4);
     
-    //해시셋에 보관된 객체를 꺼낸다.
+    //해시셋에 보관된 객체를 꺼낸다. 
     Object[] list = set.toArray();
     for (Object obj : list) {
       Student student = (Student) obj;

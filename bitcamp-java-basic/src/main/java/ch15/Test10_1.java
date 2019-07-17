@@ -31,7 +31,7 @@ public class Test10_1 {
     // => 그렇게 리턴 받은 정수 값(해시 코드)를 사용하여 Student 객체(의 주소)를 저장할 위치를 계산한다.
     // => 그런 후 그 위치에 해당하는 배열(배열로 관리한다면)에 저장한다.
 
-    
+
     // 다음과 같이 int를 key로 사용할 수 있다. 
     // => key 값으로 int를 넘겨준다면,
     //    내부적으로 auto-boxing을 수행하여 Integer 객체를 만든다.
@@ -49,7 +49,7 @@ public class Test10_1 {
     System.out.println(map.get(k6));
 
     // 다음과 같이 k2와 k6는 분명히 다른 객체이다.
-   System.out.println(k2 == k6); 
+    System.out.println(k2 == k6); 
    
    // 그러나 k2와 k6는 같은 해시코드를 갖는다.
     System.out.println(k2.hashCode()); // hash code는 같다.

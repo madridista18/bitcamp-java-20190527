@@ -40,7 +40,7 @@ public class Test10_2 {
     // 비록 k3와 k6는 서로 다른 인스턴스 이지만, 
     // hashCode()의 리턴 값이 같고, equals()의 리턴 값이 true이기 때문에 
     // 두 객체는 같은 key로 간주한다.
-    // 그래서 k3로 저장된 값을 k6로 꺼낼수 있다.
+    // 그래서 k3로 저장된 값을 k6로 꺼낼 수 있다.
     System.out.println(map.get(k6));
     
     // 자바는 문자열에 대해 대소문자를 구분하기 때문에 "haha"와 "Haha"는 다른 객체로 취급한다.

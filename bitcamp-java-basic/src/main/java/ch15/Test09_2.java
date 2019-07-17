@@ -72,11 +72,12 @@ public class Test09_2 {
     System.out.println(k3.equals(k6)); // equals()의 비교 결과도 같다.
     
     // k3와 k6는 
-    // hashCode()의 리턴 값이 같다
-    // equals() 비교 결과도 true 이기 때문에 
+    // hashCode()의 리턴 값이 같다.
+    // equals() 비교 결과도 true이기 때문에 
     // HashMap 클래스에서는 서로 같은 key라고 간주한다.
     
     System.out.println(map.get(k6));
+    
   }
 }
 

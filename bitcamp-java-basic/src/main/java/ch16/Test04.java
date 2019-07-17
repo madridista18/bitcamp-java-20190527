@@ -1,8 +1,6 @@
 // 제네릭(generic) 응용 - 클래스 전체에 응용하기
 package ch16;
 
-import java.io.File;
-import java.util.Calendar;
 import java.util.Date;
 
 // 제네릭을 적용하지 않은 클래스

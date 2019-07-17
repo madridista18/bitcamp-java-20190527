@@ -32,7 +32,7 @@ public class Test09_1 {
     map.put(k3, new Student("유관순", 17, true));
     map.put(k4, new Student("안중근", 24, true));
     map.put(k5, new Student("윤봉길", 22, false));
-    
+
     // HashMap
     // => 값을 저장할 때 key 객체의 해시코드를 이용하여 저장할 위치(인덱스)를 계산한다.
     // => 따라서 해시코드가 같다면 같은 key로 간주한다.
@@ -50,7 +50,7 @@ public class Test09_1 {
     System.out.println(k3.equals(k6)); // equals()의 비교 결과도 다르다.
     
     // k3와 k6이 내용물이 같다 하더라도, (둘다 "haha"이다.)
-    // hashCode()의 리턴 값이 다르고, equals() 비교 결과도 false 이기 때문에 
+    // hashCode()의 리턴 값이 다르고, equals() 비교 결과도 false이기 때문에 
     // HashMap 클래스에서는 서로 다른 key라고 간주한다.
     
     System.out.println(map.get(k6));
