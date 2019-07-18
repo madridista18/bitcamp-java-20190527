@@ -23,7 +23,8 @@ public class Test05 {
     String[] strs3 = create3(String.class); // 파일명이 아니라 static class이다.
     System.out.println(strs3.length);
   }
-  
+
+
   // 제네릭으로 배열 생성하기
   
   // 예1) 제네릭의 타입 파라미터로 레퍼런스 배열을 생성할 수 없다.
