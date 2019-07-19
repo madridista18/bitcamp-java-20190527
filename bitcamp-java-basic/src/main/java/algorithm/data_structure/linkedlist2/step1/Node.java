@@ -12,5 +12,4 @@ public class Node { // 값을 담을 상자
     this.value = value;
   }
   
-  
 }
