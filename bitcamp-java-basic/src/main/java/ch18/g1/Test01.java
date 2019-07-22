@@ -1,4 +1,4 @@
-package ch18.g;
+package ch18.g1;
 
 public class Test01 {
 
@@ -9,7 +9,7 @@ public class Test01 {
     System.out.println(A.V2);
     
     // final이다 
-    //A.V2 = 300; // 컴파일 오류!
+    // A.V2 = 300; // 컴파일 오류!
   }
 
 }
