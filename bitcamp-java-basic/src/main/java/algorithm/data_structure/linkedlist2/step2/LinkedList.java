@@ -151,7 +151,7 @@ public class LinkedList { // 연결 리스트(목록)
   // LinkedList 안에 선언하여 중첩 클래스로 정의하는 것이 
   // 소스 코드의 유지보수에 좋다.
   // 외부에 직접 노출 되지 않기 때문에 쓸데 없는 클래스를 감추는 효과도 있다. 
-  static public class Node { // 값을 담을 상자
+  static class Node { // 값을 담을 상자
     Object value;
     Node next;
 

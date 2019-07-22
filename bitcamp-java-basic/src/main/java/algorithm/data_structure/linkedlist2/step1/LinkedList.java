@@ -74,7 +74,7 @@ public class LinkedList { // 연결 리스트(목록)
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다. ");
 
     Node deletedNode = null;
-
+    
     if (index == 0) {
       deletedNode = head;
       head = deletedNode.next;
@@ -84,7 +84,6 @@ public class LinkedList { // 연결 리스트(목록)
         // 삭제하려는 노드의 이전 노드까지 간다. 
         node = node.next;
       }
-
       // 이전 노드가 가리키는 다음 노드를 다다음 노드를 가리키게 한다. 
       deletedNode = node.next; // 삭제될 노드를 임시 보관한다. 
       node.next = deletedNode.next; // 삭제될 노드의 다음 노드를 가리킨다. 

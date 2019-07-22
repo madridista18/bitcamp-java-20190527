@@ -14,7 +14,7 @@ public class LinkedListTest {
     
     list.set(2, "XXX"); // "ccc" -> "xxx"
     
-//    list.remove(3); // "ddd" 삭제
+    list.remove(3); // "ddd" 삭제
 //    list.remove(0); // "aaa" 삭제 
 //    list.remove(4); // "ggg" 삭제
 //    list.remove(0); // "bbb" 삭제
