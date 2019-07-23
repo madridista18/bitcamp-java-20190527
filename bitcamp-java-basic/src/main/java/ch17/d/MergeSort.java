@@ -2,7 +2,7 @@ package ch17.d;
 
 // 기존의 정렬 클래스처럼 동일한 방법으로 사용하려면
 // Sorter를 상속 받아 같은 타입으로 묶여야 한다.
-// 그래서 Sorter 를 상속 받았다.
+// 그래서 Sorter를 상속 받았다.
 //
 public class MergeSort extends Sorter {
   

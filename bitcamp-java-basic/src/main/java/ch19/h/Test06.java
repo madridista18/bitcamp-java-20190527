@@ -43,10 +43,11 @@ public class Test06 {
   
   public static void main(String[] args) {
     
+    // 추상 메서드를 한 개만 갖고 있는 인터페이스에 대해 람다 문법으로 익명 클래스를 만들 수 있다. 
     Player p1 = () -> System.out.println("Player...");
     p1.play();
     
-    // static 메서드나 default 메서드가 몇개이든 그 개수는 중요하지 않다.
+    // static 메서드나 default 메서드가 몇 개이든 그 개수는 중요하지 않다.
     // 단 추상 메서드가 한 개이어야 한다.
     // 그러면 다음과 같이 람다 문법으로 사용할 수 있다.
     Player2 p2 = () -> System.out.println("Player2...");

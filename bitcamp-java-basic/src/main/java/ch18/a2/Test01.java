@@ -23,7 +23,7 @@ public class Test01 {
     // String 클래스는 Spec 구현체가 아니기 때문에 해당 객체를 레퍼런스에 저장할 수 없다. 
     //tool - new String("Hello"); // 컴파일 오류!
   }
-  
+
   static void use(Spec tool) {
     // tool 레퍼런스가 가리키는 인스턴스에 대해 A 규칙에 정의된 메서드를 호출한다.
     // 그러면 해당 인스턴스의 클래스를 찾아 메서드를 호출한다.

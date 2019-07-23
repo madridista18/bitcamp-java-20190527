@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FilenameFilter;
 
 public class Test05 {
-
   
   public static void main(String[] args) {
     File dir = new File("./"); // 이클립스에서 실행하면 ./ 는 프로젝트 디렉토리를 가리킨다.
