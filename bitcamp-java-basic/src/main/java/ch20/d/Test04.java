@@ -29,7 +29,7 @@ public class Test04 {
     map.put("ccc", new Student("안중근", 25));
     
     // value 목록 꺼내기
-    Collection<Student> values = map.values();
+    Collection<Student> values = map.values(); // Collection = Interface 
     for (Student value : values) {
       System.out.println(value);
     }

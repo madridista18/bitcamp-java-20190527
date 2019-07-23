@@ -36,7 +36,7 @@ public class Test02 {
     System.out.println("-----------------------");
     
     map.put(null, new Student("임꺽정", 30));
-    System.out.println(map.get(null));
+    System.out.println(map.get(null)); // HashMap은 key로 null을 허용한다. 
     
     // Hashtable은 key로 null을 허용하지 않는다.
     //table.put(null, new Student("임꺽정", 30)); // runtime 오류!

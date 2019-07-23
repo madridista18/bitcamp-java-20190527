@@ -35,6 +35,7 @@ public class Test08 {
     Iterator<String> iterator = keySet.iterator();
     
     System.out.println(iterator.next());
+    System.out.println("-------------------");
     
     map.put("bba", new Student("bba", 20));
     map.put("bbc", new Student("bbc", 20));
@@ -45,20 +46,25 @@ public class Test08 {
     // 해결책?
     // => 값을 변경하면 다시 Iterator를 얻어야 한다.
     // 
-    System.out.println(iterator.next());
-    System.out.println(iterator.next());
+    
+    // HashMap과 마찬가지로 Iterator를 얻은 후에 
+    // Hashtable의 값을 변경했다면
+     다음과 같이 
+    while (iterator.hasNext()) {
+      System.out.println(iterator.next());
+    }
     
   }
 }
 
 /*
 HashMap과 Hashtable의 비교
-항목                               HashMap           Hashtable
+항목                                 HashMap             Hashtable
 ------------------------------------------------------------------------
-1) key, value null 허용         |    Yes         |      No
-2) Thread-safe                 |     No         |      Yes
-3) 멀티 스레드 환경에서 실행 속도     |    속도 빠름     |      속도 느림
-4) 고수준의 동기화 처리             |     No         |   ConcurrentHashMap 사용을 권장한다.  
+1) key, value null 허용           |    Yes         |      No
+2) Thread-safe                    |     No         |      Yes
+3) 멀티 스레드 환경에서 실행 속도 |    속도 빠름   |      속도 느림
+4) 고수준의 동기화 처리           |     No         |   ConcurrentHashMap 사용을 권장한다.  
  */
 
 
