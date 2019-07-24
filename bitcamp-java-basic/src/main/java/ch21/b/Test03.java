@@ -44,7 +44,7 @@ public class Test03 {
       } catch (RuntimeException e) { // OK! 공통 부모이기 때문에 가능!
       //} catch (Exception e) { // OK! 공통 조상 클래스이다.
       //} catch (Throwable e) { // OK! 공통 조상 클래스이다.
-      //} catch (Object e) { // 컴파일 오류! catch의 파라미터는 오직 Throwable 계열만 허락한다.
+      //} catch (Object e) { // 컴파일 오류! catch의 파라미터는 오직 Throwable 계열만 허락한다!!!!
         System.out.println("명령어 처리 중 오류 발생!");
         System.out.println(e.toString());
       }

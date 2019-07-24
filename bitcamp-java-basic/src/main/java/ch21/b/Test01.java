@@ -24,10 +24,10 @@ public class Test01 {
     } finally {
       // 정상적으로 실행하든 예외가 발생되든 무조건 try ~ catch 블록을 벗어나기 전에 실행되는 블록
       // => 필수 블록이 아니다. 생략해도 된다.
+      // 강제적으로 해제되어야 하는 자원들을 사용할 때 close() 문법을 사용하여 종료되도록 하라! (예)Scanner)
       System.out.println("종료합니다!");
       keyboard.close();
     }
-    
     
   }
 }
