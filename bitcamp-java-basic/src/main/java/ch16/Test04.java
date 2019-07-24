@@ -60,6 +60,9 @@ public class Test04 {
     Box2<String> x3; 
     x3 = new Box2<>("유관순");
     
+    //Box2<Integer> x5 = new Box2<>(Integer.valueOf(500));
+    //Box2<Integer> x6 = new Box2<>(500);
+    
     // 그런데 제네릭에 지정된 타입이 아닌 것을 넣으려 하면 컴파일 오류가 발생한다.
     // => 이것이 제네릭을 사용하는 이유이기도 하다.
     // => 즉 특정 클래스만 다루도록 제한할 수 있다.

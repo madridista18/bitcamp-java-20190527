@@ -47,6 +47,7 @@ public class Test10_2 {
     // 당연히 hashCode()의 리턴 값이 다르고, equals()의 리턴 값은 false 이다.
     // 그래서 k7은 k3와 같은 key가 아니다. 
     String k7 = new String("Haha"); 
+    System.out.println(k7.hashCode());
     System.out.println(map.get(k7));
   }
 

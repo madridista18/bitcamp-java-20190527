@@ -25,7 +25,6 @@ public class Test01 {
     System.out.println(obj.hashCode());
     System.out.println(obj.equals("Hello"));
     
-    
     // 결론!
     // => 자바의 모든 클래스는 Object의 자손이다.
   }

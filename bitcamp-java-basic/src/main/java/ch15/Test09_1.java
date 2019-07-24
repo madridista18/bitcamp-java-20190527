@@ -49,7 +49,7 @@ public class Test09_1 {
     System.out.println(k6.hashCode()); // hash code는 다르다.
     System.out.println(k3.equals(k6)); // equals()의 비교 결과도 다르다.
     
-    // k3와 k6이 내용물이 같다 하더라도, (둘다 "haha"이다.)
+    // k3와 k6 내용물이 같다 하더라도, (둘다 "haha"이다.)
     // hashCode()의 리턴 값이 다르고, equals() 비교 결과도 false이기 때문에 
     // HashMap 클래스에서는 서로 다른 key라고 간주한다.
     

@@ -22,6 +22,16 @@ public class Test01 {
     c2.stop();
     c2.dump();
     
+    System.out.println("------------------------");
+    
+    Convertible c3 = new Convertible();
+    c3.model = "컨버터블";
+    c3.cc = 2000;
+    c3.run();
+    c3.stop();
+    c3.openRoof();
+    c3.closeRoof();
+    
     // specialization 
     // => 특정 클래스를 사용하다가 추가 기능이 필요해서 
     //   상속을 통해 서브 클래스를 정의하는 것.

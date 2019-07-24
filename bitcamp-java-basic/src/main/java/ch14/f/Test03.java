@@ -16,6 +16,12 @@ public class Test03 {
     // 실제 c가 가리키는 Sedan의 run()이 호출된다.
     c.run();
     c.stop();
+    
+    System.out.println("--------------------");
+    
+    SUV s = new SUV();
+    s.run();
+    s.stop();
   }
 
 }

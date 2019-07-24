@@ -8,7 +8,7 @@ public class Test02 {
     A obj = new B(); // OK
     obj.m1(); // => B.m1()
     //obj.m2(); // 컴파일 오류!
-    
+    System.out.println("------------");
     // 실제 obj에 B 인스턴스의 주소가 들어 있다 할지라도 
     // 직접 B 레퍼런스(obj2)에 저장할 수 없다.
     //B obj2 = obj; // 컴파일 오류!
@@ -19,6 +19,7 @@ public class Test02 {
     B obj2 = (B) obj; // 컴파일러야 obj에 들어 있는 주소가 원래 B의 인스턴스이다. 
                       // 그러니 obj2에 저장해주렴!
     obj2.m2();
+    System.out.println("------------");
     
     if (obj == obj2) {
       System.out.println("obj == obj2");
@@ -29,10 +30,10 @@ public class Test02 {
     
     // A 타입의 인스턴스를 B 타입의 인스턴스라고 주장하면, 컴파일러는 통과시킨다.
     // 그러나 JVM은 오류를 발생시킨다.
-    B obj4 = (B) obj3; // runtime 예외 발생!
+    //B obj4 = (B) obj3; // runtime 예외 발생!
     
     obj3.m1();
-    obj4.m2();
+    //obj4.m2();
   }
 
 }

@@ -18,7 +18,6 @@ public class Test11_3 {
     System.out.println(obj2.getClass().getComponentType().getName()); //java.lang.String
     //System.out.println(배열항목의 클래스 이름); //java.lang.String
     
-    
   }
 }
 

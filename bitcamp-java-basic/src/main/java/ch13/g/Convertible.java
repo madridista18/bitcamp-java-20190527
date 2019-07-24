@@ -9,9 +9,11 @@ public class Convertible extends Car {
   
   public void openRoof() {
     open = true;
+    System.out.println("뚜껑 오픈");
   }
   
   public void closeRoof() {
     open = false;
+    System.out.println("뚜껑 클로즈");
   }
 }

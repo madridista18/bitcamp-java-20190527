@@ -10,7 +10,8 @@ public class Test01 {
     // => 그래서 각 도구에 맞는 use() 메서드를 각각 따로 준비했다.
     
     // 1) ToolA 객체 사용하기 
-    use(new ToolA());
+    ToolA a = new ToolA();
+    use(a);
 
     // 1) ToolB 객체 사용하기 
     use(new ToolB());

@@ -4,7 +4,7 @@ package ch18.a2;
 public class Test02 {
 
   public static void main(String[] args) {
-    // 도구 사용하기
+    // 도구 사용하기 
     
     // Spec 규칙(interface)에 따라 만든 도구(클래스)를 use() 메서드에 넘긴다. 
     use(new ToolA());

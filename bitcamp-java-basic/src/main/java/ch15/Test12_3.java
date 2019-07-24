@@ -11,9 +11,9 @@ public class Test12_3 {
   // => Cloneable을 구현하는 이유는 
   //   JVM에게 이 클래스의 인스턴스를 복제할 수 있음을 표시하기 위함이다.
   //   이 표시가 안 된 클래스는 JVM이 인스턴스를 복제해 주지 않는다. 즉 clone()을 호출할 수 없다.
-  //   
+  // => Interface의 이름은 대부분 ~able을 사용한다. 
  
-  static class Score implements Cloneable{
+  static class Score implements Cloneable {
     String name;
     int kor;
     int eng;
@@ -44,6 +44,7 @@ public class Test12_3 {
     //    public 으로 접근 범위를 넗혀라!
     // => 오버라이딩은 접근 범위를 좁힐 수는 없지만, 넓힐 수는 있다.
     // => 오버라이딩 할 때 리턴 타입을 클래스 타입으로 변경해도 된다.
+    
     @Override
     public Score clone() throws CloneNotSupportedException {
       // 복제를 위한 코드를 작성할 필요가 없다. JVM이 알아서 해준다. 

@@ -48,6 +48,7 @@ public class Test07 {
     obj2.age = 20;
     
     System.out.println(obj1 == obj2);
+    System.out.println(obj1.equals(obj2));
     
     System.out.println(Integer.toHexString(obj1.hashCode()));
     System.out.println(Integer.toHexString(obj2.hashCode()));
