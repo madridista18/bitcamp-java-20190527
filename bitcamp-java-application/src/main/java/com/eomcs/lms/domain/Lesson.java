@@ -1,9 +1,11 @@
 package com.eomcs.lms.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 // 수업 데이터를 저장할 설계도를 작성한다.
-public class Lesson {
+public class Lesson implements Serializable {
+  private static final long serialVersionUID = 1L;
   
   // 수업 데이터를 저장할 메모리를 지정한다. 
   // => new 명령을 실행해야만 아래의 변수들이 준비된다. 

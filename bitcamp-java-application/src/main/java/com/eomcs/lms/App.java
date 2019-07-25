@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Date;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -157,39 +159,20 @@ public class App {
     return keyScan.nextLine();
   }
 
+  @SuppressWarnings("unchecked")
   private static void loadLessonData() {
     File file = new File("./lesson.dat");
 
-    // 바이트 단위로 출력된 데이터를 읽을 객체를 준비한다. 
     FileInputStream in = null;
-    DataInputStream in2 = null;
+    ObjectInputStream in2 = null;
 
     try {
       in = new FileInputStream(file);
 
-      // 바이트 배열을 읽어 원래의 타입인 int나 String 등으로 변환해주는 도구를 
-      // FileInputStream에 붙인다. 
-      in2 = new DataInputStream(in);
+      // 바이트 배열을 읽어 객체로 복원해 주는 객체 준비 
+      in2 = new ObjectInputStream(in);
 
-      // 파일에서 첫 번째 int 값을 먼저 읽는다.
-      // 이 값은 파일에 저장된 데이터의 개수이다. 
-      int len = in2.readInt();
-
-      while (len-- > 0) {
-        Lesson lesson = new Lesson();
-
-        // 파일에서 데이터의 각 항목을 읽어 객체에 저장한다. 
-        lesson.setNo(in2.readInt());
-        lesson.setTitle(in2.readUTF());
-        lesson.setContents(in2.readUTF());
-        lesson.setStartDate(Date.valueOf(in2.readUTF()));
-        lesson.setEndDate(Date.valueOf(in2.readUTF()));
-        lesson.setTotalHours(in2.readInt());
-        lesson.setDayHours(in2.readInt());
-
-        // 수업 데이터를 담은 Lesson 객체를 lessonList에 추가한다.
-        lessonList.add(lesson);
-      }
+      lessonList = (ArrayList<Lesson>) in2.readObject();
 
     } catch (FileNotFoundException e) {
       System.out.println("읽을 파일을 찾을 수 없습니다!");
@@ -208,7 +191,7 @@ public class App {
     File file = new File("./lesson.dat");
 
     FileOutputStream out = null;
-    DataOutputStream out2 = null;
+    ObjectOutputStream out2 = null;
     // 바이트 단위로 데이터를 다루기 위해 바이트 스트림 클래스를 준비한다. 
     try {
       // 파일 정보를 바탕으로 데이터를 출력해주는 객체 준비 
@@ -218,10 +201,10 @@ public class App {
       // 따라서 어떤 값을 출력하려면 byte 배열로 만들어야 한다. 
       // 자바는 이것을 도와주는 DataOutputStream 이라는 클래스를 제공하고 있다.
       // 이 클래스를 FileOutputStream에 붙여서 사용하라! 
-      out2 = new DataOutputStream(out);
+      out2 = new ObjectOutputStream(out);
 
       // 본격적으로 데이터를 출력하기 전에 몇 개의 데이터를 출력할 것인지 먼저 그 개수를 출력한다. 
-      out2.writeInt(lessonList.size());
+      out2.writeObject(lessonList.size());
 
       for (Lesson lesson : lessonList) {
         // 수업 데이터의 각 항목을 바이트 배열로 변환하여 출력한다. 
@@ -257,12 +240,12 @@ public class App {
     // File의 정보를 준비 
     File file = new File("./member.dat");
 
-    FileReader in = null;
+    FileInputStream in = null;
     DataInputStream in2 = null;
 
     // 파일 정보를 바탕으로 데이터를 읽어주는 객체 준비 
     try {
-      in = new FileReader(file);
+      in = new FileInputStream(file);
       in2 = new DataInputStream(in);
 
       int len = in2.readInt();
@@ -347,12 +330,12 @@ public class App {
     // File의 정보를 준비 
     File file = new File("./board.dat");
 
-    FileReader in = null;
+    FileInputStream in = null;
     DataInputStream in2 = null;
 
     // 파일 정보를 바탕으로 데이터를 읽어주는 객체 준비 
     try {
-      in = new FileReader(file);
+      in = new FileInputStream(file);
       in2 = new DataInputStream(in);
       int len = in2.readInt();
 
