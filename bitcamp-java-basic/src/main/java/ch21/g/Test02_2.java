@@ -7,6 +7,7 @@ public class Test02_2 {
 
     try {
       System.out.println(100 / 0);
+      
     } catch (RuntimeException e) {
       // RuntimeException을 처리하고 싶다면 
       // Exception 예외와 마찬가지로 try ~ catch ~ 를 사용하라!
