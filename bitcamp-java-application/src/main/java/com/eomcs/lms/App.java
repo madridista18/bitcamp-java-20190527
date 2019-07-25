@@ -159,25 +159,44 @@ public class App {
     return keyScan.nextLine();
   }
 
-  @SuppressWarnings("unchecked")
   private static void loadLessonData() {
+    // File의 정보를 준비 
     File file = new File("./lesson.dat");
 
     FileInputStream in = null;
-    ObjectInputStream in2 = null;
+    DataInputStream in2 = null;
 
+    // 파일 정보를 바탕으로 데이터를 읽어주는 객체 준비 
     try {
       in = new FileInputStream(file);
+      in2 = new DataInputStream(in);
 
-      // 바이트 배열을 읽어 객체로 복원해 주는 객체 준비 
-      in2 = new ObjectInputStream(in);
+      int len = in2.readInt();
 
-      lessonList = (ArrayList<Lesson>) in2.readObject();
+      while (len-- > 0) {
+        Lesson lesson = new Lesson();
+
+        // 배열 각 항목에 값을 Member 객체에 담는다.
+        lesson.setNo(in2.readInt());
+        lesson.setTitle(in2.readUTF());
+        lesson.setContents(in2.readUTF());
+        lesson.setStartDate(Date.valueOf(in2.readUTF()));
+        lesson.setEndDate(Date.valueOf(in2.readUTF()));
+        lesson.setTotalHours(in2.readInt());
+        lesson.setDayHours(in2.readInt());
+
+        // 수업 데이터를 담은 Member 객체를 MemberList에 추가한다.
+        lessonList.add(lesson);
+      }
 
     } catch (FileNotFoundException e) {
+      // 읽을 파일을 찾지 못할 때 
+      // JVM을 멈추지 말고 간단히 오류 안내 문구를 출력한 다음에 
+      // 계속 실행하게 하자!
       System.out.println("읽을 파일을 찾을 수 없습니다!");
 
     } catch (Exception e) {
+      // FileNotFoundException 외의 다른 예외를 여기에서 처리한다.
       System.out.println("파일을 읽는 중에 오류가 발생했습니다. ");
 
     } finally {
