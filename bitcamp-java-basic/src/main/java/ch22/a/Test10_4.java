@@ -10,6 +10,7 @@ public class Test10_4 {
     File file = new File(".");
     
     // lambda class 
+    // -> 인터페이스에 메서드가 한 개일 때만 사용가능 
     // => 메서드가 한 개짜리인 경우 lambda 표현식을 사용할 수 있다.
     // => 문법:
     //      (파라미터, 파라미터, ...) -> 문장 한개
@@ -17,12 +18,7 @@ public class Test10_4 {
     //      () -> 문장 한개
     //      () -> {문장1; 문장2; 문장3;}
     //
-    String[] names = file.list((File dir, String name) -> {
-        if (name.endsWith(".txt"))
-          return true;
-        else 
-          return false;
-    });
+    String[] names = file.list((File dir, String name) -> name.endsWith(".txt"));
     
     for (String name : names) {
       System.out.println(name);

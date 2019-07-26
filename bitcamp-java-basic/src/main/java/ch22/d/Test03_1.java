@@ -9,7 +9,7 @@ public class Test03_1 {
     
     // FileWriter
     // => 문자 단위로 데이터를 출력하는 일을 한다.
-    //
+    
     try (FileWriter out = new FileWriter("data.txt")) {
       
       out.write("ABC가각간012#!?");
