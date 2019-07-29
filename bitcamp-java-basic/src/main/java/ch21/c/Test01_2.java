@@ -14,7 +14,7 @@ public class Test01_2 {
     //    그 상위 호출자가 예외를 처리 하지 않으면 그 상위의 상위 호출자에게 전달된다. 
     //    이런 식으로 계속 전달되다보면 main()메서드까지 전달되고, 
     //    main()에서도 예외를 처리하지 않으면 최종적으로 JVM에게 전달된다. 
-    //    JVM이 예외를 받으면 그 즉시 프로그램을 멈춘다ㅏ. 
+    //    JVM이 예외를 받으면 그 즉시 프로그램을 멈춘다. 
     //    따라서 try ~ catch 사용을 강요받지 않더라도 
     //    RuntimeException 예외를 처리하는 것이 JVM을 멈추지 않게 하는 것이다. 
     //
@@ -31,7 +31,7 @@ public class Test01_2 {
     // main()에서 예외를 처리하지 않으면 JVM에게 전달되고 
     // JVM은 예외를 받는 즉시 실행을 멈춘다. 
     
-    result = divide(100, 2); // 예외 발생! main() 호출자에게 전달. 즉 JVM에 전달. 즉시 종료!
+    result = divide(100, 0); // 예외 발생! main() 호출자에게 전달. 즉 JVM에 전달. 즉시 종료!
     System.out.println(result);
     
     System.out.println("실행 종료!");

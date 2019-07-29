@@ -20,9 +20,9 @@ public class Test05 {
     //
     
     // RuntimeException 계열의 예외 처리하기
-    // 1) try ~ catch를 사용하지 않으면 자동으로 호출자에게 보고된다.
-    // 2) try ~ catch를 사용할 수 있다.
-    // 3) throws 문장을 선언할 수 있다.
+    // 방법1) try ~ catch를 사용하지 않으면 자동으로 호출자에게 보고된다.
+    // 방법2) try ~ catch를 사용할 수 있다.
+    // 방법3) throws 문장을 선언할 수 있다.
     // 
     // '방법1' 적용
     // => 그냥 두기!

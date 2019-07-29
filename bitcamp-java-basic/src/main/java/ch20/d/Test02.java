@@ -30,10 +30,10 @@ public class Test02 {
     map.put("aaa", new Student("홍길동", 20));
     table.put("aaa", new Student("홍길동", 20));
     
-    System.out.println(map.get("aaa"));
-    System.out.println(table.get("aaa"));
+    System.out.println("map => " + map.get("aaa"));
+    System.out.println("table => " + table.get("aaa"));
     
-    System.out.println("-----------------------");
+    System.out.println("----------------------------------------");
     
     map.put(null, new Student("임꺽정", 30));
     System.out.println(map.get(null)); // HashMap은 key로 null을 허용한다. 
@@ -41,7 +41,7 @@ public class Test02 {
     // Hashtable은 key로 null을 허용하지 않는다.
     //table.put(null, new Student("임꺽정", 30)); // runtime 오류!
     
-    System.out.println("-----------------------");
+    System.out.println("----------------------------------------");
     
     map.put("ccc", null);
     System.out.println(map.get("ccc"));
