@@ -1,14 +1,14 @@
-package ch22.c.ex3.byte_stream;
+package ch22.c.ex4;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import ch22.c.ex1.byte_stream.BufferedOutputStream;
+import java.io.OutputStream;
 
-// 버퍼 기능을 추가하기 위해 기존에 작성한 BufferedOutputStream을 상속 받는다. 
-public class DataOutputStream2 extends BufferedOutputStream {
+// 기존의 FileOutputStream을 상속받아 primitive 값을 출력하는 기능을 추가한다. 
+public abstracclass DataOutputStream extends DecoratorOutputStream {
 
-  public DataOutputStream2(String name) throws FileNotFoundException {
-    super(name);
+  public DataOutputStream(OutputStream other) throws FileNotFoundException {
+    super(other);
   }
 
   public void writeInt(int value) throws IOException {
@@ -42,9 +42,7 @@ public class DataOutputStream2 extends BufferedOutputStream {
     writeShort(bytes.length);
 
     // 그리고 문자열의 UTF-8 코드 값이 들어 있는 바이트 배열을 출력한다. 
-    for (int i = 0; i < bytes.length; i++) {
-      write(bytes[i]);
-    }
+    write(bytes);
   }
 
   public void writeBoolean(boolean value) throws IOException {
