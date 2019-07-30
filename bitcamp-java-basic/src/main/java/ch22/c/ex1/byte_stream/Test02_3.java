@@ -12,11 +12,11 @@ public class Test02_3 {
 
     for (int i = 0; i < 1000000; i++) {
       out.write(0x55);
-      // BufferedOutputStream은 내부적으로 1바이트를 파일로 바로 출력하지 않고 
-      // 일단 byte[] 배열에 저장한다. 
+      // BufferedOutputStream은 내부적으로 1바이트를 파일로 바로 출력하지 않고
+      // 일단 byte[] 배열에 저장한다.
       // 바이트 배열이 꽉 찼을 때 파일로 출력할 것이다.
-      // 그래서 Test01_1.java에서와 같이 1바이트씩 출력하는 것은 같지만, 
-      // 속도는 이 클래스가 더 빠르다. 
+      // 그래서 Test01_1.java 에서와 같이 1바이트씩 출력하는 것은 같지만,
+      // 속도는 이 클래스가 더 빠르다.
     }
 
     // BufferedOutputStream은 바이트 배열이 꽉 찼을 때만 파일로 출력하기 때문에 
@@ -27,7 +27,8 @@ public class Test02_3 {
 
     System.out.println(end - start);
 
-    out.close();    
+    out.close();
+
     System.out.println("출력 완료!");
   }
 }

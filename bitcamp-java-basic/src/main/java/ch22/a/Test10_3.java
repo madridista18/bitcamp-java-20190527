@@ -10,7 +10,7 @@ public class Test10_3 {
     
     File file = new File(".");
     
-    // anonymous class (익명클래스)
+    // anonymous class 
     String[] names = file.list(new FilenameFilter() {
       @Override
       public boolean accept(File dir, String name) {

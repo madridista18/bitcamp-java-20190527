@@ -11,7 +11,7 @@ public class Test08 {
     File file = new File(".");
     
     // 하위 파일이나 디렉토리 이름 알아내기
-    String[] names = file.list(); // 직계 자식들을 호출할 때 list()
+    String[] names = file.list();
     for (String name : names) {
       System.out.println(name);
     }

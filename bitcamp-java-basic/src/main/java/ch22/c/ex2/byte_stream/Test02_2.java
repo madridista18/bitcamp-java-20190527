@@ -12,10 +12,12 @@ public class Test02_2 {
     long l = in.readLong();
     String str = in.readUTF();
     boolean b = in.readBoolean();
-    
-    System.out.printf("%x, %x, %x, %s, %b\n", s, i, l, str, b);
 
-    in.close();    
+    System.out.printf("%x, %x, %x, %s, %b\n", 
+        s, i, l, str, b);
+
+    in.close();
+
     System.out.println("읽기 완료!");
   }
 }

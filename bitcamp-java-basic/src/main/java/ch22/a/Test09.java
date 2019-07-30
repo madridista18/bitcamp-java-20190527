@@ -15,7 +15,7 @@ public class Test09 {
     
     for (File f : files) {
       System.out.printf("%s %12d %s\n", 
-          f.isDirectory() ? "d" : "-", // 디렉토리: d / 파일: - 로 시작
+          f.isDirectory() ? "d" : "-",
           f.length(),
           f.getName());
     }

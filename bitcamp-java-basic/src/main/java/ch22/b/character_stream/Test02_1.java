@@ -16,7 +16,8 @@ public class Test02_1 {
 
     out.write(chars);
 
-    out.close();        
+    out.close();
+
     System.out.println("출력 완료!");
   }
 

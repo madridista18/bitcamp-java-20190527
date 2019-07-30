@@ -22,7 +22,8 @@ public class Test02_2 {
     }
     System.out.println();
 
-    in.close();    
+    in.close();
+
     System.out.println("읽기 완료!");
   }
 

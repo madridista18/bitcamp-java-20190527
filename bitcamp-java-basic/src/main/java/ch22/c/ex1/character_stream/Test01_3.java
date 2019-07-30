@@ -1,4 +1,5 @@
 // 버퍼 사용(for 텍스트 파일) - 버퍼를 적용하여 데이터 읽기를 대신 처리해주는 도우미 클래스 사용
+// 
 package ch22.c.ex1.character_stream;
 
 public class Test01_3 {

@@ -10,7 +10,6 @@ public class Test10_4 {
     File file = new File(".");
     
     // lambda class 
-    // -> 인터페이스에 메서드가 한 개일 때만 사용가능 
     // => 메서드가 한 개짜리인 경우 lambda 표현식을 사용할 수 있다.
     // => 문법:
     //      (파라미터, 파라미터, ...) -> 문장 한개

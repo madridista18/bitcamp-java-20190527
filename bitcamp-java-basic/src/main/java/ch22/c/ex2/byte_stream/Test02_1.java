@@ -21,7 +21,7 @@ public class Test02_1 {
 
     value = value | (in.read() << 16);
     // 0x00000033 <== read()의 리턴 값
-    // 0x00330000 <== 24비트 왼쪽으로 이동
+    // 0x00330000 <== 16비트 왼쪽으로 이동
     //   0x22000000 <-- value
     // | 0x00330000
     // ------------ 
@@ -29,7 +29,7 @@ public class Test02_1 {
 
     value = value | (in.read() << 8);
     // 0x00000044 <== read()의 리턴 값
-    // 0x00004400 <== 24비트 왼쪽으로 이동
+    // 0x00004400 <== 8비트 왼쪽으로 이동
     //   0x22330000 <-- value
     // | 0x00004400
     // ------------ 
@@ -44,13 +44,14 @@ public class Test02_1 {
 
     System.out.println(Integer.toHexString(value));
 
-    in.close(); 
+    in.close();
     
     // 파일에서 4바이트 int 값을 읽기 위해 
-    // 위 코드처럼 매번 비트 이동 연산을 수행한다면 매우 번거로울 것이다. 
+    // 위 코드처럼 매번 비트 이동 연산을 수행한다면 매우 버거로울 것이다.
     // 유지보수를 좋게 하기 위해 
     // 이런 작업을 수행하는 코드를 별도의 클래스로 캡슐화 하자!
-    // => Test02_2.java, DataInputStream 클래스를 참조!
+    // => Test02_2.java, DataInputStream 클래스를 참조.
+
     System.out.println("읽기 완료!");
   }
 }

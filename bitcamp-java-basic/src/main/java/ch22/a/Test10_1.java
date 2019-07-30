@@ -7,10 +7,9 @@ import java.io.FilenameFilter;
 public class Test10_1 {
 
   // static nested class
-  static class TextFileFilter implements FilenameFilter {  
+  static class TextFileFilter implements FilenameFilter {
     @Override
-    public boolean accept(File dir, String name) { 
-      // 넘어오는 값이 이름으로 넘어오기 때문에 파일인지 디렉토리인지 모른다.
+    public boolean accept(File dir, String name) {
       return name.endsWith(".txt");
     }
   }

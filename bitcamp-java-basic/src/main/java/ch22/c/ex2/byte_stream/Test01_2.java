@@ -1,4 +1,4 @@
-// primitive data type의 값을 출력하는 것을 도와 줄 클래스 만들기 
+// primitive data type의 값을 출력하는 것을 도와줄 클래스 만들기
 package ch22.c.ex2.byte_stream;
 
 public class Test01_2 {
@@ -19,7 +19,7 @@ public class Test01_2 {
     out.writeBoolean(b);
 
     out.close();
-    
+
     System.out.println("출력 완료!");
   }
 }
