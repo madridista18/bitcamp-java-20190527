@@ -18,7 +18,7 @@ public class Test02 {
     //    } catch (...) {
     //      ...
     //    }
-    //
+    
     try (Scanner keyboard = new Scanner(System.in);){
 
       System.out.print("값? ");
@@ -61,7 +61,6 @@ public class Test02 {
       return 1;
     return value + sum(value - 1);
   }
-  
  
 }
 

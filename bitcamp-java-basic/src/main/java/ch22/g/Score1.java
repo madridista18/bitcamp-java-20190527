@@ -22,7 +22,6 @@ public class Score1 implements Serializable {
         + sum + ", aver=" + aver + "]";
   }
   
-  
 }
 
 

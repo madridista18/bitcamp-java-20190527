@@ -11,6 +11,7 @@ public class Test01_3 {
     
     in = new FileReader("build.gradle"); 
     // 여기서 예외가 발생하면 main()의 호출자인 JVM에게 전달될 것이다. 
+    // main()에서는 이 방법을 권하지 않는다. 
     
   }
 }
