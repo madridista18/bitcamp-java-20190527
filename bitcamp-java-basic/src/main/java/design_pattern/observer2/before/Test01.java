@@ -1,18 +1,17 @@
 package design_pattern.observer2.before;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 public class Test01 {
 
+  public static void main(String[] args) throws FileNotFoundException {
 
-  public static void main(String[] args) {
-
-    class TextAnalyzer {
-      public void execute() {
-        System.out.println("분석");
-      }
-    }
-
-    TextAnalyzer analyzer = new TextAnalyzer();
-    analyzer.execute();
+    FileReader in = new FileReader("build.gradle");
+      
+      Analyzer analyzer = new Analyzer(in);
+      analyzer.execute();
+    
   }
 
 }
