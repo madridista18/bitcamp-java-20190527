@@ -58,11 +58,11 @@ public class Test01_2 {
         s3.getSum(), s3.getAver());
     
     // 읽을 데이터가 없는 파일에서 학생의 성적 정보를 읽으려 한다면 
-    Score s4 = new Score();
-    s4.setName(in.readUTF());
-    s4.setKor(in.readInt());
-    s4.setEng(in.readInt());
-    s4.setMath(in.readInt());
+//    Score s4 = new Score();
+//    s4.setName(in.readUTF());
+//    s4.setKor(in.readInt());
+//    s4.setEng(in.readInt());
+//    s4.setMath(in.readInt());
 
     in.close();
   }
