@@ -27,6 +27,7 @@ public class ServerApp {
             new BufferedOutputStream(clientSocket.getOutputStream()))) {
         
         System.out.println("클라이언트와 연결 되었음.");
+        
       
         // 클라이언트가 보낸 데이터를 읽는다. 
         // => 보낸 규칙에 맞춰서 읽어야 한다. 
