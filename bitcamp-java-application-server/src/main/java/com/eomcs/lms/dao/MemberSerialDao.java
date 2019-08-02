@@ -1,48 +1,30 @@
 package com.eomcs.lms.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import com.eomcs.lms.domain.Member;
 
-public class MemberSerialDao {
-  ArrayList<Member> list = new ArrayList<>();
-  File file;
+public class MemberSerialDao extends AbstractDataSerializer<Member, Integer> {
 
   public MemberSerialDao(String file) throws ClassNotFoundException {
-    this.file = new File(file); 
-
+    super(file);
+    
     try {
       loadData();
+      System.out.println("게시물 데이터 로딩 완료!");
+      
     } catch (IOException e) {
       System.out.println("게시물 데이터 로딩 중 오류 발생!");
     }
 
   }
 
-  @SuppressWarnings("unchecked")
-  private void loadData() throws IOException, ClassNotFoundException  {
-
-    try (ObjectInputStream in = new ObjectInputStream(
-        new FileInputStream(file))) {
-      list = (ArrayList<Member>) in.readObject();
-      System.out.println("게시물 데이터 로딩 완료!");
-
-    } 
-  }
-
+  @Override
   public void saveData() {
-
-    try (ObjectOutputStream out = new ObjectOutputStream(
-        new FileOutputStream(file))) {
-
-      out.writeObject(list);
+    
+    try {
+      super.saveData();
       System.out.println("게시물 데이터 저장 완료!");
 
     } catch (FileNotFoundException e) {
@@ -53,6 +35,19 @@ public class MemberSerialDao {
 
     } 
   }
+  
+  @Override
+  public int indexOf(Integer key) {
+    int i =0 ;
+    for (Member m : list) {
+      if (m.getNo() == key) {
+        return i;
+      }
+      i++;
+    }
+    return -1;
+  }
+  
   public int insert(Member member) throws Exception {
     list.add(member);
     return 1;
@@ -85,14 +80,4 @@ public class MemberSerialDao {
     return 1;
   }
 
-  private int indexOf(int no) {
-    int i =0 ;
-    for (Member m : list) {
-      if (m.getNo() == no) {
-        return i;
-      }
-      i++;
-    }
-    return -1;
-  }
 }
