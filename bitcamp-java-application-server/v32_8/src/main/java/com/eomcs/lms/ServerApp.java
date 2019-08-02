@@ -1,4 +1,4 @@
-// v32_9: 회원/수업/게시물 요청을 처리하는 클래스를 패키지로 분류한다.  
+// v32_8: 회원/수업/게시물 요청을 처리하는 코드를 별도의 클래스로 분리한다.  
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.domain.Lesson;
 import com.eomcs.lms.domain.Member;
-import com.eomcs.lms.servlet.BoardServlet;
-import com.eomcs.lms.servlet.LessonServlet;
-import com.eomcs.lms.servlet.MemberServlet;
 
 public class ServerApp {
 
