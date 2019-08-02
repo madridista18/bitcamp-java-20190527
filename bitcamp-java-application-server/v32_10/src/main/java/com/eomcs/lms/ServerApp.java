@@ -1,10 +1,14 @@
-// v32_11: Servlet 클래스에서 데이터 저장 기능을 별도의 클래스(DAO)로 분리하기    
+// v32_10: 파일 저장기능 추가   
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.domain.Lesson;
+import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.servlet.BoardServlet;
 import com.eomcs.lms.servlet.LessonServlet;
 import com.eomcs.lms.servlet.MemberServlet;
@@ -56,9 +60,9 @@ public class ServerApp {
           }
           out.flush();
           System.out.println("클라이언트에게 응답 완료!");
-
+         
         }
-
+        
         // 클라이언트와 연결을 끊기 전에 작업 내용을 파일에 저장한다. 
         boardServlet.saveData();
         lessonServlet.saveData();
