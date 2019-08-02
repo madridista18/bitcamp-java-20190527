@@ -27,7 +27,6 @@ public class ServerApp {
             new BufferedOutputStream(clientSocket.getOutputStream()))) {
         
         System.out.println("클라이언트와 연결 되었음.");
-        
       
         // 클라이언트가 보낸 데이터를 읽는다. 
         // => 보낸 규칙에 맞춰서 읽어야 한다. 
@@ -39,7 +38,9 @@ public class ServerApp {
         
         // 클라이언트가 보낸 문자열을 그대로 리턴한다. 
         out.println("[김광용]" + message);
-        out.flush(); // PrintWriter에 출력한 데이터는 버퍼에 있다. 버퍼에 있는 데이터를 강제로 출력하라!
+        out.flush(); 
+        // PrintWriter에 출력한 데이터는 버퍼에 있다. 
+        // 버퍼에 있는 데이터를 강제로 출력하라!
         System.out.println("클라이언트로 데이터를 보냈음.");
       } 
       

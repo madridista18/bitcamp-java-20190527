@@ -1,4 +1,4 @@
-// v32_4: 클라이언트와 서버 간에 데이터 주고 받기 - 클라이언트가 보낸 데이터를 되돌려 보내기  
+// v32_4: 클라이언트와 서버 간에 데이터 주고 받기 II - 인스턴스 주고 받기   
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
