@@ -4,11 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
-import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
-public class BoardCsvDao extends AbstractCsvDataSerializer<Board, Integer> 
-implements BoardDao {
+public class BoardCsvDao extends AbstractCsvDataSerializer<Board, Integer> {
 
   public BoardCsvDao(String file) {
     super(file);
@@ -49,10 +47,10 @@ implements BoardDao {
     board.setContents(values[1]);
     board.setCreatedDate(Date.valueOf(values[2]));
     board.setViewCount(Integer.parseInt(values[3]));
-
+    
     return board;
   }
-
+  
   @Override
   protected String createCSV(Board obj) {
     return String.format("%d,%s,%s,%d", 
@@ -74,27 +72,24 @@ implements BoardDao {
     return -1;
   }
 
-  @Override
-  public int insert(Board board) throws Exception {
+
+  public int add(Board board) throws Exception {
     list.add(board);
     return 1;
   }
 
-  @Override
-  public List<Board> findAll() throws Exception {
+  public List<Board> list() throws Exception {
     return list;
   }
 
-  @Override
-  public Board findBy(int no) throws Exception {
+  public Board get(int no) throws Exception {
     int index = indexOf(no);
     if (index == -1) 
       return null;
     return list.get(index);
   }
 
-  @Override
-  public int update(Board board) throws Exception {
+  public int modify(Board board) throws Exception {
     int index = indexOf(board.getNo());
     if (index == -1) 
       return 0;
@@ -102,8 +97,7 @@ implements BoardDao {
     return 1;
   }
 
-  @Override
-  public int delete(int no) throws Exception {
+  public int remove(int no) throws Exception {
     int index = indexOf(no);
     if (index == -1) 
       return 0;

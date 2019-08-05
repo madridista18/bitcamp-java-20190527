@@ -5,11 +5,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
 import com.eomcs.lms.Servlet;
-import com.eomcs.lms.dao.serial.MemberSerialDao;
+import com.eomcs.lms.dao.csv.MemberCsvDao;
 import com.eomcs.lms.domain.Member;
 
 public class MemberServlet implements Servlet {
-  MemberSerialDao memberDao;
+  MemberCsvDao memberDao;
 
   ObjectInputStream in;
   ObjectOutputStream out;
@@ -18,7 +18,7 @@ public class MemberServlet implements Servlet {
     this.in = in;
     this.out = out;
 
-    memberDao = new MemberSerialDao("./member.ser");
+    memberDao = new MemberCsvDao("./member.csv");
   }
 
   public void saveData() throws FileNotFoundException {
@@ -56,7 +56,7 @@ public class MemberServlet implements Servlet {
     // 변경일은 서버쪽에서 설정해야 한다. 
     member.setRegisteredDate(new Date(System.currentTimeMillis()));
 
-    if (memberDao.update(member) == 0) {
+    if (memberDao.modify(member) == 0) {
       fail("해당 번호의 게시물이 없습니다. ");
       return;
     }
@@ -78,7 +78,7 @@ public class MemberServlet implements Servlet {
   private void deleteMember() throws Exception {
     int no = in.readInt();
 
-    if (memberDao.delete(no) == 0) {
+    if (memberDao.remove(no) == 0) {
       fail("해당 번호의 게시물이 없습니다. ");
       return;
     }

@@ -4,13 +4,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
 import com.eomcs.lms.Servlet;
-import com.eomcs.lms.dao.serial.BoardSerialDao;
+import com.eomcs.lms.dao.csv.BoardCsvDao;
 import com.eomcs.lms.domain.Board;
 
 // 게시물 요청을 처리하는 담당자
 public class BoardServlet implements Servlet {
 
-  BoardSerialDao boardDao;
+  BoardCsvDao boardDao;
 
   ObjectInputStream in;
   ObjectOutputStream out;
@@ -19,7 +19,7 @@ public class BoardServlet implements Servlet {
     this.in = in;
     this.out = out;
 
-    boardDao = new BoardSerialDao("./board.ser");
+    boardDao = new BoardCsvDao("./board.csv");
 
   }
 
@@ -58,7 +58,7 @@ public class BoardServlet implements Servlet {
     // => 클라이언트에서 보내 온 날짜는 조작된 날짜일 수 있기 때문이다. 
     board.setCreatedDate(new Date(System.currentTimeMillis()));
 
-    if (boardDao.update(board) == 0) {
+    if (boardDao.modify(board) == 0) {
       fail("해당 번호의 게시물이 없습니다. ");
       return;
     }
@@ -68,7 +68,7 @@ public class BoardServlet implements Servlet {
   private void detailBoard() throws Exception {
     int no = in.readInt();
 
-    Board board = boardDao.findBy(no);
+    Board board = boardDao.get(no);
     if (board == null) {
       fail("해당 번호의 게시물이 없습니다. ");
       return;
@@ -80,7 +80,7 @@ public class BoardServlet implements Servlet {
   private void deleteBoard() throws Exception {
     int no = in.readInt();
 
-    if (boardDao.delete(no) == 0) {
+    if (boardDao.remove(no) == 0) {
       fail("해당 번호의 게시물이 없습니다. ");
       return;
     }
@@ -90,7 +90,7 @@ public class BoardServlet implements Servlet {
   private void listBoard() throws Exception {
     out.writeUTF("ok");
     out.reset();
-    out.writeObject(boardDao.findAll());
+    out.writeObject(boardDao.list());
   }
 
   private void addBoard() throws Exception {
@@ -100,7 +100,7 @@ public class BoardServlet implements Servlet {
     // => 클라이언트에서 보내 온 날짜는 조작된 날짜일 수 있기 때문이다. 
     board.setCreatedDate(new Date(System.currentTimeMillis()));
 
-    if (boardDao.insert(board) == 0) {
+    if (boardDao.add(board) == 0) {
       fail("게시물을 입력할 수 없습니다. ");
       return;
     }

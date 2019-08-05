@@ -1,4 +1,4 @@
-// v32_14: DAO 사용 규칙을 정의하여 일관성 있는 호출을 유도한다.      
+// v32_13: CSV(comma-separated value) 형식으로 데이터를 다루는 DAO 추가     
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
@@ -16,6 +16,7 @@ public class ServerApp {
 
   public static void main(String[] args) {
     System.out.println("[수업관리시스템 서버 애플리케이션]");
+
 
     try (ServerSocket serverSocket = new ServerSocket(8888)) {
       System.out.println("서버 시작!");
