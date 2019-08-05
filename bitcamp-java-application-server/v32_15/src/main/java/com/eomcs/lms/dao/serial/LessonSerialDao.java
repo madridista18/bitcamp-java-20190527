@@ -3,65 +3,65 @@ package com.eomcs.lms.dao.serial;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import com.eomcs.lms.dao.MemberDao;
-import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.dao.LessonDao;
+import com.eomcs.lms.domain.Lesson;
 
-public class MemberSerialDao extends AbstractDataSerializer<Member, Integer> implements MemberDao {
+public class LessonSerialDao extends AbstractDataSerializer<Lesson, Integer> implements LessonDao{
 
-  public MemberSerialDao(String file) throws ClassNotFoundException {
+  public LessonSerialDao(String file) throws ClassNotFoundException {
     super(file);
-    
+
     try {
       loadData();
-      System.out.println("회원 데이터 로딩 완료!");
-      
+      System.out.println("게시물 데이터 로딩 완료!");
+
     } catch (IOException e) {
-      System.out.println("회원 데이터 로딩 중 오류 발생!");
+      System.out.println("게시물 데이터 로딩 중 오류 발생!");
     }
 
   }
 
   @Override
   public void saveData() {
-    
+
     try {
       super.saveData();
-      System.out.println("회원 데이터 저장 완료!");
+      System.out.println("게시물 데이터 저장 완료!");
 
     } catch (FileNotFoundException e) {
       System.out.println("파일을 생성할 수 없습니다!");
 
     } catch (IOException e) {
-      System.out.println("파일에 회원 데이터를 출력하는 중에 오류 발생!");
+      System.out.println("파일에 데이터를 출력하는 중에 오류 발생!");
 
     } 
   }
-  
+
   @Override
   public int indexOf(Integer key) {
     int i =0 ;
-    for (Member m : list) {
-      if (m.getNo() == key) {
+    for (Lesson l : list) {
+      if (l.getNo() == key) {
         return i;
       }
       i++;
     }
     return -1;
   }
-  
+
   @Override
-  public int insert(Member member) throws Exception {
-    list.add(member);
+  public int insert(Lesson lesson) throws Exception {
+    list.add(lesson);
     return 1;
   }
 
   @Override
-  public List<Member> findAll() throws Exception {
+  public List<Lesson> findAll() throws Exception {
     return list;
   }
 
   @Override
-  public Member findBy(int no) throws Exception {
+  public Lesson findBy(int no) throws Exception {
     int index = indexOf(no);
     if (index == -1) 
       return null;
@@ -69,11 +69,11 @@ public class MemberSerialDao extends AbstractDataSerializer<Member, Integer> imp
   }
 
   @Override
-  public int update(Member member) throws Exception {
-    int index = indexOf(member.getNo());
+  public int update(Lesson lesson) throws Exception {
+    int index = indexOf(lesson.getNo());
     if (index == -1) 
       return 0;
-    list.set(index, member);
+    list.set(index, lesson);
     return 1;
   }
 

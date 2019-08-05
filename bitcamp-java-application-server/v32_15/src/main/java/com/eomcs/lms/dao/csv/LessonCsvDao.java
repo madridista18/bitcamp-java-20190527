@@ -18,7 +18,7 @@ implements LessonDao {
       System.out.println("수업 데이터 로딩 완료!");
 
     } catch (Exception e) {
-      System.out.println("수업 데이터 로딩 중 오류 발생!");
+      System.out.println("게시물 데이터 로딩 중 오류 발생!");
     }
 
   }
@@ -28,7 +28,7 @@ implements LessonDao {
 
     try {
       super.saveData();
-      System.out.println("수업 데이터 저장 완료!");
+      System.out.println("게시물 데이터 저장 완료!");
 
     } catch (FileNotFoundException e) {
       System.out.println("파일을 생성할 수 없습니다!");
