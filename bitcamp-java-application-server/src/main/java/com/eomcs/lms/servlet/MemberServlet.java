@@ -1,28 +1,30 @@
 package com.eomcs.lms.servlet;
 
-import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
 import com.eomcs.lms.Servlet;
-import com.eomcs.lms.dao.serial.MemberSerialDao;
+import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
 public class MemberServlet implements Servlet {
-  MemberSerialDao memberDao;
+
+  // 회원 데이터 관리 DAO를 교체하기 쉽도록 인터페이스의 레퍼런스로 선언한다. 
+  MemberDao memberDao;
 
   ObjectInputStream in;
   ObjectOutputStream out;
 
-  public MemberServlet(ObjectInputStream in, ObjectOutputStream out) throws ClassNotFoundException {
+  public MemberServlet(MemberDao memberDao, ObjectInputStream in, ObjectOutputStream out) throws ClassNotFoundException {
     this.in = in;
     this.out = out;
 
-    memberDao = new MemberSerialDao("./member.ser");
-  }
+    // 서블릿이 사용할 DAO를 직접 만들지 않고 외부에서 주입받아 사용한다. 
+    // 이렇게 의존하는 객체를 외부에서 주입 받아 사용하는 방법을 
+    // "의존성 주입(Dependency Injection: DI)" 이라 부른다. 
+    // => 그래야만 의존 객체를 교체하기 쉽다. 
+    this.memberDao = memberDao;
 
-  public void saveData() throws FileNotFoundException {
-    memberDao.saveData();
   }
 
   @Override
@@ -52,7 +54,7 @@ public class MemberServlet implements Servlet {
 
   private void updateMember() throws Exception {
     Member member = (Member) in.readObject(); 
-    
+
     // 변경일은 서버쪽에서 설정해야 한다. 
     member.setRegisteredDate(new Date(System.currentTimeMillis()));
 

@@ -4,27 +4,29 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
 import com.eomcs.lms.Servlet;
+import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.dao.serial.BoardSerialDao;
 import com.eomcs.lms.domain.Board;
 
 // 게시물 요청을 처리하는 담당자
 public class BoardServlet implements Servlet {
 
-  BoardSerialDao boardDao;
+  // 게시물 DAO를 교체하기 쉽도록 인터페이스의 레퍼런스로 선언한다. 
+  BoardDao boardDao;
 
   ObjectInputStream in;
   ObjectOutputStream out;
 
-  public BoardServlet(ObjectInputStream in, ObjectOutputStream out) throws Exception {
+  public BoardServlet(BoardDao boardDao, ObjectInputStream in, ObjectOutputStream out) throws Exception {
     this.in = in;
     this.out = out;
-
-    boardDao = new BoardSerialDao("./board.ser");
-
-  }
-
-  public void saveData() {
-    boardDao.saveData();
+    
+    // 서블릿이 사용할 DAO를 직접 만들지 않고 외부에서 주입받아 사용한다. 
+    // 이렇게 의존하는 객체를 외부에서 주입 받아 사용하는 방법을 
+    // "의존성 주입(Dependency Injection: DI)" 이라 부른다. 
+    // => 그래야만 의존 객체를 교체하기 쉽다. 
+    this.boardDao = boardDao;
+    
   }
 
   @Override
