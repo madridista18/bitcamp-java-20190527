@@ -30,7 +30,6 @@ public class ServerTest {
       
       System.out.println();
       
-      
       // 서버에 객체를 전송한다. 
       out.writeObject(member);
       out.flush();  

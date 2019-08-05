@@ -26,7 +26,8 @@ public abstract class AbstractDataSerializer<T, K> {
   @SuppressWarnings("unchecked")
   protected void loadData() throws IOException, ClassNotFoundException  {
 
-    try (ObjectInputStream in = new ObjectInputStream(
+    try (
+        ObjectInputStream in = new ObjectInputStream(
             new FileInputStream(file))) {
       list = (ArrayList<T>) in.readObject();
 
@@ -35,7 +36,8 @@ public abstract class AbstractDataSerializer<T, K> {
 
   protected void saveData() throws FileNotFoundException, IOException {
 
-    try (ObjectOutputStream out = new ObjectOutputStream(
+    try (
+        ObjectOutputStream out = new ObjectOutputStream(
             new FileOutputStream(file))) {
 
       out.writeObject(list);

@@ -3,13 +3,12 @@ package com.eomcs.lms.servlet;
 import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.sql.Date;
 import com.eomcs.lms.Servlet;
-import com.eomcs.lms.dao.csv.LessonCsvDao;
+import com.eomcs.lms.dao.LessonSerialDao;
 import com.eomcs.lms.domain.Lesson;
 
 public class LessonServlet implements Servlet {
-  LessonCsvDao lessonDao;
+  LessonSerialDao lessonDao;
 
   ObjectInputStream in;
   ObjectOutputStream out;
@@ -18,7 +17,7 @@ public class LessonServlet implements Servlet {
     this.in = in;
     this.out = out;
 
-    lessonDao = new LessonCsvDao("./lesson.csv");
+    lessonDao = new LessonSerialDao("./lesson.ser");
   }
 
 
@@ -54,9 +53,9 @@ public class LessonServlet implements Servlet {
 
   private void updateLesson() throws Exception {
     Lesson lesson = (Lesson) in.readObject();
-    
+
     if (lessonDao.update(lesson) == 0) {
-      fail("해당 번호의 수업이 없습니다. ");
+      fail("해당 번호의 게시물이 없습니다. ");
       return;
     }
     out.writeUTF("ok");
@@ -65,9 +64,9 @@ public class LessonServlet implements Servlet {
   private void detailLesson() throws Exception {
     int no = in.readInt();
 
-    Lesson lesson = lessonDao.getLesson(no);
+    Lesson lesson = lessonDao.findBy(no);
     if (lesson == null) {
-      fail("해당 번호의 수업이 없습니다. ");
+      fail("해당 번호의 게시물이 없습니다. ");
       return;
     }
     out.writeUTF("ok");
@@ -78,7 +77,7 @@ public class LessonServlet implements Servlet {
     int no = in.readInt();
 
     if (lessonDao.delete(no) == 0) {
-      fail("해당 번호의 수업이 없습니다. ");
+      fail("해당 번호의 게시물이 없습니다. ");
       return;
     }
     out.writeUTF("ok");
@@ -87,13 +86,13 @@ public class LessonServlet implements Servlet {
   private void listLesson() throws Exception {
     out.writeUTF("ok");
     out.reset();
-    out.writeObject(lessonDao.getLessons());
+    out.writeObject(lessonDao.findAll());
   }
 
   private void addLesson() throws Exception {
     Lesson lesson = (Lesson) in.readObject();
-    if (lessonDao.append(lesson) == 0) {
-      fail("수업 내용을 입력할 수 없습니다. ");
+    if (lessonDao.insert(lesson) == 0) {
+      fail("게시물을 입력할 수 없습니다. ");
       return;
     }
     out.writeUTF("ok");

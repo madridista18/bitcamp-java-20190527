@@ -25,20 +25,20 @@ public class ServerTest3 {
       ServerTest3.in = in;
       ServerTest3.out = out;
 
-      Board board = new Board();
-      board.setNo(1);
-      board.setContents("제목1");
+      Board Board = new Board();
+      Board.setNo(1);
+      Board.setContents("제목1");
 
-      if (!add(board)) {
+      if (!add(Board)) {
         error();
       }
       System.out.println("------------------");
 
-      board = new Board();
-      board.setNo(2);
-      board.setContents("제목2");
+      Board = new Board();
+      Board.setNo(2);
+      Board.setContents("제목2");
 
-      if (!add(board)) {
+      if (!add(Board)) {
         error();
       }
       System.out.println("------------------");
@@ -63,11 +63,10 @@ public class ServerTest3 {
       }
       System.out.println("------------------");
 
-      board = new Board();
-      board.setNo(1);
-      board.setContents("오호라... 변경");
+      Board.setNo(1);
+      Board.setContents("오호라... 변경");
 
-      if (!update(board)) {
+      if (!update(Board)) {
         error();
       }
       System.out.println("------------------");
@@ -119,7 +118,7 @@ public class ServerTest3 {
 
   private static boolean detail() throws Exception {
     out.writeUTF("/board/detail");
-    out.writeInt(1);
+    out.writeInt(9);
     out.flush();
     System.out.print("detail 요청함 => ");
 
@@ -161,7 +160,6 @@ public class ServerTest3 {
     for (Board obj : list) {
       System.out.println(obj);
     }
-    list.clear();
     return true;
   }
 

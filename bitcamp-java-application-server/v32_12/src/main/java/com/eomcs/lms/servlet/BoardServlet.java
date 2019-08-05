@@ -2,15 +2,14 @@ package com.eomcs.lms.servlet;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.sql.Date;
 import com.eomcs.lms.Servlet;
-import com.eomcs.lms.dao.csv.BoardCsvDao;
+import com.eomcs.lms.dao.BoardSerialDao;
 import com.eomcs.lms.domain.Board;
 
 // 게시물 요청을 처리하는 담당자
 public class BoardServlet implements Servlet {
 
-  BoardCsvDao boardDao;
+  BoardSerialDao boardDao;
 
   ObjectInputStream in;
   ObjectOutputStream out;
@@ -19,7 +18,7 @@ public class BoardServlet implements Servlet {
     this.in = in;
     this.out = out;
 
-    boardDao = new BoardCsvDao("./board.csv");
+    boardDao = new BoardSerialDao("./board.ser");
 
   }
 
@@ -54,11 +53,7 @@ public class BoardServlet implements Servlet {
   private void updateBoard() throws Exception {
     Board board = (Board) in.readObject();
 
-    // 서버쪽에서 게시글 변경일을 설정해야 한다. 
-    // => 클라이언트에서 보내 온 날짜는 조작된 날짜일 수 있기 때문이다. 
-    board.setCreatedDate(new Date(System.currentTimeMillis()));
-
-    if (boardDao.modify(board) == 0) {
+    if (boardDao.update(board) == 0) {
       fail("해당 번호의 게시물이 없습니다. ");
       return;
     }
@@ -68,7 +63,7 @@ public class BoardServlet implements Servlet {
   private void detailBoard() throws Exception {
     int no = in.readInt();
 
-    Board board = boardDao.get(no);
+    Board board = boardDao.findBy(no);
     if (board == null) {
       fail("해당 번호의 게시물이 없습니다. ");
       return;
@@ -80,7 +75,7 @@ public class BoardServlet implements Servlet {
   private void deleteBoard() throws Exception {
     int no = in.readInt();
 
-    if (boardDao.remove(no) == 0) {
+    if (boardDao.delete(no) == 0) {
       fail("해당 번호의 게시물이 없습니다. ");
       return;
     }
@@ -90,25 +85,17 @@ public class BoardServlet implements Servlet {
   private void listBoard() throws Exception {
     out.writeUTF("ok");
     out.reset();
-    out.writeObject(boardDao.list());
+    out.writeObject(boardDao.findAll());
   }
 
   private void addBoard() throws Exception {
     Board board = (Board) in.readObject();
-
-    // 서버쪽에서 게시글 생성일을 설정해야 한다. 
-    // => 클라이언트에서 보내 온 날짜는 조작된 날짜일 수 있기 때문이다. 
-    board.setCreatedDate(new Date(System.currentTimeMillis()));
-
-    if (boardDao.add(board) == 0) {
+    if (boardDao.insert(board) == 0) {
       fail("게시물을 입력할 수 없습니다. ");
       return;
     }
-
     out.writeUTF("ok");
   }
-
-
 
   private void fail(String cause) throws Exception {
     out.writeUTF("fail");

@@ -30,11 +30,11 @@ public class ServerTest {
       System.out.println("서버에 데이터를 보냈음.");
 
       // 서버가 보낸 데이터를 읽는다. 
-      String reponse = in.readLine();
+      String response = in.readLine();
       System.out.println("서버로부터 데이터를 받았음.");
 
       // 서버가 보낸 데이터를 콘솔창에 출력한다. 
-      System.out.println("--->" + reponse);
+      System.out.println("--->" + response);
 
     } catch (IOException e) {
       // 예외가 발생하면 일단 어디에서 예외가 발생했는지 확인하기 위해 호출 정보를 모두 출력한다. 
