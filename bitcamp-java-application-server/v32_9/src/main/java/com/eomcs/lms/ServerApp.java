@@ -87,10 +87,6 @@ public class ServerApp {
     System.out.println("서버 종료!");
   }
 
-  private static void fail(String cause) throws Exception {
-    out.writeUTF("fail");
-    out.writeUTF(cause);
-  }
 }
 
 

@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.domain.Lesson;
 import com.eomcs.lms.domain.Member;
@@ -16,13 +17,11 @@ public class ServerApp {
   static ArrayList<Lesson> lessonList = new ArrayList<>();
   static ArrayList<Board> boardList = new ArrayList<>();
 
-
   static ObjectInputStream in;
   static ObjectOutputStream out;
 
   public static void main(String[] args) {
     System.out.println("[수업관리시스템 서버 애플리케이션]");
-
 
     try (ServerSocket serverSocket = new ServerSocket(8888)) {
       System.out.println("서버 시작!");

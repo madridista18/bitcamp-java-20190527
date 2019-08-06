@@ -25,7 +25,6 @@ public class ServerTest {
       ServerTest.in = in;
       ServerTest.out = out;
 
-
       Member member = new Member();
       member.setNo(1);
       member.setName("홍길동");

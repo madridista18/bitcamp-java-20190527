@@ -1,4 +1,4 @@
-// client-v32_2 :  데이터 관리를 서버에게 맡긴다. 즉, 서버를 통해 데이터를 처리한다. 
+// client-v33_2 : Stateful 통신 방식을 Stateless 통신 방식으로 변경한다.   
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
@@ -40,89 +40,86 @@ import com.eomcs.util.Input;
 public class App {
 
   Scanner keyScan;
+  String host;
+  int port;
+  
+  public App(String host, int port) {
+    this.host = host;
+    this.port = port;
+  }
+  
 
   private void service() {
+    // command 객체가 사용할 데이터 처리 객체를 준비한다. 
+    BoardDao boardDao = new BoardDaoProxy(host, port);
+    LessonDao lessonDao = new LessonDaoProxy(host, port);
+    MemberDao memberDao = new MemberDaoProxy(host, port);
 
-    try (Socket socket = new Socket("localhost", 8888);
-        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-        ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
+    keyScan = new Scanner(System.in);
 
-      // command 객체가 사용할 데이터 처리 객체를 준비한다. 
-      BoardDao boardDao = new BoardDaoProxy(in, out);
-      LessonDao lessonDao = new LessonDaoProxy(in, out);
-      MemberDao memberDao = new MemberDaoProxy(in, out);
+    Deque<String> commandStack = new ArrayDeque<>();
+    Queue<String> commandQueue = new LinkedList<>();
 
-      // 회원과 수업 데이터를 다루는 커맨드는 일단 ArrayList를 사용!
-      //ArrayList<Member> memberList = new ArrayList<>();
-      //ArrayList<Lesson> lessonList = new ArrayList<>();
+    Input input = new Input(keyScan);
 
-      keyScan = new Scanner(System.in);
+    HashMap<String, Command> commandMap = new HashMap<>(); 
 
-      Deque<String> commandStack = new ArrayDeque<>();
-      Queue<String> commandQueue = new LinkedList<>();
+    commandMap.put("/lesson/add", new LessonAddCommand(input, lessonDao));
+    commandMap.put("/lesson/delete", new LessonDeleteCommand(input, lessonDao));
+    commandMap.put("/lesson/detail", new LessonDetailCommand(input, lessonDao));
+    commandMap.put("/lesson/list", new LessonListCommand(input, lessonDao));
+    commandMap.put("/lesson/update", new LessonUpdateCommand(input, lessonDao));
 
-      Input input = new Input(keyScan);
+    commandMap.put("/member/add", new MemberAddCommand(input, memberDao));
+    commandMap.put("/member/delete", new MemberDeleteCommand(input, memberDao));
+    commandMap.put("/member/detail", new MemberDetailCommand(input, memberDao));
+    commandMap.put("/member/list", new MemberListCommand(input, memberDao));
+    commandMap.put("/member/update", new MemberUpdateCommand(input, memberDao));
 
-      HashMap<String, Command> commandMap = new HashMap<>(); 
+    commandMap.put("/board/add", new BoardAddCommand(input, boardDao));
+    commandMap.put("/board/delete", new BoardDeleteCommand(input, boardDao));
+    commandMap.put("/board/detail", new BoardDetailCommand(input, boardDao));
+    commandMap.put("/board/list", new BoardListCommand(input, boardDao));
+    commandMap.put("/board/update", new BoardUpdateCommand(input, boardDao));
 
-      commandMap.put("/lesson/add", new LessonAddCommand(input, lessonDao));
-      commandMap.put("/lesson/delete", new LessonDeleteCommand(input, lessonDao));
-      commandMap.put("/lesson/detail", new LessonDetailCommand(input, lessonDao));
-      commandMap.put("/lesson/list", new LessonListCommand(input, lessonDao));
-      commandMap.put("/lesson/update", new LessonUpdateCommand(input, lessonDao));
-
-      commandMap.put("/member/add", new MemberAddCommand(input, memberDao));
-      commandMap.put("/member/delete", new MemberDeleteCommand(input, memberDao));
-      commandMap.put("/member/detail", new MemberDetailCommand(input, memberDao));
-      commandMap.put("/member/list", new MemberListCommand(input, memberDao));
-      commandMap.put("/member/update", new MemberUpdateCommand(input, memberDao));
-
-      commandMap.put("/board/add", new BoardAddCommand(input, boardDao));
-      commandMap.put("/board/delete", new BoardDeleteCommand(input, boardDao));
-      commandMap.put("/board/detail", new BoardDetailCommand(input, boardDao));
-      commandMap.put("/board/list", new BoardListCommand(input, boardDao));
-      commandMap.put("/board/update", new BoardUpdateCommand(input, boardDao));
-
-      commandMap.put("/hi", new HiCommand(input));
-      commandMap.put("/calc/plus", new CalcPlusCommand(input));
+    commandMap.put("/hi", new HiCommand(input));
+    commandMap.put("/calc/plus", new CalcPlusCommand(input));
 
 
-      while (true) {
+    while (true) {
 
-        String command = prompt();
+      String command = prompt();
 
-        if (command.length() == 0)
-          continue;
-        commandStack.push(command); 
-        commandQueue.offer(command); 
+      if (command.length() == 0)
+        continue;
+      commandStack.push(command); 
+      commandQueue.offer(command); 
 
-        Command executor = commandMap.get(command);
+      Command executor = commandMap.get(command);
 
-        if (command.equals("quit")) {
-          out.writeUTF(command);
-          out.flush();
-          break;
+      if (command.equals("quit")) {
+        break;
+      }
+      if (command.equals("serverstop")) {
+        serverStop();
+        break;
 
-        } else if (command.equals("history")) {
-          printCommandHistory(commandStack);
+      } else if (command.equals("history")) {
+        printCommandHistory(commandStack);
 
-        } else if (command.equals("history2")) {
-          printCommandHistory(commandQueue);
+      } else if (command.equals("history2")) {
+        printCommandHistory(commandQueue);
 
-        } else if (executor != null) {
-          executor.execute(); 
+      } else if (executor != null) {
+        executor.execute(); 
 
-        } else {
-          System.out.println("해당 명령을 지원하지 않습니다. ");
-        }
-        System.out.println();
-      } 
+      } else {
+        System.out.println("해당 명령을 지원하지 않습니다. ");
+      }
+      System.out.println();
+    } 
 
-    } catch (Exception e) {
-      System.out.println("서버 통신 오류!");
-    }
-
-  }
+  } 
 
   private void printCommandHistory(Iterable<String> list) {
     Iterator<String> iterator = list.iterator();
@@ -142,8 +139,21 @@ public class App {
     return keyScan.nextLine();
   }
 
+  private void serverStop() {
+    try (Socket socket = new Socket(host, port);
+        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+        ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
+
+      out.writeUTF("serverstop");
+      out.flush();
+
+    } catch (Exception e) {
+      // 서버를 종료하는 요청을 보낸 후 발생하는 예외는 무시한다. 
+    }
+  }
+
   public static void main(String[] args) {
-    App app = new App();
+    App app = new App("localhost", 8888);
     app.service();
   }
 }
