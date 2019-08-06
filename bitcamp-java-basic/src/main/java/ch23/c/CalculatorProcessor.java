@@ -18,7 +18,7 @@ public class CalculatorProcessor {
   }
   
   public void execute() throws Exception {
-    try (Socket socket = this.socket;
+    try (Socket socket = this.socket; // close()를 자동화 하기 위해 객체를 만듬
         BufferedReader in = this.in;
         PrintStream out = this.out) {
       
@@ -42,7 +42,7 @@ public class CalculatorProcessor {
   }
   
   private void calculate(String request) {
-    try {
+    try { 
       String[] input = request.split(" ");
       
       int a = Integer.parseInt(input[0]);
