@@ -15,7 +15,7 @@ public class Test02 {
     
     // 자바에서 URL을 저장하기
     URL url = new URL("http://www.bitcamp.co.kr:80/a/b/c/index.html#side");
-    
+    // # : 문서 내부의 위치
     System.out.printf("프로토콜: %s\n", url.getProtocol());
     System.out.printf("서버주소: %s\n", url.getHost());
     System.out.printf("포트번호: %d\n", url.getPort()); // 포트번호를 생략하면 -1을 리턴한다.

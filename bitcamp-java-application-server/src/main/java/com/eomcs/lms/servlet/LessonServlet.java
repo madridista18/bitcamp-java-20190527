@@ -28,6 +28,7 @@ public class LessonServlet implements Servlet {
         addLesson(in, out);
         break;
       case "/lesson/list":
+        Thread.currentThread().sleep(10000); // 스레드 필요성을 알려주기 위해 실행 지연시킴
         listLesson(in, out);
         break;
       case "/lesson/delete":
