@@ -1,4 +1,4 @@
-// v35_2: serverstop 명령어에 대해 JVM 강제 종료하기   
+// v35_1: 스레드 풀(Thread pool)을 이용하여 스레드 자원을 효율적으로 관리하기   
 package com.eomcs.lms;
 
 import java.io.ObjectInputStream;
@@ -15,6 +15,8 @@ import com.eomcs.lms.servlet.Servlet;
 
 public class ServerApp {
 
+  public static boolean isStopping = false;
+  
   ArrayList<ServletContextListener> listeners = new ArrayList<>();
   int port;
 
@@ -50,12 +52,24 @@ public class ServerApp {
         // => 남아있는 스레드가 있다면 그 스레드를 이용하여 해당 코드(RequestHandler)를 실행할 것이다. 
         executorService.submit(new RequestHandler(socket));
         
+        if (isStopping)
+          break;
       } // while
+
+      // 서버가 종료될 때 관찰자(observer)에게 보고한다.
+      for (ServletContextListener listener : listeners) {
+        listener.contextDestroyed(servletContext);
+      }
 
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
+
+    // 스레드 풀에게 동작을 멈추라고 알려준다. 그리고 즉시 리턴한다.
+    // => 그러면 스레드 풀은 작업 중인 모든 스레드가 작업이 완료될 때까지 기다렸다가 
+    //    스레드 풀의 작업을 종료한다. 
+    executorService.shutdown();
+    System.out.println("서버 종료!");
   }
 
   // 서버가 시작하거나 종료할 때 보고를 받을 객체를 등록하는 메서드
@@ -77,23 +91,6 @@ public class ServerApp {
     }
     // => 명령(/files/list) : 키(?)
     return null;
-  }
-  
-  // serverStop 명령 처리
-  private void stop() {
- // 서버가 종료될 때 관찰자(observer)에게 보고한다.
-    for (ServletContextListener listener : listeners) {
-      listener.contextDestroyed(servletContext);
-    }
-    
- // 스레드 풀에게 동작을 멈추라고 알려준다. 그리고 즉시 리턴한다.
-    // => 그러면 스레드 풀은 작업 중인 모든 스레드가 작업이 완료될 때까지 기다렸다가 
-    //    스레드 풀의 작업을 종료한다. 
-    executorService.shutdown();
-    
-    System.out.println("서버 종료!");
-    
-    System.exit(0); // 단점! 현재 실행 중인 스레드까지 강제 종료시킨다. 
   }
   
   // Thread를 상속 받아 직접 스레드 역할을 하는 대신에 
@@ -120,7 +117,7 @@ public class ServerApp {
         Servlet servlet = null;
 
         if (command.equals("serverstop")) {
-          stop();
+          isStopping = true;
           return;
 
         } else if ((servlet = findServlet(command)) != null) {
