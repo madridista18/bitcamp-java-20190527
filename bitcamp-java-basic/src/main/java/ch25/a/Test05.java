@@ -8,7 +8,7 @@ public class Test05 {
 
   public static void main(String[] args) {
     // DriverManager.getConnetion()
-    // => org.mariadb.jdbc.Driver.connect()
+    // => 내부적으로 org.mariadb.jdbc.Driver.connect() 호출!
     //  
     try (Connection con = DriverManager.getConnection(
         "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111")) {

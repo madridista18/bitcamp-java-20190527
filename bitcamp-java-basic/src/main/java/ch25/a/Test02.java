@@ -13,7 +13,7 @@ public class Test02 {
       // org.mariadb.jdbc.Driver 클래스의 소스를 확인해 보라!
       // static 블록에서 Driver 객체를 만들어 DriverManager에게 등록한다.
       //
-      // 이 방식의 장점은 소스 코드에 특정 클래스를 지정하지 않는다는 것이다.
+      // 이 방식의 장점은 소스 코드에 특정 클래스를 지정하지 않는다는 것이다. 
       // 클래스 이름을 문자열로 전달할 수 있기 때문에 
       // 특정 클래스에 종속되지 않게 작성할 수 있다.
       Class.forName("org.mariadb.jdbc.Driver");

@@ -16,14 +16,15 @@ public class BoardListApp {
   // 1, bbb, 2018-12-31, 3
   //----------------------------
   public static void main(String[] args) {
+
     try (Connection con = DriverManager.getConnection(
         "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111")) {
-      
+
       try (Statement stmt = con.createStatement()) {
-        
+
         try (ResultSet rs = stmt.executeQuery(
             "select * from x_board order by board_id desc")) {
-        
+
           System.out.println("번호, 제목, 등록일, 조회수");
           while (rs.next()) {
             // 레코드에서 컬럼 값을 꺼낼 때 컬럼 번호를 지정하는 것 보다 
@@ -37,9 +38,9 @@ public class BoardListApp {
                 rs.getInt("view_count"));
           }
         }
-        
+
       }
-      
+
     } catch (Exception e) {
       e.printStackTrace();
     }
