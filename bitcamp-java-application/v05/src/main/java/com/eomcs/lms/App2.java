@@ -15,7 +15,7 @@ public class App2 {
     String email = getStringValue("이메일? ");
     int password = getIntValue("암호? ");
     String photo = getStringValue("사진? ");
-    int phoneNumber = getIntValue("전화? ");
+    int tel = getIntValue("전화? ");
 
     System.out.println();
 
@@ -24,7 +24,7 @@ public class App2 {
     System.out.println("이메일: " + email);
     System.out.println("암호: " + password);
     System.out.println("사진: " + photo);
-    System.out.println("전화: " + phoneNumber);
+    System.out.println("전화: " + tel);
     System.out.println("가입일: 2019-01-01");
 
   }

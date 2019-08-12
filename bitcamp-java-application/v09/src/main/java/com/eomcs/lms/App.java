@@ -84,7 +84,7 @@ public class App {
     member.email = getStringValue("이메일? ");
     member.password = getStringValue("암호? ");
     member.photo = getStringValue("사진? ");
-    member.phoneNumber = getStringValue("전화? ");
+    member.tel = getStringValue("전화? ");
     member.registeredDate = new Date(System.currentTimeMillis());
 
     members[membersSize++] = member;
@@ -95,7 +95,7 @@ public class App {
     for (int i = 0; i < membersSize; i++) {
       Member member = members[i];
       System.out.printf("%s, %s, %s, %s, %s\n",
-          member.no, member.name, member.email, member.phoneNumber, member.registeredDate );
+          member.no, member.name, member.email, member.tel, member.registeredDate );
     }
   }
 

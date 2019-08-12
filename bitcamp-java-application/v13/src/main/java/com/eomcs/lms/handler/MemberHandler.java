@@ -17,7 +17,7 @@ public class MemberHandler {
     member.email = Input.getStringValue("이메일? ");
     member.password = Input.getStringValue("암호? ");
     member.photo = Input.getStringValue("사진? ");
-    member.phoneNumber = Input.getStringValue("전화? ");
+    member.tel = Input.getStringValue("전화? ");
     member.registeredDate = new Date(System.currentTimeMillis());
 
     members[membersSize++] = member;
@@ -28,7 +28,7 @@ public class MemberHandler {
     for (int i = 0; i < membersSize; i++) {
       Member member = members[i];
       System.out.printf("%s, %s, %s, %s, %s\n",
-          member.no, member.name, member.email, member.phoneNumber, member.registeredDate );
+          member.no, member.name, member.email, member.tel, member.registeredDate );
     }
   }
 }

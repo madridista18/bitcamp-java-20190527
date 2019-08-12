@@ -15,7 +15,7 @@ public class App2 {
     String[] email = new String[100]; 
     int[] password = new int[100]; 
     String[] photo = new String[100]; 
-    String[] phoneNumber = new String[100]; 
+    String[] tel = new String[100]; 
 
     int i = 0;
     for ( ; i<no.length; i++) {
@@ -24,7 +24,7 @@ public class App2 {
       email[i] = getStringValue("이메일? ");
       password[i] = getIntValue("암호? ");
       photo[i] = getStringValue("사진? ");
-      phoneNumber[i] = getStringValue("전화? ");
+      tel[i] = getStringValue("전화? ");
       
       System.out.println("계속 입력하시겠습니까?(Y/n) ");
       String reponse = keyScan.nextLine();
@@ -37,7 +37,7 @@ public class App2 {
     
     for (int i2 = 0; i2<=i; i2++) {
       System.out.printf("%s, %s, %s, %s, %s\n",
-          no[i2], name[i2], email[i2], phoneNumber[i2], "2019-01-01" );
+          no[i2], name[i2], email[i2], tel[i2], "2019-01-01" );
       
     }
 //    System.out.println("번호: " + no);
@@ -45,7 +45,7 @@ public class App2 {
 //    System.out.println("이메일: " + email);
 //    System.out.println("암호: " + password);
 //    System.out.println("사진: " + photo);
-//    System.out.println("전화: " + phoneNumber);
+//    System.out.println("전화: " + tel);
 //    System.out.println("가입일: 2019-01-01");
 
   }

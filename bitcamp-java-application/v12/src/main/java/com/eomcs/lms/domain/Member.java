@@ -8,6 +8,6 @@ public class Member {
   public String email; 
   public String password; 
   public String photo; 
-  public String phoneNumber;
+  public String tel;
   public Date registeredDate;
 }
