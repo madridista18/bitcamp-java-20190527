@@ -20,7 +20,7 @@ public class MemberHandler {
     member.setEmail(input.getStringValue("이메일? "));
     member.setPassword(input.getStringValue("암호? "));
     member.setPhoto(input.getStringValue("사진? "));
-    member.setPhoneNumber(input.getStringValue("전화? "));
+    member.setTel(input.getStringValue("전화? "));
     member.setRegisteredDate(new Date(System.currentTimeMillis()));
 
     memberList.add(member);
@@ -32,7 +32,7 @@ public class MemberHandler {
     for (Object obj : list) {
       Member member = (Member) obj;
       System.out.printf("%s, %s, %s, %s, %s\n",
-          member.getNo(), member.getName(), member.getEmail(), member.getPhoneNumber(), member.getRegisteredDate());
+          member.getNo(), member.getName(), member.getEmail(), member.getTel(), member.getRegisteredDate());
     }
     
   }

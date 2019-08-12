@@ -51,9 +51,9 @@ public class MemberUpdateCommand implements Command {
       member.setPhoto(str);
     }
     
-    str = input.getStringValue("전화(" + member.getPhoneNumber() + ")?");
+    str = input.getStringValue("전화(" + member.getTel() + ")?");
     if (str.length() > 0) {
-      member.setPhoneNumber(str);
+      member.setTel(str);
     }
     
     System.out.println("데이터를 변경하였습니다. ");

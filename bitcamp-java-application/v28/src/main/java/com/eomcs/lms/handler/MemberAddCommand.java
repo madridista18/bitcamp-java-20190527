@@ -22,7 +22,7 @@ public class MemberAddCommand implements Command {
     member.setEmail(input.getStringValue("이메일? "));
     member.setPassword(input.getStringValue("암호? "));
     member.setPhoto(input.getStringValue("사진? "));
-    member.setPhoneNumber(input.getStringValue("전화? "));
+    member.setTel(input.getStringValue("전화? "));
     member.setRegisteredDate(new Date(System.currentTimeMillis()));
 
     list.add(member);

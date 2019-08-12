@@ -32,7 +32,7 @@ public class Board implements Serializable {
   public int getViewCount() {
     return viewCount;
   }
-  public void setViewCount(int viewcount) {
+  public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
   

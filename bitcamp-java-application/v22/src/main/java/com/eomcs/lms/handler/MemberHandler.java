@@ -20,7 +20,7 @@ public class MemberHandler {
     member.setEmail(input.getStringValue("이메일? "));
     member.setPassword(input.getStringValue("암호? "));
     member.setPhoto(input.getStringValue("사진? "));
-    member.setPhoneNumber(input.getStringValue("전화? "));
+    member.setTel(input.getStringValue("전화? "));
     member.setRegisteredDate(new Date(System.currentTimeMillis()));
 
     memberList.add(member);
@@ -34,7 +34,7 @@ public class MemberHandler {
     Member[] members = memberList.toArray(new Member[] {});
     for (Member member : members) {
       System.out.printf("%s, %s, %s, %s, %s\n",
-          member.getNo(), member.getName(), member.getEmail(), member.getPhoneNumber(), member.getRegisteredDate());
+          member.getNo(), member.getName(), member.getEmail(), member.getTel(), member.getRegisteredDate());
     }
   }
 
@@ -58,7 +58,7 @@ public class MemberHandler {
     System.out.println("이메일: " + member.getEmail());
     System.out.println("암호: " + member.getPassword());
     System.out.println("사진: " + member.getPhoto());
-    System.out.println("전화: " + member.getPhoneNumber());
+    System.out.println("전화: " + member.getTel());
     System.out.println("가입일: " + member.getRegisteredDate());
   }
 
@@ -99,9 +99,9 @@ public class MemberHandler {
       member.setPhoto(str);
     }
     
-    str = input.getStringValue("전화(" + member.getPhoneNumber() + ")?");
+    str = input.getStringValue("전화(" + member.getTel() + ")?");
     if (str.length() > 0) {
-      member.setPhoneNumber(str);
+      member.setTel(str);
     }
     
     System.out.println("데이터를 변경하였습니다. ");

@@ -34,7 +34,7 @@ public class MemberDetailCommand implements Command {
     System.out.println("이메일: " + member.getEmail());
     System.out.println("암호: " + member.getPassword());
     System.out.println("사진: " + member.getPhoto());
-    System.out.println("전화: " + member.getPhoneNumber());
+    System.out.println("전화: " + member.getTel());
     System.out.println("가입일: " + member.getRegisteredDate());
   }
 }

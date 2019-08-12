@@ -8,7 +8,7 @@ public class Member {
   private String email; 
   private String password; 
   private String photo; 
-  private String phoneNumber;
+  private String tel;
   private Date registeredDate;
   
   public int getNo() {
@@ -41,11 +41,11 @@ public class Member {
   public void setPhoto(String photo) {
     this.photo = photo;
   }
-  public String getPhoneNumber() {
-    return phoneNumber;
+  public String getTel() {
+    return tel;
   }
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public void setTel(String tel) {
+    this.tel = tel;
   }
   public Date getRegisteredDate() {
     return registeredDate;
