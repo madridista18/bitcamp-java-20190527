@@ -18,7 +18,6 @@ public class LessonAddCommand implements Command {
   public void execute() {
     Lesson lesson = new Lesson();
 
-    lesson.setNo(input.getIntValue("번호? "));
     lesson.setTitle(input.getStringValue("수업명? "));
     lesson.setContents(input.getStringValue("설명? "));
     lesson.setStartDate(input.getDateValue("시작일? "));

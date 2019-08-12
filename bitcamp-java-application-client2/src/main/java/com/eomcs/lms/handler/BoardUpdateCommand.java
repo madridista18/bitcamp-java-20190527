@@ -34,6 +34,7 @@ public class BoardUpdateCommand implements Command {
       if (str.length() > 0) {
         board.setContents(str);
       }
+
       boardDao.update(board);
       System.out.println("데이터를 변경하였습니다. ");
 
