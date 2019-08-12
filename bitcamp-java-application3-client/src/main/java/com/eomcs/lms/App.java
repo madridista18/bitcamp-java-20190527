@@ -1,6 +1,8 @@
-// client-v36_1 : DAO Proxy 클래스 대신 DBMS를 사용하는 DAO로 대체한다.    
+// client-v36_2 : DAO들이 Connection 객체를 공유하기. DBMS와의 연결 방식을 Stateful로 변경. 
 package com.eomcs.lms;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
@@ -37,10 +39,20 @@ public class App {
   Scanner keyScan;
 
   private void service() {
+    // DAO가 사용할 Connection 객체 준비하기 
+    Connection con = null;
+    try {
+      con = DriverManager.getConnection(
+          "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");
+    } catch (Exception e) {
+      System.out.println("DBMS에 연결할 수 없습니다.");
+      return;
+    }
+
     // command 객체가 사용할 데이터 처리 객체를 준비한다. 
-    BoardDao boardDao = new BoardDaoImpl();
-    LessonDao lessonDao = new LessonDaoImpl();
-    MemberDao memberDao = new MemberDaoImpl();
+    BoardDao boardDao = new BoardDaoImpl(con);
+    LessonDao lessonDao = new LessonDaoImpl(con);
+    MemberDao memberDao = new MemberDaoImpl(con);
 
     keyScan = new Scanner(System.in);
 
@@ -97,7 +109,13 @@ public class App {
       }
       System.out.println();
     } 
-
+    // DBMS와의 연결을 끊는다.
+    try {
+      con.close();
+    } catch (Exception e) {
+      // 연결 끊을 때 발생되는 예외는 무시한다. 
+      
+    }
   } 
 
   private void printCommandHistory(Iterable<String> list) {
