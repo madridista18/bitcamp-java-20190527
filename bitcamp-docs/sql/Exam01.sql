@@ -138,6 +138,7 @@ DB 객체(테이블, 뷰, 함수, 트리거 등)를 생성, 변경, 삭제하는
 - 고정 크기를 갖는다. 
 - 한 문자를 저장하더라도 n자를 저장할 크기를 사용한다.
 - 메모리 크기가 고정되어서 검색할 때 빠르다.  
+- 한 글자를 저장해도 255 메모리 차지 (메모리 낭비)
 
 #### varchar(n)
 - 최대 n개의 문자를 저장.
@@ -227,6 +228,8 @@ DBMS 중에는 고정 크기인 컬럼의 값을 비교할 때 빈자리까지 �
 > insert into test1(c3) values('T'); /* error */
 > insert into test1(c3) values('F'); /* error */
 
+> insert into test1(c3) values(true); 
+> insert into test1(c3) values(false); 
 > insert into test1(c3) values('1'); /* true */
 > insert into test1(c3) values('0'); /* false */
 > insert into test1(c3) values(1); /* true */
@@ -423,7 +426,7 @@ alter table test1
 - 컬럼에 옵션 추가
 ```
 alter table test1
-  modify column name varchar(20) not null,
+  modify column name varchar(20) not null, 
   modify column age int not null,
   modify column kor int not null,
   modify column eng int not null,
