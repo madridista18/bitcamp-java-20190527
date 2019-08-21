@@ -18,7 +18,7 @@ from room;
 select concat(name, '(', loc, ')')
 from room;
 
-select concat(name, '(', loc, ')') title
+select concat(name, '(', loc, ')') as title /* as 생략 가능 */
 from room;
 
 select count(*) 
