@@ -30,6 +30,15 @@ public class PhotoBoardAddCommand implements Command {
       photoBoard.setLessonNo(Input.getIntValue(in, out, "수업? "));
       
       photoBoardDao.insert(photoBoard);
+      
+      out.println("최소 한 개의 사진 파일을 등록해야 합니다.");
+      out.println("파일명 입력 없이 그냥 엔터를 치면 파일 추가를 마칩니다.");
+      
+      while (true) {
+        String filepath = Input.getStringValue(in, out, "사진파일? ");
+        out.flush();
+        
+      }
       out.println("저장하였습니다.");
       
     } catch (Exception e) {

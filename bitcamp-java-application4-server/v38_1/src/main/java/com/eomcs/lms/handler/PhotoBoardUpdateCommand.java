@@ -26,22 +26,23 @@ public class PhotoBoardUpdateCommand implements Command {
       
       PhotoBoard photoBoard = photoBoardDao.findBy(no);
       if (photoBoard == null) {
-        out.println("해당 사진을 찾을 수 없습니다. ");
+        out.println("해당 번호의 데이터가 없습니다. ");
         return;
       }
 
-      String str = Input.getStringValue(in, out, "제목? ");
+      String str = Input.getStringValue(in, out,
+          String.format("제목(%s)? ", photoBoard.getTitle()));
       if (str.length() > 0) {
         photoBoard.setTitle(str);
         photoBoardDao.update(photoBoard);
-        out.println("사진을 변경하였습니다. ");
+        out.println("데이터를 변경하였습니다. ");
         
       } else {
         out.println("데이터 변경을 취소합니다.");
       }
 
     } catch (Exception e) {
-      out.println("해당 사진을 찾을 수 없습니다.");
+      out.println("데이터 변경에 실패했습니다. ");
       System.out.println(e.getMessage());
     }
   }

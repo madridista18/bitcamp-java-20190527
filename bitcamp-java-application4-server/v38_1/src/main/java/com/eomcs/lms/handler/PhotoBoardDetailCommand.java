@@ -28,7 +28,7 @@ public class PhotoBoardDetailCommand implements Command {
       PhotoBoard photoBoard = photoBoardDao.findBy(no);
 
       if (photoBoard == null) {
-        out.println("해당 번호의 사진이 없습니다. ");
+        out.println("해당 번호의 데이터가 없습니다. ");
         return;
       }
 
@@ -38,7 +38,7 @@ public class PhotoBoardDetailCommand implements Command {
       out.println("수업: " + photoBoard.getLessonNo());
 
     } catch (Exception e) {
-      out.println("해당 사진을 찾을 수 없습니다.");
+      out.println("데이터 조회에 실패했습니다.");
       System.out.println(e.getMessage());
     }
   }
