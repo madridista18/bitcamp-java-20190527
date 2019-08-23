@@ -1,4 +1,4 @@
-// v41 : 커넥션풀 도입하기 
+// v41_1 : 커넥션풀 도입하기 
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -41,7 +41,7 @@ import com.eomcs.lms.handler.PhotoBoardDeleteCommand;
 import com.eomcs.lms.handler.PhotoBoardDetailCommand;
 import com.eomcs.lms.handler.PhotoBoardListCommand;
 import com.eomcs.lms.handler.PhotoBoardUpdateCommand;
-import com.eomcs.util.ConnectionFactory;
+import com.eomcs.util.DataSource;
 import com.eomcs.util.PlatformTransactionManager;
 
 public class App {
@@ -55,7 +55,7 @@ public class App {
   // 스레드 풀
   ExecutorService executorService = Executors.newCachedThreadPool();
   
-  ConnectionFactory conFactory;
+  DataSource dataSource;
 
   public App() throws Exception {
 
@@ -64,21 +64,22 @@ public class App {
 
     try {
       // 커넥션 관리자를 준비한다. 
-      conFactory = new ConnectionFactory(
+      dataSource = new DataSource(
           "org.mariadb.jdbc.Driver", 
           "jdbc:mariadb://localhost/bitcampdb",
           "bitcamp",
           "1111");
       
       // 트랜젝션 관리자를 준비한다. 
-      PlatformTransactionManager txManager = new PlatformTransactionManager(conFactory);
+      PlatformTransactionManager txManager = 
+          new PlatformTransactionManager(dataSource);
       
       // command 객체가 사용할 데이터 처리 객체를 준비한다. 
-      BoardDao boardDao = new BoardDaoImpl(conFactory);
-      LessonDao lessonDao = new LessonDaoImpl(conFactory);
-      MemberDao memberDao = new MemberDaoImpl(conFactory);
-      PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(conFactory);
-      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(conFactory);
+      BoardDao boardDao = new BoardDaoImpl(dataSource);
+      LessonDao lessonDao = new LessonDaoImpl(dataSource);
+      MemberDao memberDao = new MemberDaoImpl(dataSource);
+      PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(dataSource);
+      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(dataSource);
       
       // 클라이언트 명령을 처리할 커맨드 객체를 준비한다. 
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));
@@ -194,7 +195,7 @@ public class App {
         // 현재 스레드에 보관된 커넥션 객체를 제거해야한다. 
         // 그래야만 다음 클라이언트 요청이 들어왔을 때 
         // 새 커넥션 객체를 사용할 것이다. 
-        conFactory.clearConnection();
+        dataSource.clearConnection();
       }
     }
   }

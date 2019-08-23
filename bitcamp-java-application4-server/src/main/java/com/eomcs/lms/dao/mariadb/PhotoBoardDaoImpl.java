@@ -8,19 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.domain.PhotoBoard;
-import com.eomcs.util.ConnectionFactory;
+import com.eomcs.util.DataSource;
 
 public class PhotoBoardDaoImpl implements PhotoBoardDao {
 
-ConnectionFactory conFactory;
+DataSource dataSource;
   
-  public PhotoBoardDaoImpl(ConnectionFactory conFactory) {
-    this.conFactory = conFactory;
+  public PhotoBoardDaoImpl(DataSource conFactory) {
+    this.dataSource = conFactory;
   }
 
   @Override
   public int insert(PhotoBoard photoBoard) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement()) {
 
       // insert 한 후에 자동 생성된 PK 값을 리턴 받고 싶다면 
@@ -51,7 +51,7 @@ ConnectionFactory conFactory;
 
   @Override
   public List<PhotoBoard> findAll() throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select * from lms_photo order by photo_id desc")) {
@@ -74,7 +74,7 @@ ConnectionFactory conFactory;
 
   @Override
   public PhotoBoard findBy(int no) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select * from lms_photo where photo_id=" + no)) {
@@ -102,7 +102,7 @@ ConnectionFactory conFactory;
 
   @Override
   public int update(PhotoBoard photoBoard) throws Exception { 
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate("update lms_photo set"
@@ -113,7 +113,7 @@ ConnectionFactory conFactory;
 
   @Override
   public int delete(int no) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate("delete from lms_photo where photo_id=" + no);

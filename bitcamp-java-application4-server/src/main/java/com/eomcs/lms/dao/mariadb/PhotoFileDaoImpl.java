@@ -8,19 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoFile;
-import com.eomcs.util.ConnectionFactory;
+import com.eomcs.util.DataSource;
 
 public class PhotoFileDaoImpl implements PhotoFileDao {
 
-ConnectionFactory conFactory;
+DataSource dataSource;
   
-  public PhotoFileDaoImpl(ConnectionFactory conFactory) {
-    this.conFactory = conFactory;
+  public PhotoFileDaoImpl(DataSource conFactory) {
+    this.dataSource = conFactory;
   }
 
   @Override
   public int insert(PhotoFile photoFile) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate(
@@ -32,7 +32,7 @@ ConnectionFactory conFactory;
 
   @Override
   public List<PhotoFile> findAll(int boardNo) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select photo_file_id, photo_id, file_path"
@@ -56,7 +56,7 @@ ConnectionFactory conFactory;
 
   @Override
   public int deleteAll(int boardNo) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate("delete from lms_photo_file"

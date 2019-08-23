@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
-import com.eomcs.util.ConnectionFactory;
+import com.eomcs.util.DataSource;
 
 public class MemberDaoImpl implements MemberDao {
 
-ConnectionFactory conFactory;
+DataSource dataSource;
   
-  public MemberDaoImpl(ConnectionFactory conFactory) {
-    this.conFactory = conFactory;
+  public MemberDaoImpl(DataSource conFactory) {
+    this.dataSource = conFactory;
   }
 
   @Override
   public int insert(Member member) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate(
@@ -36,7 +36,7 @@ ConnectionFactory conFactory;
 
   @Override
   public List<Member> findAll() throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select member_id,name,email,tel,cdt"
@@ -61,7 +61,7 @@ ConnectionFactory conFactory;
 
   @Override
   public Member findBy(int no) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select *"
@@ -87,7 +87,7 @@ ConnectionFactory conFactory;
   
   @Override
   public List<Member> findByKeyword(String keyword) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select member_id,name,email,tel,cdt"
@@ -116,7 +116,7 @@ ConnectionFactory conFactory;
 
   @Override
   public int update(Member member) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate("update lms_member set"
@@ -131,7 +131,7 @@ ConnectionFactory conFactory;
 
   @Override
   public int delete(int no) throws Exception {
-    try (Connection con = conFactory.getConnection();
+    try (Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate("delete from lms_member where member_id=" + no);
