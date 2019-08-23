@@ -1,4 +1,4 @@
-// v41 : 커넥션풀 도입하기 
+// v40_2 : 스레드 전용 커넥션 객체 사용하기(스레드 로컬 문법 적용) + 트랜젝션 처리 + 트렌젝션 관리자 도입 
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
