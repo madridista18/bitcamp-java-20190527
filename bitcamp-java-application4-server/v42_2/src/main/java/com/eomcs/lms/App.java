@@ -1,4 +1,4 @@
-// v43_1 : Mybatis 도입하기    
+// v42_1 : login 기능 추가  
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
