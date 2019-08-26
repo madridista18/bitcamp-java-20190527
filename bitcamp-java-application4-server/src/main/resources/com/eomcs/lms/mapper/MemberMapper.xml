@@ -59,7 +59,7 @@
   <delete id="delete" parameterType="int">
     delete from lms_member 
     where member_id=#{value}
-  </delete> --> 
+  </delete>
   
   <select id="findByEmailPassword" 
            parameterType="com.eomcs.lms.domain.Member" 

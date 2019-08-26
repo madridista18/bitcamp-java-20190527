@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="BoardDao">
+<mapper namespace="`">
   <!-- Mybatis가 컬럼값을 객체에 담을 때 컬럼 이름으로 셋터를 찾아 호출한다. -->
   <!--  
   <select id="findAll" resultType="com.eomcs.lms.domain.Board">

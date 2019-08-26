@@ -39,7 +39,7 @@
   
 ## MySQL 사용자에게 데이터베이스 사용 권한 부여
 > GRANT ALL ON 데이터베이스명.* TO '사용자아이디'@'서버주소';
-> GRANT ALL ON studydb.* TO 'study'@'localhost';
+> GRANT ALL ON bitcampdb.* TO 'bitcamp'@'localhost';
 
 ## 데이터베이스 목록 조회
 > show databases;
