@@ -97,7 +97,7 @@ public class App {
       // command 객체가 사용할 데이터 처리 객체를 준비한다. 
       BoardDao boardDao = new BoardDaoImpl(sqlSessionFactory);
       LessonDao lessonDao = new LessonDaoImpl(dataSource);
-      MemberDao memberDao = new MemberDaoImpl(dataSource);
+      MemberDao memberDao = new MemberDaoImpl(sqlSessionFactory);
       PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(dataSource);
       PhotoFileDao photoFileDao = new PhotoFileDaoImpl(dataSource);
       
