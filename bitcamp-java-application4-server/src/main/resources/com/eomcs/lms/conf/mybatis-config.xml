@@ -5,7 +5,7 @@
 <configuration>
 
   <!-- 설정 파일에서 사용할 .properties 파일을 지정한다. -->
-  <properties resource="con/eomcs/lms/conf/jdbc.properties"></properties>
+  <properties resource="com/eomcs/lms/conf/jdbc.properties"></properties>
   
   <!-- DBMS 접속 정보 목록 
     default: Mybatis를 실행하는 동안 사용할 DBMS 정보 아이디
