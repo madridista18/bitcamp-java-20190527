@@ -8,10 +8,20 @@ import com.eomcs.lms.domain.Lesson;
 
 public class LessonDaoImpl implements LessonDao {
 
+<<<<<<< HEAD
   SqlSessionFactory sqlSessionFactory;
 
   public LessonDaoImpl(
       SqlSessionFactory sqlSessionFactory) {
+=======
+  DataSource dataSource;
+  SqlSessionFactory sqlSessionFactory;
+
+  public LessonDaoImpl(
+      DataSource conFactory, 
+      SqlSessionFactory sqlSessionFactory) {
+    this.dataSource = conFactory;
+>>>>>>> b225cc774c43d8536e867dc57d78b74678850023
     this.sqlSessionFactory = sqlSessionFactory;
   }
 

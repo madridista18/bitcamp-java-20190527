@@ -160,7 +160,7 @@ from memb m join stnt s on m.mno=s.mno; /* 실무에서 가장 많이 사용 */
     상대 테이블(stnt)에 연결할 대상(데이터)이 없더라도
     select에서 추출하는 방법 */
 select m.mno, name, work
-from memb m left outer join stnt s on m.mno=s.mno;           
+from memb m left outer join stnt s on m.mno=s.mno; 
 
 
 /* 여러 테이블의 데이터를 연결하기
@@ -169,7 +169,7 @@ from memb m left outer join stnt s on m.mno=s.mno;
 
 /* 1단계: 수강신청 데이터를 출력 */
 select la.lano, la.lno, la.mno, la.rdt
-from lect_appl la;     
+from lect_appl la; 
  
 /* 2단계: 수강신청한 학생의 번호 대신 이름을 출력 */
 select la.lano, la.lno, m.name, la.rdt
@@ -184,7 +184,7 @@ from lect_appl la
         join memb m on la.mno=m.mno
         join stnt s on la.mno=s.mno;
   
-/* 4단계: 수상신청한 강의 번호 대신 강의명을 출력 */
+/* 4단계: 수강신청한 강의 번호 대신 강의명을 출력 */
 select la.lano, l.titl, m.name, s.work, la.rdt, l.rno
 from lect_appl la 
         join memb m on la.mno=m.mno
