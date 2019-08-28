@@ -23,21 +23,44 @@ public class LessonUpdateCommand implements Command {
         out.println("해당 번호의 데이터가 없습니다.");
         return;
       }
+      
+      Lesson data = new Lesson();
+      data.setNo(no);
 
       String str = Input.getStringValue(in, out, "수업명(" + lesson.getTitle() + ")? ");
       if (str.length() > 0) {
-        lesson.setTitle(str);
+        data.setTitle(str);
       }
       str = Input.getStringValue(in, out, "수업내용? ");
       if (str.length() > 0) {
-        lesson.setContents(str);
+        data.setContents(str);
       }
-      lesson.setStartDate(Input.getDateValue(in, out, "시작일(" + lesson.getStartDate() + ")? "));
-      lesson.setEndDate(Input.getDateValue(in, out, "종료일(" + lesson.getEndDate() + ")? "));
-      lesson.setTotalHours(Input.getIntValue(in, out, "총수업시간(" + lesson.getTotalHours() + ")? "));
-      lesson.setDayHours(Input.getIntValue(in, out, "일수업시간(" + lesson.getDayHours() + ")? "));
+      
+      try {
+        data.setStartDate(Input.getDateValue(in, out, "시작일(" + lesson.getStartDate() + ")? "));
+      } catch (Exception e) {
+     
+      }
+      
+      try {
+        data.setEndDate(Input.getDateValue(in, out, "종료일(" + lesson.getEndDate() + ")? "));
+      } catch (Exception e) {
+        
+      }
+      
+      try {
+        data.setTotalHours(Input.getIntValue(in, out, "총수업시간(" + lesson.getTotalHours() + ")? "));
+      } catch (Exception e) {
+        
+      }
+      
+      try {
+        data.setDayHours(Input.getIntValue(in, out, "일수업시간(" + lesson.getDayHours() + ")? "));
+      } catch (Exception e) {
+        
+      }
 
-      lessonDao.update(lesson);
+      lessonDao.update(data);
       out.println("데이터를 변경하였습니다. ");
 
     } catch (Exception e) {

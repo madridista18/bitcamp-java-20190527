@@ -23,11 +23,11 @@
   <select id="findBy" parameterType="int"
 	         resultMap="MemberMap">
     select
-	    member_id as no,
+	    member_id,
 	    name,
 	    email,
 	    tel,
-	    cdt as registeredDate,
+	    cdt,
 	    photo
 	  from lms_member
 	  where member_id=#{value}
@@ -54,10 +54,15 @@
   </insert>
 
   <update id="update" parameterType="Member">
-    update lms_member set
-      name=#{name}, email=#{email}, pwd=password(#{password}), 
-      tel=#{tel}, photo=#{photo}
-      where member_id=#{no}
+    update lms_member
+    <set>
+      <if test="name != null">name=#{name},</if>
+      <if test="email != null">email=#{email},</if>
+      <if test="password != null">pwd=password(#{password}), </if>
+      <if test="tel != null">tel=#{tel}, </if>
+      <if test="photo != null">photo=#{photo} </if>
+    </set>
+    where member_id=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
