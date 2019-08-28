@@ -1,4 +1,4 @@
-// 트랜잭션 다루기 - 여러 메서드에서 insert를 시도할 때 (서로 다른 SqlSession 사용)
+// 트랜잭션 다루기 - 여러 메서드에서 insert를 실행할 때(서로 다른 SqlSession 사용) 
 package ch26.i;
 
 import java.io.InputStream;
@@ -18,7 +18,7 @@ public class Test03 {
         new SqlSessionFactoryBuilder().build(inputStream);
 
     // 서로 다른 SqlSession으로 데이터 변경 작업(insert/update/delete)을 하면
-    // 같은 트랜잭션으로 다룰 수 없다. 
+    // 같은 트랜잭션으로 다룰 수 없다.
     insert1(sqlSessionFactory);
     insert2(sqlSessionFactory);
     printList(sqlSessionFactory);
@@ -27,8 +27,8 @@ public class Test03 {
   static void insert1(SqlSessionFactory sqlSessionFactory) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     sqlSession.insert("board.insert", new Board()
-          .setTitle("a105")
-          .setContents("내용5"));
+        .setTitle("a105")
+        .setContents("내용5"));
     sqlSession.commit();
     sqlSession.close();
   }
@@ -42,7 +42,7 @@ public class Test03 {
     sqlSession.commit();
     sqlSession.close();
   }
-  
+
   static void printList(SqlSessionFactory sqlSessionFactory) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     List<Board> boards = sqlSession.selectList("board.select");
@@ -52,8 +52,3 @@ public class Test03 {
     sqlSession.close();
   }
 }
-
-
-
-
-

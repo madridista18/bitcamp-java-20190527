@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LessonDao">
-<<<<<<< HEAD
 
   <resultMap type="Lesson" id="LessonMap">
     <id column="lesson_id" property="no"/>
@@ -12,54 +11,38 @@
     <result column="sdt" property="startDate"/>
     <result column="edt" property="endDate"/>
     <result column="tot_hr" property="totalHours"/>
-    <result column="dayhr" property="dayHours"/>
+    <result column="day_hr" property="dayHours"/>
   </resultMap>
 
   <select id="findAll" resultMap="LessonMap">
     select 
-	    lesson_id,
-	    titl, 
-	    conts,
-	    sdt,
-	    edt,
-	    tot_hr,
-	    day_hr
+      lesson_id,
+      titl,
+      sdt,
+      edt,
+      tot_hr
     from 
       lms_lesson
     order by 
       sdt desc
   </select>
   
-  <select id="findBy" parameterType="int" 
-				   resultMap="LessonMap">
-    select 
-      lesson_id, 
-      titl, 
+  <select id="findBy" parameterType="int" resultMap="LessonMap">
+    select
+      lesson_id,
+      titl,
       conts,
-      sdt, 
+      sdt,
       edt,
       tot_hr,
       day_hr
-    from 
-      lms_lesson
-    where lesson_id=#{no}
+    from lms_lesson
+    where lesson_id=#{value}
   </select>
   
   <insert id="insert" parameterType="Lesson">
-    insert into lms_lesson(
-		  sdt,
-	    edt,
-	    tot_hr,
-	    day_hr,
-	    titl,
-	    conts)
-    values(
-      #{startDate},
-      #{endDate},
-      #{totalHours},
-      #{dayHours},
-      #{title},
-      #{contents})
+    insert into lms_lesson(sdt,edt,tot_hr,day_hr,titl,conts)
+    values(#{startDate},#{endDate},#{totalHours},#{dayHours},#{title},#{contents})
   </insert>
   
   <update id="update" parameterType="Lesson">
@@ -75,85 +58,7 @@
   
   <delete id="delete" parameterType="int">
     delete from lms_lesson 
-    where lesson_id=#{no} 
-=======
-  <insert id="insert" 
-          parameterType="com.eomcs.lms.domain.Lesson">
-    insert into lms_lesson
-    (
-      titl, 
-      conts,
-      sdt, 
-      edt, 
-      tot_hr, 
-      day_hr
-    ) 
-    values (
-      #{title},
-      #{contents},
-      #{startDate},
-      #{endDate},
-      #{totalHours},
-      #{dayHours}
-    );
-  </insert>
-  
-  <select id="findAll" resultType="com.eomcs.lms.domain.Lesson">
-    select 
-      lesson_id no, 
-      titl title, 
-      conts contents,
-      sdt startDate, 
-      edt endDate, 
-      tot_hr totalHours, 
-      day_hr dayHours
-    from lms_lesson 
-  </select>
-  
-  <select id="findBy" parameterType="int"
-  resultType="com.eomcs.lms.domain.Lesson">
-		select 
-					lesson_id no, 
-					titl title, 
-					conts contents,
-					sdt startDate, 
-					edt endDate, 
-					tot_hr totalHours, 
-					day_hr dayHours
-		 from lms_lesson
-		where lesson_id=#{no}
-  </select>
-  
-  <update id="update" 
-          parameterType="com.eomcs.lms.domain.Lesson">
-    update lms_lesson 
-       set titl = #{title},
-		       conts = #{contents},
-		       sdt = #{startDate},
-		       edt = #{endDate},
-		       tot_hr = #{totalHours},
-		       day_hr = #{dayHours}
-     where lesson_id  =#{no}
-  </update>
-  
-  <delete id="delete" parameterType="int">
-     delete 
-     from lms_lesson
-     where lesson_id=#{no}
->>>>>>> b225cc774c43d8536e867dc57d78b74678850023
+    where lesson_id=#{value}
   </delete>
-  
+
 </mapper>
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b225cc774c43d8536e867dc57d78b74678850023

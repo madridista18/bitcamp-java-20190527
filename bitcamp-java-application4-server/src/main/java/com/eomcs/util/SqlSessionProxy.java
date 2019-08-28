@@ -1,4 +1,4 @@
-package ch26.i;
+package com.eomcs.util;
 
 import java.sql.Connection;
 import java.util.List;
@@ -72,14 +72,17 @@ public class SqlSessionProxy implements SqlSession {
     return realSession.selectCursor(statement, parameter, rowBounds);
   }
 
+  @SuppressWarnings("rawtypes")
   public void select(String statement, Object parameter, ResultHandler handler) {
     realSession.select(statement, parameter, handler);
   }
 
+  @SuppressWarnings("rawtypes")
   public void select(String statement, ResultHandler handler) {
     realSession.select(statement, handler);
   }
 
+  @SuppressWarnings("rawtypes")
   public void select(String statement, Object parameter, RowBounds rowBounds,
       ResultHandler handler) {
     realSession.select(statement, parameter, rowBounds, handler);

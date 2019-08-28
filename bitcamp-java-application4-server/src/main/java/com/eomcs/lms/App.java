@@ -1,4 +1,4 @@
-// v43_3 : Mybatis 도입하기 + 도메인 클래스 별명 적용 +  SQL 매퍼에 resultMap 적용
+// v43_2 : Mybatis 도입하기 + 도메인 클래스 별명 적용 +  SQL 매퍼에 resultMap 적용 + 트랜잭션 적용
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -46,8 +46,8 @@ import com.eomcs.lms.handler.PhotoBoardDeleteCommand;
 import com.eomcs.lms.handler.PhotoBoardDetailCommand;
 import com.eomcs.lms.handler.PhotoBoardListCommand;
 import com.eomcs.lms.handler.PhotoBoardUpdateCommand;
-import com.eomcs.util.DataSource;
 import com.eomcs.util.PlatformTransactionManager;
+import com.eomcs.util.SqlSessionFactoryProxy;
 
 public class App {
 
@@ -56,11 +56,11 @@ public class App {
 
   HashMap<String, Command> commandMap = new HashMap<>(); 
   int state;
-  
+
   // 스레드 풀
   ExecutorService executorService = Executors.newCachedThreadPool();
-  
-  DataSource dataSource;
+
+  SqlSessionFactory sqlSessionFactory;
 
   public App() throws Exception {
 
@@ -68,43 +68,24 @@ public class App {
     state = CONTINUE;
 
     try {
-      // 커넥션 관리자를 준비한다. 
-      dataSource = new DataSource(
-          "org.mariadb.jdbc.Driver", 
-          "jdbc:mariadb://localhost/bitcampdb",
-          "bitcamp",
-          "1111");
-     
-      // 트랜젝션 관리자를 준비한다. 
-      PlatformTransactionManager txManager = 
-          new PlatformTransactionManager(dataSource);
-      
       // Mybatis의 SQL 실행 도구 준비
       // => Mybatis 설정 파일을 읽을 때 사용할 입력 스트림 도구를 준비한다. 
       InputStream inputStream = 
           Resources.getResourceAsStream("com/eomcs/lms/conf/mybatis-config.xml");
-      
-      // => SQL을 실행할 때 사용할 도구(SqlSession;샌드위치)를 만들어주는 
-      //    생성기(SqlSessionFactory;파리바게트) 공장(SqlSessionFactoryBuilder)를 준비한다.  
-      //
-      /*SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-      SqlSessionFactory factory = builder.build(inputStream);
-      SqlSession sqlSession = factory.openSession();
-      */ 
-      SqlSessionFactory sqlSessionFactory =
-        new SqlSessionFactoryBuilder().build(inputStream);
+      sqlSessionFactory = new SqlSessionFactoryProxy(
+          new SqlSessionFactoryBuilder().build(inputStream));
+
+      // 트랜젝션 관리자를 준비한다. 
+      PlatformTransactionManager txManager = 
+          new PlatformTransactionManager(sqlSessionFactory);
       
       // command 객체가 사용할 데이터 처리 객체를 준비한다. 
       BoardDao boardDao = new BoardDaoImpl(sqlSessionFactory);
-<<<<<<< HEAD
       LessonDao lessonDao = new LessonDaoImpl(sqlSessionFactory);
-=======
-      LessonDao lessonDao = new LessonDaoImpl(dataSource, sqlSessionFactory);
->>>>>>> b225cc774c43d8536e867dc57d78b74678850023
       MemberDao memberDao = new MemberDaoImpl(sqlSessionFactory);
       PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(sqlSessionFactory);
       PhotoFileDao photoFileDao = new PhotoFileDaoImpl(sqlSessionFactory);
-      
+
       // 클라이언트 명령을 처리할 커맨드 객체를 준비한다. 
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));
       commandMap.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
@@ -130,9 +111,9 @@ public class App {
       commandMap.put("/photoboard/detail", new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
       commandMap.put("/photoboard/delete", new PhotoBoardDeleteCommand(txManager, photoBoardDao, photoFileDao));
       commandMap.put("/photoboard/update", new PhotoBoardUpdateCommand(txManager, photoBoardDao, photoFileDao));
-      
+
       commandMap.put("/auth/login", new LoginCommand(memberDao));
-      
+
     } catch (Exception e) {
       System.out.println("DBMS에 연결할 수 없습니다.");
       throw e;
@@ -153,17 +134,17 @@ public class App {
         if (state == STOP) 
           break;
       }
-      
+
       // 스레드 풀에게 실행 종료를 요청한다. 
       // => 스레드풀은 자신이 관리하는 스레드들이 실행이 종료되었는지 감시한다.  
       executorService.shutdown();
-      
+
       // 스레드풀이 관리하는 모든 스레드가 종료되었는지 매 0.5초마다 검사한다. 
       // => 스레드풀의 모든 스레드가 실행을 종료했으면 즉시 main 스레드를 종료한다. 
       while (!executorService.isTerminated()) {
         Thread.currentThread().sleep(500);
       }
-      
+
       System.out.println("애플리케이션 서버를 종료함!");
 
     } catch (Exception e) {
@@ -215,13 +196,13 @@ public class App {
 
       } catch (Exception e) {
         System.out.println("클라이언트와 통신 오류!");
-        
+
       } finally {
-        // 현재 스레드가 클라이언트 요청을 처리했으면 (정상처리든 오류가 발생했든)
-        // 현재 스레드에 보관된 커넥션 객체를 제거해야한다. 
+        // 현재 스레드가 클라이언트 요청에 대해 응답을 완료했다면,
+        // 현재 스레드에 보관된 Mybatis의 SqlSession 객체를 제거해야한다. 
         // 그래야만 다음 클라이언트 요청이 들어왔을 때 
-        // 새 커넥션 객체를 사용할 것이다. 
-        dataSource.clearConnection();
+        // 새 SqlSession 객체를 사용할 것이다. 
+        ((SqlSessionFactoryProxy)sqlSessionFactory).clearSession();
       }
     }
   }

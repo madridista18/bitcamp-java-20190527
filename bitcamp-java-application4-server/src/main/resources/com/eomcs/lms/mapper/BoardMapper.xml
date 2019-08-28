@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
 <mapper namespace="BoardDao">
 
   <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
@@ -14,8 +13,49 @@
   </resultMap>
 
   <select id="findAll" resultMap="BoardMap">
-=======
-<mapper namespace="`">
+    select 
+      board_id,
+      conts,
+      cdt,
+      vw_cnt
+    from lms_board 
+    order by board_id desc
+  </select>
+  
+  <select id="findBy" parameterType="int" resultMap="BoardMap">
+    select
+      board_id, 
+      conts,
+      cdt,
+      vw_cnt
+    from lms_board 
+    where board_id=#{haha} 
+  </select>
+  
+  <update id="increaseViewCount" parameterType="int">
+    update lms_board set
+      vw_cnt = vw_cnt + 1
+    where board_id=#{value}
+  </update>
+  
+  <insert id="insert" parameterType="Board">
+    insert into lms_board(conts)
+    values(#{contents}) 
+  </insert>
+  
+  <update id="update" parameterType="Board">
+    update lms_board set
+      conts=#{contents}
+    where board_id=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from lms_board 
+    where board_id=#{value}
+  </delete>
+  
+</mapper>
+
   <!-- Mybatis가 컬럼값을 객체에 담을 때 컬럼 이름으로 셋터를 찾아 호출한다. -->
   <!--  
   <select id="findAll" resultType="com.eomcs.lms.domain.Board">
@@ -32,56 +72,6 @@
     컬럼의 이름과 셋터의 이름이 다르다면 다음과 같이 
     셋터 이름과 같은 이름으로 컬럼에 별명을 부여하라!
     그래야만 컬럼의 값을 객체에 제대로 담을 수 있다. -->
-  <select id="findAll" resultType="com.eomcs.lms.domain.Board">
->>>>>>> b225cc774c43d8536e867dc57d78b74678850023
-    select 
-      board_id, 
-      conts, 
-      cdt, 
-      vw_cnt
-    from 
-      lms_board 
-    order by 
-      board_id desc
-  </select>
-  
-  <select id="findBy"  parameterType="int" 
-           resultMap="BoardMap">
-    select 
-      board_id,
-      conts, 
-      cdt, 
-      vw_cnt
-    from 
-      lms_board 
-    where 
-      board_id=#{haha} 
-  </select>
-  
-  <update id="increaseViewCount" parameterType="int">
-    update lms_board set
-      vw_cnt = vw_cnt + 1
-    where 
-      board_id=#{value}
-  </update>
-  
-  <insert id="insert" parameterType="Board">
-    insert into lms_board(conts)
-    values(#{contents}) /* Board 객체의 getContents()를 호출해서 리턴 값을 놓는다. */
-  </insert>
-  
-  <update id="update" parameterType="Board">
-    update lms_board set
-      conts=#{contents} /* getContents()의 리턴 값이 놓인다. */
-    where 
-      board_id=#{no} /* getNo()의 리턴 값이 놓인다. */
-  </update>
-  
-  <delete id="delete" parameterType="int">
-    delete from lms_board 
-    where board_id=#{value}
-  </delete>
-</mapper>
 
 
 
