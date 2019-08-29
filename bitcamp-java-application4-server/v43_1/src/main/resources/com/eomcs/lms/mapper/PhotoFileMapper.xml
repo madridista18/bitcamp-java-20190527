@@ -27,7 +27,7 @@
   </insert>
   
   <delete id="deleteAll" parameterType="int">
-    delete from lms_photo 
+    delete from lms_photo_file
     where photo_id=#{value}
   </delete>
   
