@@ -12,7 +12,7 @@ public class Test01 {
     // => 인터페이스 구현체를 만드는 역할을 한다.
     // 
     // newProxyInstance(
-    //    구현체를 만들기 위해 사용하는 인터페이스의 클래스로더,
+    //    구현체를 만들기 위해 사용하는 인터페이스의 클래스로더(담당자),
     //    구현할 인터페이스 정보 목록,
     //    실제 작업을 수행하는 객체)
     // => 파라미터로 넘겨 받은 인터페이스를 모두 구현한 클래스를 만들어 리턴한다.
@@ -21,7 +21,7 @@ public class Test01 {
     // => 클래스 정보를 로딩하는 역할을 수행한다.
     // => 클래스 로더를 얻는 방법
     //    - 클래스정보.getClassLoader()
-    // => 클래스 정보
+    // => 클래스 정보 = 타입
     //    - 인스턴스.getClass()
     //    - 클래스명.class
     //    - Class.forName("패키지명을 포함한 클래스명")
@@ -42,6 +42,7 @@ public class Test01 {
     class MyHandler implements InvocationHandler {
       @Override
       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("invoke()... 호출됨!");
         // newProxyInstance()가 생성한 객체에 대해 메서드를 호출할 때마다 이 메서드가 호출된다.
         int a = (int) args[0]; // auto-unboxing => ((Integer)args[0]).intValue();
         int b = (int) args[1]; // auto-unboxing => ((Integer)args[1]).intValue();
@@ -62,7 +63,9 @@ public class Test01 {
         new Class[] {Calculator.class}, 
         new MyHandler());
 
+    System.out.println("++++");
     System.out.println(c1.plus(10, 20));
+    System.out.println("----");
     System.out.println(c1.minus(10, 20));
   }
 

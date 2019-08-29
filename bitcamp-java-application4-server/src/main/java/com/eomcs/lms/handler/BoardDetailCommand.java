@@ -26,11 +26,11 @@ public class BoardDetailCommand implements Command {
     int no = Input.getIntValue(in, out, "번호? ");
 
       Board board = boardDao.findBy(no);
-
       if (board == null) {
         out.println("해당 번호의 데이터가 없습니다. ");
         return;
       }
+      boardDao.increaseViewCount(no);
 
       out.println("내용: " + board.getContents());
       out.println("작성일: " + board.getCreatedDate());

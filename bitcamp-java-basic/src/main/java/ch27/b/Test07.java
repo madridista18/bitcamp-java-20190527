@@ -16,7 +16,7 @@ public class Test07 {
       
       Parameter[] params = c.getParameters();
       for (Parameter p : params) {
-        System.out.printf("    %s:%s\n", 
+        System.out.printf("%s:%s\n", 
             p.getName(),
             p.getType().getSimpleName());
       }

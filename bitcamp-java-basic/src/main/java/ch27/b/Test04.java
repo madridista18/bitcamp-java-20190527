@@ -19,6 +19,13 @@ public class Test04 {
     // 메서드에 파라미터가 없을 경우 파라미터 타입을 지정하지 않으면 된다.
     m = clazz.getMethod("c_public");
     System.out.println(m.getName());
+    
+    // 메서드를 찾지 못하면 예외를 띄운다. 
+    //m = clazz.getMethod("c_public2"); // Runtime Error!!
+    //System.out.println(m.getName());
+    
+    Method m1 = clazz.getMethod("minus", int.class, int.class);
+    System.out.println(m1.getName());
   }
 
 }
