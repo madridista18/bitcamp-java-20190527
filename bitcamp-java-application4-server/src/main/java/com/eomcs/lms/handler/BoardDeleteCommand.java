@@ -3,8 +3,10 @@ package com.eomcs.lms.handler;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import com.eomcs.lms.dao.BoardDao;
+import com.eomcs.util.Component;
 import com.eomcs.util.Input;
 
+@Component("/board/delete")
 public class BoardDeleteCommand implements Command {
 
   private BoardDao boardDao; 
@@ -16,10 +18,6 @@ public class BoardDeleteCommand implements Command {
   //   다음과 같이 의존 객체를 넘겨 받는 생성자를 정의하는 것이다.
   public BoardDeleteCommand(BoardDao boardDao) {
     this.boardDao = boardDao;
-  }
-  
-  public String getCommandName() {
-    return "/board/delete";
   }
 
   @Override

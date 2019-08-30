@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
+import com.eomcs.util.Component;
 import com.eomcs.util.Input;
 
+@Component("/board/detail")
 public class BoardDetailCommand implements Command {
 
   private BoardDao boardDao; 
@@ -17,10 +19,6 @@ public class BoardDetailCommand implements Command {
   //   다음과 같이 의존 객체를 넘겨 받는 생성자를 정의하는 것이다.
   public BoardDetailCommand(BoardDao boardDao) {
     this.boardDao = boardDao;
-  }
-  
-  public String getCommandName() {
-    return "/board/detail";
   }
 
   @Override

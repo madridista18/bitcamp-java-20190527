@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
+import com.eomcs.util.Component;
 import com.eomcs.util.Input;
 
+@Component("/board/update")
 public class BoardUpdateCommand implements Command {
 
   private BoardDao boardDao; 
@@ -19,10 +21,6 @@ public class BoardUpdateCommand implements Command {
     this.boardDao = boardDao;
   }
   
-  public String getCommandName() {
-    return "/board/update";
-  }
-
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {
