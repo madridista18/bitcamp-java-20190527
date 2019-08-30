@@ -11,11 +11,13 @@ public class Student {
   }
   
   public Student(String name, String email) {
+    System.out.println("Student(String,String)");
     this.name = name;
     this.email = email;
   }
   
   public Student(String name, String email, boolean working, int age) {
+    System.out.println("Student(String,String,boolean,int)");
     this.name = name;
     this.email = email;
     this.working = working;
@@ -60,6 +62,7 @@ public class Student {
     this.age = age;
   }
   
+  // 스태틱 메서드 
   public static String greeting(String name, int age, boolean working) {
     return String.format("%s(%d,%b)님 반갑습니다!", name, age, working);
   }

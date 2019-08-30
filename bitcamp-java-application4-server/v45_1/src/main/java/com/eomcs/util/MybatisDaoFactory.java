@@ -1,5 +1,6 @@
 package com.eomcs.util;
 
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.List;
@@ -18,6 +19,15 @@ public class MybatisDaoFactory {
     return (T) Proxy.newProxyInstance(
         clazz.getClassLoader(),
         new Class[] {clazz}, 
+        
+//        new InvocationHandler() {
+//          @Override
+//          public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+//            // TODO Auto-generated method stub
+//            return null;
+//          }
+//        };
+        
         (Object proxy, Method method, Object[] args) -> {
           // InvocationHandler 구현체의 람다(lambda) 메서드
           // 자동으로 생성된 DAO 구현체에 대해 메서드를 호출하면 최종적으로 이 메서드가 호출된다. 

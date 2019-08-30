@@ -75,7 +75,7 @@ public class App {
       PlatformTransactionManager txManager = 
           new PlatformTransactionManager(sqlSessionFactory);
       
-      // DAO 구현제 생성기를 준비한다. 
+      // DAO 구현체 생성기를 준비한다. 
       MybatisDaoFactory daoFactory = new MybatisDaoFactory(sqlSessionFactory);
       
       // command 객체가 사용할 데이터 처리 객체를 준비한다. 

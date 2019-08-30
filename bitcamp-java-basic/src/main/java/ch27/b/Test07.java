@@ -13,13 +13,14 @@ public class Test07 {
     Constructor<?>[] constructors = clazz.getConstructors();
     for (Constructor<?> c : constructors) {
       System.out.printf("%s():\n", c.getName());
-      
+      System.out.println("__________________________________________");
       Parameter[] params = c.getParameters();
       for (Parameter p : params) {
         System.out.printf("%s:%s\n", 
             p.getName(),
             p.getType().getSimpleName());
       }
+      System.out.println("****************************************");
     }
   }
 

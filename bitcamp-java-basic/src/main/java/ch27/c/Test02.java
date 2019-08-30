@@ -17,9 +17,10 @@ public class Test02 {
     
     // => invoke(객체주소, 파라미터값, ...)
     m1.invoke(s1, "임꺽정"); // => s1.setName("임꺽정")
+    // static 메서드면 객체주소에 null 입력
+    // m1.invoke(null, "임꺽정");
     
     System.out.println(s1);
-    
     
     // 스태틱 메서드 호출하기
     Method m2 = s1.getClass().getMethod("greeting", 

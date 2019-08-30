@@ -18,8 +18,6 @@ public class Test06 {
           m.getDeclaringClass().getSimpleName());
       System.out.printf("  ==> %s\n", m.getName());
     }
-    
-    
   }
 
 }
