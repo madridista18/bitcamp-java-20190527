@@ -11,7 +11,7 @@ public class Test01 {
     Class<?> clazz = s.getClass(); // 인스턴스 주소에 대해서 클래스 정보 알아내는 방법
     //Class<?> clazz = Student.class; // 클래스로 직접 알아내는 방법
     //Class<?> clazz = Class.forName("ch27.c.Student"); // 위의 코드와 같은 작업을 한다.
-    
+
     // 클래스 정보를 가지고 인스턴스 생성하기(deprecated)
     // => 기본 생성자가 있을 때만 가능하다.
     // => 향후 삭제될 메서드이다. 가능한 사용하지 말라!

@@ -6,9 +6,9 @@ import java.lang.reflect.Method;
 public class Test06 {
 
   public static void main(String[] args) throws Exception {
-    
+
     Class<?> clazz = C.class;
-    
+
     // 상속 받은 메서드를 포함하여 모든 public 메서드의 정보 출력하기
     // 
     Method[] methods = clazz.getMethods();
