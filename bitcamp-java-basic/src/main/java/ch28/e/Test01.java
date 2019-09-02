@@ -18,7 +18,7 @@ public class Test01 {
   @MyAnnotation2(value2="okok")
   int c;
   
-  //@MyAnnotation2("okok") // 프로퍼티 이름이 value 아니면 생략할 수 없다.
+  //@MyAnnotation2("okok") // 프로퍼티 이름이 value가 아니면 생략할 수 없다.
   int d;
   
   @MyAnnotation3(value="okok")

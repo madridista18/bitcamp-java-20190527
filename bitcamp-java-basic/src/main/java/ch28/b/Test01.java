@@ -27,7 +27,7 @@ public class Test01 {
     Class<?> clazz = Test01.class;
     Annotation[] annotations = clazz.getAnnotations();
     
-    // MyAnnotation은 유지 범위가 CLASS 이기 때문에 실행할 때 메모리에 로딩되지 않는다.
+    // MyAnnotation은 유지 범위가 CLASS이기 때문에 실행할 때 메모리에 로딩되지 않는다.
     // 따라서 실행 중에 애노테이션 정보를 추출할 수 없다.
     // 그러나 MyAnnotation3는 유지 범위가 RUNTIME 이기 때문에 실행할 때 메모리에 로딩된다.
     // 따라서 실행 중에 애노테이션 정보를 추출할 수 있다.
