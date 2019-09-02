@@ -1,4 +1,4 @@
-// v50_1 : Spring IOC Container 사용하기    
+// v49_1 : CRUD 기능을 한 클래스에 모으기 + @RequestMapping 메서드를 별도 관리   
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
