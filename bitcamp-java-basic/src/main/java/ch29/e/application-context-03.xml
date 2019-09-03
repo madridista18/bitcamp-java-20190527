@@ -11,7 +11,7 @@
     <property name="model"><value>모델1</value></property>
     <property name="options">
       <map>
-        <entry>
+        <entry> <!-- map.put("sunroof","yes") -->
           <key>
             <value>sunroof</value>
           </key>
@@ -20,8 +20,9 @@
         <entry key="front-airbag">
           <value>yes</value>
         </entry>
-        <entry key="rear-airbag" value="no"/>
-        <entry key="blackbox">
+        <entry key="rear-airbag" value="no"/> <!-- 단순 문자열 저장할 때 -->
+        
+        <entry key="blackbox"> <!-- 객체 저장할 때-->
           <bean class="ch29.e.BlackBox" p:maker="비트오토" p:model="모두기록1"/>
         </entry>
       </map>

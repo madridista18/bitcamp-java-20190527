@@ -4,7 +4,7 @@ import java.util.Properties;
 
 public class Tire2 {
   private String maker;
-  private Properties props;
+  private Properties props; // 값이 문자열만 가능
   
   @Override
   public String toString() {

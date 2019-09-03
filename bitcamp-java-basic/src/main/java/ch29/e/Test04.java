@@ -1,4 +1,4 @@
-// 프로퍼티 값 설정 - Properties 프로퍼티 값 설정하기
+// 프로퍼티 값 설정 - Properties 프로퍼티 값 설정하기 (쓰임새는 Map하고 똑같다)
 package ch29.e;
 
 import org.springframework.context.ApplicationContext;

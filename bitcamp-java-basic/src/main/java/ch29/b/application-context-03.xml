@@ -14,7 +14,7 @@
   -->
   <bean id="c1" class="ch29.b.Car"/>
   <bean id="c2" class="ch29.b.Car2" scope="singleton"/>
-  <bean id="c3" class="ch29.b.Car3" scope="prototype"/>
+  <bean id="c3" class="ch29.b.Car3" scope="prototype"/> 
   
 </beans>
 

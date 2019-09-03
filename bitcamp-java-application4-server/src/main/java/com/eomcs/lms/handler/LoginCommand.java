@@ -22,8 +22,7 @@ public class LoginCommand {
     try {
       HashMap<String,Object> params = new HashMap<>();
       params.put("email", Input.getStringValue(in, out, "이메일?"));
-      params.put("password", Input.getStringValue(in, out, "이메일? "));
-      String password = Input.getStringValue(in, out, "암호? ");
+      params.put("password", Input.getStringValue(in, out, "암호? "));
       
       Member member = memberDao.findByEmailPassword(params);
       

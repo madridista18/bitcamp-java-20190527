@@ -6,10 +6,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-public class Test01 {
+public class Test01_1 {
   public static void main(String[] args) {
     // IoC(Inversion Of Control) 컨테이너
-    // => bean container 라고도 부른다.
+    // => bean container라고도 부른다.
     // => 인스턴스의 생성과 관리를 담당한다.
     // => 각 객체가 의존하는 객체(dependency)를 주입한다.
     //    "의존 객체 주입(dependency injection; DI)"이라 부른다.
@@ -18,8 +18,8 @@ public class Test01 {
     // Spring IoC 컨테이너
     // => spring.io 사이트에서 제공하는 프레임워크이다.
     // => 프로젝트에 Spring IoC 컨테이너 포함하기
-    //    mvnrepository.com 에서 spring-context 로 라이브러리를 검색한다.
-    //    build.gradle 에 의존 라이브러리 정보를 추가한다.
+    //    mvnrepository.com에서 spring-context로 라이브러리를 검색한다.
+    //    build.gradle에 의존 라이브러리 정보를 추가한다.
     //    '$ gradle eclipse'를 실행하여 라이브러리 파일을 다운로드 받고 이클립스 설정 파일을 갱신한다.
     //    이클립스에서 프로젝트 정보를 갱신한다.
     // 
@@ -52,11 +52,12 @@ public class Test01 {
     //    설정 파일 경로를 지정할 때 URL 형식으로 지정해야 한다.
     //    URL 형식에서는 파일 시스템을 가리킬 때 다음의 접두어를 붙인다.
     //    file://
+    //    "file:///Users/eomjinyoung/git/bitcamp-java-2018-12/java-basic/bin/main/ch29/a/application-context.xml");
     ApplicationContext iocContainer2 = 
         new FileSystemXmlApplicationContext(
-            "file:///Users/eomjinyoung/git/bitcamp-java-2018-12/java-basic/bin/main/ch29/a/application-context.xml");
+            "C:\\Users\\bit\\git\\bitcamp-java-20190527\\bitcamp-java-basic\\src\\main\\java\\ch29\\a\\application-context.xml");
     
-    // 3) 자바 클래스 파일의 애노테이션으로부터 설정 정보를 추출한다.
+    // 3) 자바 클래스 파일의 애노테이션으로부터 설정 정보를 추출한다. = java config라 부른다. 
     // => 생성자에 설정 정보를 갖고 있는 클래스의 타입 정보를 넘긴다. 
     ApplicationContext iocContainer3 = 
         new AnnotationConfigApplicationContext(AppConfig.class);
