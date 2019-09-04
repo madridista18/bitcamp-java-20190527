@@ -15,7 +15,7 @@
         c:model="비트모델2" c:maker="비트자동차"/> <!-- Car(String,String) -->
   
   <bean id="c2" class="ch29.c.Car" 
-        c:model="비트모델2" c:cc="1980"/> <!-- Car(String,int) -->
+        c:cc="1980" c:model="비트모델2" /> <!-- Car(String,int) -->
         
   <bean id="c3" class="ch29.c.Car" 
         c:maker="비트자동차" c:valve="16"/> <!-- Car(int,String) -->      

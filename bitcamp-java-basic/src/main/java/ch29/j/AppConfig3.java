@@ -7,7 +7,7 @@ import org.springframework.context.annotation.FilterType;
 // 애노테이션으로 특정 조건의 패키지나 클래스를 관리 대상에서 제외하기
 @ComponentScan(
     basePackages={"ch29.j2","ch29.j"},
-    excludeFilters={ 
+    excludeFilters={
       @ComponentScan.Filter(
           type=FilterType.REGEX, 
           pattern="ch29.j.Car"

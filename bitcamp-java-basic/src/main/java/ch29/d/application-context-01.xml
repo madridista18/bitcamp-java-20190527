@@ -14,6 +14,7 @@
     <property name="valve"><value>16</value></property>
     <property name="auto"><value>true</value></property>
   </bean>
+  
   <!-- 자바 코드로 표현해보면,
        Car obj = new Car();
        obj.setMaker("비트자동차");
