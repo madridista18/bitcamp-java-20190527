@@ -20,7 +20,7 @@ public class PhotoBoardCommand {
   private PhotoFileDao photoFileDao;
 
   public PhotoBoardCommand(
-      PlatformTransactionManager txManager, PhotoBoardDao photoBoardDao, PhotoFileDao photoFileDao) {
+      PhotoBoardDao photoBoardDao, PhotoFileDao photoFileDao) {
     this.photoBoardDao = photoBoardDao;
     this.photoFileDao = photoFileDao;
   }
