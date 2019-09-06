@@ -27,7 +27,7 @@ public class HttpClient {
 //      out.println("Pragma: no-cache");
 //      out.println("Cache-Control: no-cache");
 //      out.println("Upgrade-Insecure-Requests: 1");
-//      out.println("User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.96 Safari/537.36");
+      out.println("User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.96 Safari/537.36");
 //      out.println("Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
 //      out.println("Accept-Encoding: gzip, deflate, br");
 //      out.println("Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,la;q=0.6");
