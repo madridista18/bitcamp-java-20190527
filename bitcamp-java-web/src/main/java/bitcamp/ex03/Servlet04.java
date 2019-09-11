@@ -27,8 +27,10 @@ public class Servlet04 extends GenericServlet {
     // 2) ServletContext를 통해 웹 자원의 실제 경로를 알아낸다.
     //    => getRealPath(현재 웹 애플리케이션의 파일 경로) : 실제 전체 경로를 리턴한다.
     String path = ctx.getRealPath("/WEB-INF/photo.jpeg");
-    
+    System.out.println(path);
     FileInputStream in = new FileInputStream(path);
+    //FileInputStream in = new FileInputStream(
+    //req.getServletContext().getRealPath("/WEB-INF/photo.jpeg"));
     
     // 바이너리를 출력할 때 MIME 타입을 지정해야 웹 브라우저가 제대로 출력할 수 있다.
     // => 웹 브라우저가 모르는 형식을 지정하면 웹 브라우저는 처리하지 못하기 때문에 
