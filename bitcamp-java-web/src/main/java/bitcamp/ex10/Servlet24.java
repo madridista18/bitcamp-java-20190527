@@ -21,7 +21,7 @@ public class Servlet24 extends HttpServlet {
       throws ServletException, IOException {
     
     // 테스트 방법:
-    // => http://localhost:8080/java-web/ex10_1/s24
+    // => http://localhost:8888/bitcamp-java-web/ex10_1/s24
     //
     
     Cookie[] cookies = request.getCookies();
