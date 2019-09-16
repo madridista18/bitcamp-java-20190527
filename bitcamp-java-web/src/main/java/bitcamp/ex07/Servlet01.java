@@ -21,9 +21,9 @@ public class Servlet01 extends HttpServlet {
       throws ServletException, IOException {
     
     // 테스트 방법:
-    // => http://localhost:8080/java-web/ex07/s1?a=100&b=200&op=+
-    // => http://localhost:8080/java-web/ex07/s1?a=100&b=200&op=-
-    // => http://localhost:8080/java-web/ex07/s1?a=100&b=200&op=*
+    // => http://localhost:8888/bitcamp-java-web/ex07/s1?a=100&b=200&op=+
+    // => http://localhost:8888/bitcamp-java-web/ex07/s1?a=100&b=200&op=-
+    // => http://localhost:8888/bitcamp-java-web/ex07/s1?a=100&b=200&op=*
     //
     // 주의!
     // => + 연산을 수행하지 못한다. 
@@ -34,7 +34,7 @@ public class Servlet01 extends HttpServlet {
     // => + 문자의 URL 인코딩 값은?
     //       %2b
     // => 따라서 + 연산을 파라미터 값으로 보내려면 
-    //    http://localhost:8080/java-web/ex07/s1?a=100&b=200&op=%2b
+    //    http://localhost:8888/bitcamp-java-web/ex07/s1?a=100&b=200&op=%2b
     // 
     response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -52,7 +52,7 @@ public class Servlet01 extends HttpServlet {
       // => 엥! 출력된 것이 최소될 수 있나요?
       // => PrintWriter 객체를 통해 출력하는 내용은 즉시 웹 브라우저로 전달되는 것이 아니다.
       //    내부 출력 버퍼(보통 8KB 크기)에 보관된다.
-      // => 서블릿의 service() 메서드 호출이 종료될 때 비로서 버퍼의 내용이 
+      // => 서블릿의 service() 메서드 호출이 종료될 때 비로소 버퍼의 내용이 
       //    웹 브라우저로 전송된다.
       // => 물론 그 전에 버퍼가 꽉 차면 자동으로 출력된다.
       // => 그래서 다른 서블릿으로 실행을 위임하기 전에 
