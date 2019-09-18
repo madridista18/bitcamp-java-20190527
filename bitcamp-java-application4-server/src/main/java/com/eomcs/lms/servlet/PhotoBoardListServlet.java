@@ -40,8 +40,7 @@ public class PhotoBoardListServlet extends HttpServlet {
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'");
-    out.println("<h1>사진 게시물 목록</h1>");
-    out.println("<a href='/photoboard/add'>새 사진 게시물</a><br>");
+    out.println("<h1><a href='/photoboard/add'>새 사진 게시물</a><br></h1>");
     try {
       out.println("<table class='table table-hover'>");
       out.println("<tr><th>번호</th><th>제목</th><th>등록일</th><th>조회수</th><th>수업번호</th></tr>");

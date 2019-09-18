@@ -45,8 +45,6 @@ public class ErrorServlet extends HttpServlet {
     request.getRequestDispatcher("/footer").include(request, response);
     out.println("</body></html>");
 
-    out.println("</body></html>");
-
     String url = (String) request.getAttribute("refresh");
     if (url != null) {
       response.setHeader("Refresh", "1;url=" + url);

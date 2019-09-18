@@ -57,7 +57,6 @@ public class PhotoBoardDetailServlet extends HttpServlet {
         out.printf("제목: <input type='text' name='title' value='%s'> <br>\n", 
             photoBoard.getTitle());
         out.printf("수업번호: %d<br>\n", photoBoard.getLessonNo());
-        out.printf("작성일: %s<br>\n", photoBoard.getCreatedDate());
         out.printf("조회수: %d<br>\n", photoBoard.getViewCount());
 
         List<PhotoFile> files = photoBoard.getFiles();

@@ -48,10 +48,12 @@ public class MemberListServlet extends HttpServlet {
       out.println("<tr><th>번호</th><th>이름</th><th>메일</th><th>전화번호</th><th>등록일</th></tr>");
       List<Member> members = memberDao.findAll();
       for (Member member : members) {
-        out.printf("<tr><td><a href='/member/detail?no=%d'>%d</td>"
+        out.printf("<tr>"
+            + "<td>%d</td>"
             + "<td><a href='/member/detail?no=%d'>%s</a></td>"
-            + "<td>%s</td><td>%s</td><td>%s</td></tr>\n", 
-            member.getNo(),
+            + "<td>%s</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td></tr>\n", 
             member.getNo(),
             member.getNo(),
             member.getName(), 
@@ -63,7 +65,7 @@ public class MemberListServlet extends HttpServlet {
 
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
-      System.out.println(e.getMessage());
+      throw new RuntimeException(e);
       
     }finally {
       out.println("</div>");

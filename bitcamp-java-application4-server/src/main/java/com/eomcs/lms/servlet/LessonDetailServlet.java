@@ -51,17 +51,21 @@ public class LessonDetailServlet extends HttpServlet {
         out.println("<form action='/lesson/update' method='post'>");
         out.printf("번호 : <input type='text' name='no' value='%d' readonly><br>\n",
             lesson.getNo());
-        out.printf("제목 : <input type='text' name='title' value='%s'><br>\n",
+        out.printf("수업명 : <input type='text' name='title' value='%s'><br>\n",
             lesson.getTitle());
-        out.printf("내용 : <textarea name='contents' rows='5'"
-            + " cols='50'>%s</textarea><br>\n",
+        out.printf("설명 : <textarea name='contents' rows='5' cols='50'>%s</textarea><br>\n",
             lesson.getContents());
-        out.printf("시작일: <input type='text' name='startDate' value='%s'><br>\n", lesson.getStartDate());
-        out.printf("종료일: <input type='text' name='endDate' value='%s'><br>\n", lesson.getEndDate());
-        out.printf("총수업시간: <input type='text' name='totalHours' value='%d'><br>\n", lesson.getTotalHours());
-        out.printf("일수업시간: <input type='text' name='dayHours' value='%d'><br>\n", lesson.getDayHours());
+        out.printf("시작일: <input type='text' name='startDate' value='%s'><br>\n", 
+            lesson.getStartDate());
+        out.printf("종료일: <input type='text' name='endDate' value='%s'><br>\n",
+            lesson.getEndDate());
+        out.printf("총수업시간: <input type='text' name='totalHours' value='%d'><br>\n",
+            lesson.getTotalHours());
+        out.printf("일수업시간: <input type='text' name='dayHours' value='%d'><br>\n", 
+            lesson.getDayHours());
         out.println("<button>변경</button>");
-        out.printf("<a href='/lesson/delete?no=%d'>삭제</a>\n", lesson.getNo());
+        out.printf("<a href='/lesson/delete?no=%d'>삭제</a>\n", 
+            lesson.getNo());
         out.println("</form>");
       }
 
