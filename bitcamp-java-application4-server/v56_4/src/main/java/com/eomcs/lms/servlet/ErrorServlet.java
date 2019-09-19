@@ -40,11 +40,9 @@ public class ErrorServlet extends HttpServlet {
     out.println("<div id='content'>");
     out.println("<h1>실행 오류!</h1>");
     out.printf("<p>%s</p>\n", request.getAttribute("message"));
-
     out.println("</div>");
+    
     request.getRequestDispatcher("/footer").include(request, response);
-    out.println("</body></html>");
-
     out.println("</body></html>");
 
     String url = (String) request.getAttribute("refresh");

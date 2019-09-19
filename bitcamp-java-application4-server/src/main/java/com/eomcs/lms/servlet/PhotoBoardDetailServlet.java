@@ -16,9 +16,9 @@ import com.eomcs.lms.domain.PhotoFile;
 @WebServlet("/photoboard/detail")
 public class PhotoBoardDetailServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-  
+
   private PhotoBoardDao photoBoardDao;
-  
+
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
@@ -29,7 +29,7 @@ public class PhotoBoardDetailServlet extends HttpServlet {
   @Override 
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    
+
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>사진 게시물 상세</title>"
@@ -37,9 +37,9 @@ public class PhotoBoardDetailServlet extends HttpServlet {
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
-    
+
     request.getRequestDispatcher("/header").include(request, response);
-    
+
     out.println("<div id='content'");
     out.println("<h1>사진 게시물 상세</h1>");
     try {
@@ -51,24 +51,29 @@ public class PhotoBoardDetailServlet extends HttpServlet {
 
       } else {
         photoBoardDao.increaseViewCount(no);
-        out.println("<form action='/photoboard/update' method='post'>");
+        out.println("<form action='/photoboard/update'"
+            + " method='post' enctype='multipart/form-data'>");
         out.printf("번호: <input type='text' name='no' value='%d' readonly> <br>\n",
             photoBoard.getNo());
         out.printf("제목: <input type='text' name='title' value='%s'> <br>\n", 
             photoBoard.getTitle());
         out.printf("수업번호: %d<br>\n", photoBoard.getLessonNo());
         out.printf("조회수: %d<br>\n", photoBoard.getViewCount());
-
+        
+        out.println("<p>");
         List<PhotoFile> files = photoBoard.getFiles();
-        for (int i = 1; i <= 5; i++) {
-          if (i <= files.size()) {
-            out.printf("사진%d: <input type='text' name='filePath%d' value='%s'><br>\n", 
-                i, i,  files.get(i-1).getFilePath());
-          } else {
-            out.printf("사진%d: <input type='text' name='filePath%d'><br>\n",
-                i, i);
-          }
+        for (PhotoFile file : files) {
+          if (file.getFilePath() == null) 
+            continue;
+          out.printf("<img src='/upload/photoboard/%s' class='photo2'>", 
+              file.getFilePath());
         }
+        out.println("</p>");
+
+        for (int i = 0; i <= 6; i++) {
+          out.println("사진: <input type='file' name='filePath'><br>");
+        }
+        
         out.println("<button>변경</button>");
         out.printf("<a href='/photoboard/delete?no=%d'>삭제</a>\n", 
             photoBoard.getNo());
@@ -78,7 +83,7 @@ public class PhotoBoardDetailServlet extends HttpServlet {
     } catch (Exception e) {
       out.println("<p>해당 사진을 찾을 수 없습니다.</p>");
       throw new RuntimeException(e);
-      
+
     }finally {
       out.println("</div>");
       request.getRequestDispatcher("/footer").include(request, response);

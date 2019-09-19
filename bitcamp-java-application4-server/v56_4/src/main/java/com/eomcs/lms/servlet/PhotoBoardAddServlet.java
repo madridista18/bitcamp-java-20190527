@@ -33,8 +33,16 @@ public class PhotoBoardAddServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("<html><head><title>사진 게시물 등록폼</title></head>");
-    out.println("<body><h1>사진 게시물 등록폼</h1>");
+    out.println("<html><head><title>사진 게시물 등록폼</title>"
+        + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
+        + "<link rel='stylesheet' href='/css/common.css'>"
+        + "</head>");
+    out.println("<body>");
+    
+    request.getRequestDispatcher("/header").include(request, response);
+    
+    out.println("<div id='content'>");
+    out.println("<h1>사진 게시물 등록폼</h1>");
     out.println("<form action='/photoboard/add' method='post'>");
     out.println("제목 : <input type='text' name='title'><br>");
     out.println("수업번호 : <input type='text' name='lessonNo'><br>");
@@ -45,6 +53,8 @@ public class PhotoBoardAddServlet extends HttpServlet {
     out.println("사진5 : <input type='text' name='filePath5'><br>");
     out.println("<button>등록</button>");
     out.println("</form>");
+    out.println("</div>");
+    request.getRequestDispatcher("/footer").include(request, response);
     out.println("</body></html>");
   }
 
