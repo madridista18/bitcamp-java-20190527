@@ -35,10 +35,10 @@ public class BoardUpdateServlet extends HttpServlet {
       response.sendRedirect("/board/list");
 
     } catch (Exception e) {
-      request.setAttribute("message", "데이터 변경에 실패했습니다!");
+      request.setAttribute("message", e.getMessage());
       request.setAttribute("refresh", "/board/list");
       request.setAttribute("error", e);
-      request.getRequestDispatcher("/error").forward(request, response);
+      request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
     }
   }
 }
