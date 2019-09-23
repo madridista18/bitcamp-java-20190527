@@ -35,44 +35,45 @@ public class MemberDetailServlet extends HttpServlet {
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
-    
+
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
     out.println("<h1>회원 상세</h1>");
-
+    
     try {
       int no = Integer.parseInt(request.getParameter("no"));
+     
       Member member = memberDao.findBy(no);
-
       if (member == null) {
         out.println("<p>해당 번호의 데이터가 없습니다!</p>");
+
       } else {
         out.println("<form action='/member/update' method='post' enctype='multipart/form-data'>");
-        out.printf("<img src='/upload/member/%s' class='photo1'><br>\n",
-           member.getPhoto());
+        out.printf("<img src='/upload/member/%s' class='photo1'><br>\n", 
+            member.getPhoto());
         out.println("<input type='file' name='photo'><br>");
-        out.printf("번호 : <input type='text' name='no' value='%d' readonly><br>\n",
+        out.printf("번호: <input type='text' name='no' value='%d' readonly><br>\n",
             member.getNo());
-        out.printf("이름: <input type='text' name='name' value='%s'><br>\n", 
+        out.printf("이름: <input type='text' name='name' value='%s'><br>\n",
             member.getName());
         out.printf("이메일: <input type='text' name='email' value='%s'><br>\n",
             member.getEmail());
-        out.printf("암호: <input type='text' name='password' value='%s'><br>\n", 
+        out.printf("암호: <input type='text' name='password' value='%s'><br>\n",
             member.getPassword());
-        out.printf("전화: <input type='text' name='tel' value='%s'><br>\n", 
+        out.printf("전화: <input type='text' name='tel' value='%s'><br>\n",
             member.getTel());
-        out.printf("가입일: %s<br>\n", 
+        out.printf("가입일: %s<br>\n",
             member.getRegisteredDate());
         out.println("<button>변경</button>");
         out.printf("<a href='/member/delete?no=%d'>삭제</a>\n", member.getNo());
         out.println("</form>");
-      }
+      } 
     } catch (Exception e) {
       out.println("<p>데이터 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
       
-    }finally {
+    } finally {
       out.println("</div>");
       request.getRequestDispatcher("/footer").include(request, response);
       out.println("</body></html>");

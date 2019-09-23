@@ -5,16 +5,15 @@ import java.sql.Date;
 import java.util.List;
 
 public class PhotoBoard implements Serializable {
-
   private static final long serialVersionUID = 1L;
 
-  private int no; 
+  private int no;
   private String title;
   private Date createdDate;
   private int viewCount;
   private int lessonNo;
   
-  // 자식 테이블 'lms_phoot_file'의 데이터를 담을 PhotoFile 객체 목록. 
+  // 자식 테이블 'lms_photo_file'의 데이터를 담을 PhotoFile 객체 목록. 
   private List<PhotoFile> files;
   
   @Override
@@ -22,14 +21,12 @@ public class PhotoBoard implements Serializable {
     return "PhotoBoard [no=" + no + ", title=" + title + ", createdDate=" + createdDate
         + ", viewCount=" + viewCount + ", lessonNo=" + lessonNo + ", files=" + files + "]";
   }
-  
   public List<PhotoFile> getFiles() {
     return files;
   }
   public void setFiles(List<PhotoFile> files) {
     this.files = files;
   }
-  
   public int getNo() {
     return no;
   }
@@ -60,5 +57,6 @@ public class PhotoBoard implements Serializable {
   public void setLessonNo(int lessonNo) {
     this.lessonNo = lessonNo;
   }
-
+  
+  
 }

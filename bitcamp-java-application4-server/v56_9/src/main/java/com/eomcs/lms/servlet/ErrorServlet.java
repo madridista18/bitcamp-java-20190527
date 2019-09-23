@@ -13,20 +13,19 @@ import org.apache.logging.log4j.Logger;
 
 // 역할:
 // => 다른 서블릿에서 발생한 오류 내용을 출력한다.
-// 
-
+//
 @WebServlet("/error")
 public class ErrorServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   private static final Logger logger = 
       LogManager.getLogger(ErrorServlet.class);
-
+  
   @Override
   protected void service(
       HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-
+      throws ServletException, IOException {
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>실행 오류</title>"
@@ -36,15 +35,14 @@ public class ErrorServlet extends HttpServlet {
     out.println("<body>");
 
     request.getRequestDispatcher("/header").include(request, response);
-
+    
     out.println("<div id='content'>");
     out.println("<h1>실행 오류!</h1>");
     out.printf("<p>%s</p>\n", request.getAttribute("message"));
-
     out.println("</div>");
     request.getRequestDispatcher("/footer").include(request, response);
     out.println("</body></html>");
-
+    
     String url = (String) request.getAttribute("refresh");
     if (url != null) {
       response.setHeader("Refresh", "1;url=" + url);
@@ -52,10 +50,16 @@ public class ErrorServlet extends HttpServlet {
 
     Exception e = (Exception) request.getAttribute("error");
     if (e != null) {
-      // 왜 오류가 발생했는지 자세한 사항은 로그로 남긴다. 
+      // 왜 오류가 발생했는지 자세한 사항은 로그로 남긴다.
       StringWriter strOut = new StringWriter();
       e.printStackTrace(new PrintWriter(strOut));
       logger.error(strOut.toString());
     }
   }
 }
+
+
+
+
+
+

@@ -25,12 +25,12 @@ import com.eomcs.lms.domain.PhotoFile;
 @WebServlet("/photoboard/add")
 public class PhotoBoardAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   String uploadDir;
-  private PlatformTransactionManager txManager; 
+  private PlatformTransactionManager txManager;
   private PhotoBoardDao photoBoardDao;
   private PhotoFileDao photoFileDao;
-
+  
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
@@ -44,7 +44,7 @@ public class PhotoBoardAddServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>사진게시물 등록폼</title>"
@@ -54,7 +54,7 @@ public class PhotoBoardAddServlet extends HttpServlet {
     out.println("<body>");
 
     request.getRequestDispatcher("/header").include(request, response);
-
+    
     out.println("<div id='content'>");
     out.println("<h1>사진게시물 등록폼</h1>");
     out.println("<form action='/photoboard/add' method='post' enctype='multipart/form-data'>");
@@ -72,52 +72,57 @@ public class PhotoBoardAddServlet extends HttpServlet {
     request.getRequestDispatcher("/footer").include(request, response);
     out.println("</body></html>");
   }
-
-
+  
+ 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-
-    // 트랜잭션 동작을 정의한다. 
+    
+    // 트랜잭션 동작을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
     def.setName("tx1");
     def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-    // 정의된 트랜잭션 동작에 따라 작업을 수행할 트랜잭션 객체를 준비한다.  
+    
+    // 정의된 트랜잭션 동작에 따라 작업을 수행할 트랜잭션 객체를 준비한다. 
     TransactionStatus status = txManager.getTransaction(def);
+    
     try {
       PhotoBoard photoBoard = new PhotoBoard();
       photoBoard.setTitle(request.getParameter("title"));
       photoBoard.setLessonNo(Integer.parseInt(request.getParameter("lessonNo")));
-
+      
       photoBoardDao.insert(photoBoard);
-
+      
       int count = 0;
       Collection<Part> parts = request.getParts();
       for (Part part : parts) {
         if (!part.getName().equals("filePath") || part.getSize() == 0) {
           continue;
         }
-        // 클라이언트가 보낸 파일을 디스크에 저장한다. 
+        // 클라이언트가 보낸 파일을 디스크에 저장한다.
         String filename = UUID.randomUUID().toString();
         part.write(uploadDir + "/" + filename);
-
-        // 저장한 파일명을 DB에 입력한다. 
+        
+        // 저장한 파일명을 DB에 입력한다.
         PhotoFile photoFile = new PhotoFile();
         photoFile.setFilePath(filename);
         photoFile.setBoardNo(photoBoard.getNo());
         photoFileDao.insert(photoFile);
         count++;
       }
-
+      
       if (count == 0) {
         throw new Exception("사진 파일 없음!");
       }
+      
       txManager.commit(status);
+      
       response.sendRedirect("/photoboard/list");
-
+      
     } catch (Exception e) {
+      
       txManager.rollback(status);
+      
       request.setAttribute("message", "데이터 저장에 실패했습니다!");
       request.setAttribute("refresh", "/photoboard/list");
       request.setAttribute("error", e);

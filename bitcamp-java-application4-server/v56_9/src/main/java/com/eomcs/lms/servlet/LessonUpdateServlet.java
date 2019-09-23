@@ -14,7 +14,7 @@ import com.eomcs.lms.domain.Lesson;
 @WebServlet("/lesson/update")
 public class LessonUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private LessonDao lessonDao;
 
   @Override
@@ -27,7 +27,6 @@ public class LessonUpdateServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    
     try {
       Lesson lesson = new Lesson();
       lesson.setNo(Integer.parseInt(request.getParameter("no")));
@@ -37,10 +36,10 @@ public class LessonUpdateServlet extends HttpServlet {
       lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
       lesson.setTotalHours(Integer.parseInt(request.getParameter("totalHours")));
       lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
-
+      
       lessonDao.update(lesson);
       response.sendRedirect("/lesson/list");
-
+      
     } catch (Exception e) {
       request.setAttribute("message", "데이터 변경에 실패했습니다!");
       request.setAttribute("refresh", "/lesson/list");
@@ -49,6 +48,12 @@ public class LessonUpdateServlet extends HttpServlet {
     }
   }
 }
+
+
+
+
+
+
 
 
 

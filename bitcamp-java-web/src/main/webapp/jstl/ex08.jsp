@@ -18,6 +18,14 @@
 <h2>CVS 문자열</h2>
 <%
 pageContext.setAttribute("names1", "홍길동,임꺽정,유관순,김구");
+
+/*
+String str = (String) pageContext.getAttribute("name1");
+String[] values = str.split(",");
+for (String n : values) {
+  out.println("<li>" + n + "</li>");
+}
+*/
 %>
 
 <ul>
@@ -30,6 +38,9 @@ pageContext.setAttribute("names1", "홍길동,임꺽정,유관순,김구");
 <h2>Query String 문자열</h2>
 <%
 pageContext.setAttribute("qs", "name=홍길동&age=20&tel=1111-2222");
+/*
+token : 잘라진 문자열 
+*/
 %>
 
 <ul>
@@ -37,7 +48,6 @@ pageContext.setAttribute("qs", "name=홍길동&age=20&tel=1111-2222");
     <li>${n}</li>
 </c:forTokens>
 </ul>
-
 
 
 </body>
