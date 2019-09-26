@@ -5,7 +5,7 @@ import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-// 서블릿 컨테이너가 시작될 때 보고를 받고싶으면, 
+// 서블릿 컨테이너가 시작될 때 보고를 받고 싶으면,
 // => SerlvetContainerIntializer 규칙에 따라 작성해야 한다.
 // => 이 클래스의 전체 이름(패키지명을 포함한 클래스명)을 다음 경로의 파일에 등록해야 한다.
 //       /META-INF/services/javax.servlet.ServletContainerInitializer 파일

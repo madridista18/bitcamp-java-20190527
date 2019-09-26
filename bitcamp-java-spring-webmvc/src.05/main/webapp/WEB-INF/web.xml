@@ -14,17 +14,18 @@
   <!-- 글로벌 Spring IoC 컨테이너 준비 -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+  </listener>  
   
-  <!-- ContextLoaderListener 가 사용할 IoC 컨테이너 설정 파일 정보 -->
+  <!-- ContextLoaderListener가 사용할 IoC 컨테이너 설정 파일 정보 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/config/app-context.xml</param-value>
   </context-param>
-  <!-- => DispatcherServlet의 IoC컨테이너를 사용하고 싶지 않다면, 
-          contextConfigLocation 초기화 파라미터의 값을 빈 채로 두면 된다. 
-          초기화 파라미터 변수가 없으면 안된다. 
-          왜? 없으면 /WEB-INF/서블릿이름-servlet.xml 파일을 자동으로 찾기 때문이다.  
+  
+  <!-- => DispatcherServlet의 IoC 컨테이너를 사용하고 싶지 않다면,
+          contextConfigLocation 초기화 파라미터의 값을 빈 채로 두면 된다.
+          초기화 파라미터 변수가 없으면 안된다.
+          왜? 없으면 /WEB-INF/서블릿이름-servlet.xml 파일을 자동으로 찾기 때문이다.
   --> 
   <servlet>
     <servlet-name>app</servlet-name>
@@ -33,7 +34,7 @@
       <param-name>contextConfigLocation</param-name>
       <param-value></param-value>
     </init-param>
-     <load-on-startup>1</load-on-startup>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>app</servlet-name>
@@ -47,3 +48,18 @@
   </welcome-file-list>
 
 </web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

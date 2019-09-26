@@ -5,7 +5,6 @@ public class Board {
   private String contents;
   
   public Board() {
-    
   }
   
   public Board(int no, String contents) {
@@ -30,5 +29,6 @@ public class Board {
   public void setContents(String contents) {
     this.contents = contents;
   }
+  
   
 }
