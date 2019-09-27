@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Controller02_2 {
 
   // 테스트 방법:
-  // => http://localhost:8080/java-spring-webmvc/html/app1/c02_2.html
+  // => http://localhost:8888/java-spring-webmvc/html/app1/c02_2.html
   
   @GetMapping // GET 요청일 때만 호출된다. 
   @ResponseBody 

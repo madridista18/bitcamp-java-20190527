@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Controller03_2 {
 
   // 테스트 방법:
-  // => http://localhost:8080/java-spring-webmvc/html/app1/c03_2.html
+  // => http://localhost:8888/java-spring-webmvc/html/app1/c03_2.html
   // => 요청 헤더 중에서 특정 이름을 갖는 헤더가 있을 때 호출될 메서드를 지정할 수 있다.
   // => 웹 페이지에서 링크를 클릭하거나 입력 폼에 값을 넣고 등록 버튼을 누르는 
   //    일반적인 상황에서는 요청헤더에 임의의 헤더를 추가할 수 없다.

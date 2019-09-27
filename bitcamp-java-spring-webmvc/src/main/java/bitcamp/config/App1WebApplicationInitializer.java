@@ -1,7 +1,6 @@
 package bitcamp.config;
 
 import java.io.File;
-import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

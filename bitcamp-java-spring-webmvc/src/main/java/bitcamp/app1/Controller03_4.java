@@ -15,7 +15,7 @@ public class Controller03_4 {
   // => 프론트 컨트롤러는 보내는 데이터의 타입에 따라 처리를 분리할 수 있다. 
   
   // 테스트 방법:
-  // => http://localhost:8080/java-spring-webmvc/html/app1/c03_4.html
+  // => http://localhost:8888/java-spring-webmvc/html/app1/c03_4.html
   // => 클라이언트가 POST 요청으로 데이터를 보낼 때 기본 형식은 다음과 같다. 
   //      application/x-www-form-urlencoded 
   // => <form> 태그에서 enctype 속성에 "mulpart/form-data"를 지정하면 

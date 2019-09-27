@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Controller03_3 {
 
   // 테스트 방법:
-  // => http://localhost:8080/java-spring-webmvc/html/app1/c03_3.html
+  // => http://localhost:8888/java-spring-webmvc/html/app1/c03_3.html
   // => 요청 헤더 중에서 Accept의 값에 따라 구분할 때 사용한다.
   // Accept 헤더?
   // => HTTP 클라이언트(웹 브라우저)에서 서버에 요청할 때
