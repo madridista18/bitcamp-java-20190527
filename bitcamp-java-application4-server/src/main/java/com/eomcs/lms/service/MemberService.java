@@ -12,6 +12,7 @@ public interface MemberService {
   List<Member> list() throws Exception;
   List<Member> search(String keyword) throws Exception;
   Member get(int no) throws Exception;
+  Member get(String email, String password) throws Exception;
   void insert(Member member) throws Exception;
   void update(Member member) throws Exception;
   void delete(int no) throws Exception;

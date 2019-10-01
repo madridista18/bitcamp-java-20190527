@@ -3,12 +3,14 @@ package com.eomcs.lms;
 
 // 작업:
 // => com.eomcs.lms.service 패키지 생성
-// => BoardService, ... 인터페이스 생성
+// => BoardService, MemberService, LessonService, PhotoBoardService 인터페이스 생성
 // => com.eomcs.lms.service.impl 패키지 생성
 // => DefaultBoardService, ... 클래스 생성
 //
 // => XxxController 변경
 //    - DAO를 직접 사용하는 대신에 Service 컴포넌트를 사용하도록 변경한다. 
+// => PhotoFileWriter 생성
+//    - 파일 업로드 처리 코드 분리 
 // 
 // => com.eomcs.lms.web.json 패키지 생성 
 // => web의 BoardController를 web.json으로 복사
