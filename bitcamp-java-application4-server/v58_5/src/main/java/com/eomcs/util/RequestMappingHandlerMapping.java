@@ -85,7 +85,7 @@ public class RequestMappingHandlerMapping {
 
       // request handler를 호출하면, 
       // model 객체에는 request handler가 담은 값이 보관되어 있다.
-      // 여기에 request handler의 리턴 값(JSP URL)도 함꼐 보관한다. 
+      // 여기에 request handler의 리턴 값(JSP URL)도 함께 보관한다. 
       model.put("viewUrl", viewUrl);
 
       // request handler의 작업 결과물과 JSP URL을 담은 맵 객체를 프론트 컨트롤러에게 리턴한다. 
