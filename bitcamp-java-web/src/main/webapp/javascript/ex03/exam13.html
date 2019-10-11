@@ -20,17 +20,18 @@ function plus(a, b) {
 	return a + b;
 }
 
-//이렇게 정식으로 정의된 함수의 주소를 아규먼트로 넘길 수 있다.
-//그러면 play()는 그 함수를 호출하여 리턴 값을 출력할 것이다.
+// 이렇게 정식으로 정의된 함수의 주소를 아규먼트로 넘길 수 있다.
+// 그러면 play()는 그 함수를 호출하여 리턴 값을 출력할 것이다.
 play(plus);
 
-//또는 다음과 같이 익명 함수를 정의하여 바로 아규먼트로 넘길 수 있을 것이다.
+// 또는 다음과 같이 익명 함수를 정의하여 바로 아규먼트로 넘길 수 있을 것이다.
 play(function(a, b) {return a - b;});
 
-//또한 arrow function을 정의하여 바로 아규먼트로 넘길 수 있다. 
+// 또한 arrow function을 정의하여 바로 아규먼트로 넘길 수 있다. 
+// arrow function : 익명 함수의 함축버전
 play((a, b) => a * b);
 
-//물론 arrow function이 여러 문장으로 구성된 경우도 있을 것이다.
+// 물론 arrow function이 여러 문장으로 구성된 경우도 있을 것이다.
 play((a, b) => {
 	var sum = 0;
 	for (var i = a; i <= b; i++) {
