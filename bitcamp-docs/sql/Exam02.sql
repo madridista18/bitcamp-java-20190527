@@ -124,13 +124,8 @@ delete from 테이블명 where 조건;
 delete from test1 where no=2 or no=3;
 
 /* 조건을 지정하지 않으면 모든 데이터가 삭제된다. 주의!*/
-delete from test1;
+delete from test1;;
 ```
-
-
-
-
-
 
 
 
