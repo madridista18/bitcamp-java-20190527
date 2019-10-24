@@ -9,11 +9,3 @@ public interface PhotoFileDao {
   List<PhotoFile> findAll(int boardNo) throws Exception;
   int deleteAll(int boardNo) throws Exception;
 }
-
-
-
-
-
-
-
-

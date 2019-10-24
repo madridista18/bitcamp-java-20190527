@@ -14,7 +14,9 @@
 
 <div id='content'>
 <h1>사진게시물 목록</h1>
+ 
 <a href='form'>새 사진게시물</a><br>
+
 <table class='table table-hover'>
 <tr>
   <th>번호</th>
@@ -23,7 +25,6 @@
   <th>조회수</th>
   <th>수업</th>
 </tr>
-
 <c:forEach items="${photoBoards}" var="photoBoard">
   <tr>
     <td>${photoBoard.no}</td>
@@ -32,10 +33,11 @@
     <td>${photoBoard.viewCount}</td>
     <td>${photoBoard.lessonNo}</td>
   </tr>
-</c:forEach>
+</c:forEach> 
 </table>
 </div>
 
 <jsp:include page="../footer.jsp"/>
 
-</body></html>
+</body>
+</html>

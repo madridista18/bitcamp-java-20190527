@@ -18,6 +18,7 @@ import com.eomcs.lms.service.MemberService;
 public class MemberController {
 
   @Resource private MemberService memberService;
+
   String uploadDir;
 
   public MemberController(ServletContext sc) {
@@ -84,7 +85,7 @@ public class MemberController {
   @GetMapping("search")
   public JsonResult search(String keyword) throws Exception {
     try {
-      List<Member> members = memberService.search("keyword");
+      List<Member> members = memberService.search(keyword);
       return new JsonResult()
           .setState(JsonResult.SUCCESS)
           .setResult(members);
@@ -99,7 +100,6 @@ public class MemberController {
   @PostMapping("update")
   public JsonResult update(Member member, MultipartFile file) throws Exception {
     try {
-      // 업로드 된 사진 파일 처리
       member.setPhoto(writeFile(file));
       memberService.update(member);
       return new JsonResult().setState(JsonResult.SUCCESS);
@@ -112,7 +112,7 @@ public class MemberController {
   }
 
   private String writeFile(MultipartFile file) throws Exception {
-    if (!file.isEmpty()) 
+    if (file.isEmpty())
       return null;
 
     String filename = UUID.randomUUID().toString();
@@ -120,6 +120,3 @@ public class MemberController {
     return filename;
   }
 }
-
-
-

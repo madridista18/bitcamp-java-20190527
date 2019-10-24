@@ -13,7 +13,7 @@ public interface MemberService {
   List<Member> search(String keyword) throws Exception;
   Member get(int no) throws Exception;
   Member get(String email, String password) throws Exception;
-  void insert(Member member) throws Exception;
-  void update(Member member) throws Exception;
+  void insert(Member board) throws Exception;
+  void update(Member board) throws Exception;
   void delete(int no) throws Exception;
 }
