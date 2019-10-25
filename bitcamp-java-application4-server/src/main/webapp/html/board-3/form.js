@@ -8,6 +8,7 @@ var fiNo = document.querySelector('#fiNo'),
     btnUpdate = document.querySelector('#btnUpdate'),
     btnDelete = document.querySelector('#btnDelete'),
     btnList = document.querySelector('#btnList');
+
 var i = location.href.indexOf('?'); 
 if (i != -1) {
   var str = location.href.substring(i + 1).split('=');
@@ -18,9 +19,11 @@ if (i != -1) {
       swal('게시물 조회!', '게시물 번호가 유효하지 않습니다!', 'error');
   }
 }
+
 btnList.onclick = () => {
   location.href = 'list.html';
 };
+
 if (no == undefined) {
   var el = document.querySelectorAll('.my-view-group')
   for (var e of el) {
@@ -47,6 +50,7 @@ if (no == undefined) {
   };
   
 }
+
 function doAdd() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -71,6 +75,7 @@ function doAdd() {
   xhr.send(
       "contents=" + encodeURIComponent(fiContents.value));
 }
+
 function doDetail() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -92,6 +97,7 @@ function doDetail() {
   xhr.open("GET", "/app/json/board/detail?no=" + no, true);
   xhr.send();
 }
+
 function doUpdate() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -117,6 +123,7 @@ function doUpdate() {
       "no=" + fiNo.value +
       "&contents=" + encodeURIComponent(fiContents.value));
 }
+
 function doDelete() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {

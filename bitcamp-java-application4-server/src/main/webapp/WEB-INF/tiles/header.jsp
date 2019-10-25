@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>게시물 목록</title>
-  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-  <link rel='stylesheet' href='/css/common.css'>
-</head>
-<body>
-
-<nav id='header' class='navbar navbar-expand-lg navbar-light bg-light'>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<header id="header">
+<nav class='navbar navbar-expand-lg navbar-light bg-light'>
   <a class='navbar-brand' href='#'>
     <img src='/images/logo.png' class='d-inline-block align-top'>
     수업관리시스템
@@ -34,48 +28,13 @@
   </div>
     
   <div>
-
+<c:if test="${empty loginUser}">
   <a href='/app/auth/form' class='btn btn-outline-dark btn-sm'>로그인</a>
-
-
+</c:if>
+<c:if test="${not empty loginUser}">
+  <a href='/member/detail?no=${loginUser.no}'>${loginUser.name}</a> 
+  <a href='/app/auth/logout' class='btn btn-outline-dark btn-sm'>로그아웃</a>
+</c:if>
   </div>
 </nav>
-
-
-<div id='content'>
-<h1>게시물 목록</h1>
-<a href='form.html'>새 글</a><br>
-<table id="list-table" class='table table-hover'>
-<thead>
-<tr>
-  <th>번호</th>
-  <th>내용</th>
-  <th>등록일</th>
-  <th>조회수</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</div>
-
-
-<div id='footer'>
-  &copy; 2019
-  <span>비트캠프, 자바130기</span>
-</div>
-
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="list.js"></script>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
+</header>

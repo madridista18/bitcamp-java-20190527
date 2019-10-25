@@ -48,9 +48,9 @@ if (no == undefined) {
 
 function doAdd() {
   $.ajax("/app/json/board/add", {
-    method: 'POST', 
+    method: 'POST',
     data: {
-      contents : encodeURIComponent(fiContents.val())
+      contents: encodeURIComponent(fiContents.val())
     },
     success: function(data) {
       console.log(data.state);
@@ -70,20 +70,27 @@ function doDetail() {
 
 function doUpdate() {
   $.ajax("/app/json/board/update", {
-    method: 'POST', 
+    method: 'POST',
     data: {
-      no : no,
-      contents : encodeURIComponent(fiContents.val())
+      no: no,
+      contents: encodeURIComponent(fiContents.val())
     },
     success: function(data) {
       console.log(data.state);
       location.href = "list.html";
     }
   });
- 
+}
+
 function doDelete() {
   $.get("/app/json/board/delete?no=" + no, function(data) {
     console.log(data.state);
     location.href = "list.html";
   });
 }
+
+
+
+
+
+

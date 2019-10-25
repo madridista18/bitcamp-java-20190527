@@ -88,3 +88,9 @@ function doDelete() {
     location.href = "list.html";
   });
 }
+
+
+
+
+
+

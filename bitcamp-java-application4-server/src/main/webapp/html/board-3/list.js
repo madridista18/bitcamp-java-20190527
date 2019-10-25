@@ -1,7 +1,9 @@
-"use strict"
+"use strict";
 
 var tbody = document.querySelector("#list-table > tbody");
+
 loadData();
+
 function loadData() {
   //console.log("서버에서 데이터 가져오기!");
   var xhr = new XMLHttpRequest();
