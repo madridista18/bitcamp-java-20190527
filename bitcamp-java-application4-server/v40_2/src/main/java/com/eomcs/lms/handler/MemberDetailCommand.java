@@ -8,7 +8,7 @@ import com.eomcs.util.Input;
 
 public class MemberDetailCommand implements Command {
   private MemberDao memberDao;
-
+  
   public MemberDetailCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
@@ -17,27 +17,23 @@ public class MemberDetailCommand implements Command {
   public void execute(BufferedReader in, PrintStream out) {
     try {
       int no = Input.getIntValue(in, out, "번호? ");
-
+      
       Member member = memberDao.findBy(no);
-
       if (member == null) {
-        out.println("해당 번호의 데이터가 없습니다. ");
+        out.println("해당 번호의 데이터가 없습니다!");
         return;
       }
-
-      out.println("이름: " + member.getName());
-      out.println("이메일: " + member.getEmail());
-      out.println("암호: " + member.getPassword());
-      out.println("사진: " + member.getPhoto());
-      out.println("전화: " + member.getTel());
-      out.println("가입일: " + member.getRegisteredDate());
+      out.printf("이름: %s\n", member.getName());
+      out.printf("이메일: %s\n", member.getEmail());
+      out.printf("암호: %s\n", member.getPassword());
+      out.printf("사진: %s\n", member.getPhoto());
+      out.printf("전화: %s\n", member.getTel());
+      out.printf("가입일: %s\n", member.getRegisteredDate());
 
     } catch (Exception e) {
       out.println("데이터 조회에 실패했습니다!");
       System.out.println(e.getMessage());
     }
   }
+
 }
-
-
-

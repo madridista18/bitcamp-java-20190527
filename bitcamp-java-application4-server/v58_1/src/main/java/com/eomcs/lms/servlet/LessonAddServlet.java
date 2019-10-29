@@ -27,7 +27,6 @@ public class LessonAddServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    
     request.setAttribute("viewUrl", "/jsp/lesson/form.jsp");
   }
   
@@ -44,6 +43,7 @@ public class LessonAddServlet extends HttpServlet {
       lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
       
       lessonDao.insert(lesson);
+      
       request.setAttribute("viewUrl", "redirect:list");
       
     } catch (Exception e) {

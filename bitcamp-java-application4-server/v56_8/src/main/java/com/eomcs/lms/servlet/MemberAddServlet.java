@@ -50,7 +50,7 @@ public class MemberAddServlet extends HttpServlet {
     out.println("<form action='/member/add' method='post' enctype='multipart/form-data'>");
     out.println("이름: <input type='text' name='name'><br>");
     out.println("이메일: <input type='text' name='email'><br>");
-    out.println("암호: <input type='password' name='password'><br>");
+    out.println("암호: <input type='text' name='password'><br>");
     out.println("사진: <input type='file' name='photo'><br>");
     out.println("전화: <input type='text' name='tel'><br>");
     out.println("<button>등록</button>");
@@ -72,7 +72,7 @@ public class MemberAddServlet extends HttpServlet {
       member.setPassword(request.getParameter("password"));
       member.setTel(request.getParameter("tel"));
 
-      // 업로드 된 사진 파일 처리 
+      // 업로드 된 사진 파일 처리
       Part photoPart = request.getPart("photo");
       if (photoPart != null && photoPart.getSize() > 0) {
         String filename = UUID.randomUUID().toString();

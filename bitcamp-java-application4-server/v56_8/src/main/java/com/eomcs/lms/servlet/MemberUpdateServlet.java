@@ -17,7 +17,7 @@ import com.eomcs.lms.domain.Member;
 @WebServlet("/member/update")
 public class MemberUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   String uploadDir;
   private MemberDao memberDao;
 
@@ -26,13 +26,13 @@ public class MemberUpdateServlet extends HttpServlet {
     ApplicationContext appCtx = 
         (ApplicationContext) getServletContext().getAttribute("iocContainer");
     memberDao = appCtx.getBean(MemberDao.class);
+    
     uploadDir = getServletContext().getRealPath("/upload/member");
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-
     try {
       Member member = new Member();
       member.setNo(Integer.parseInt(request.getParameter("no")));
@@ -40,18 +40,18 @@ public class MemberUpdateServlet extends HttpServlet {
       member.setEmail(request.getParameter("email"));
       member.setPassword(request.getParameter("password"));
       member.setTel(request.getParameter("tel"));
-
-      // 업로드 된 사진 파일 처리 
+      
+      // 업로드 된 사진 파일 처리
       Part photoPart = request.getPart("photo");
       if (photoPart != null && photoPart.getSize() > 0) {
         String filename = UUID.randomUUID().toString();
         member.setPhoto(filename);
         photoPart.write(uploadDir + "/" + filename);
       }
-
+      
       memberDao.update(member);
       response.sendRedirect("/member/list");
-
+      
     } catch (Exception e) {
       request.setAttribute("message", "데이터 변경에 실패했습니다!");
       request.setAttribute("refresh", "/member/list");

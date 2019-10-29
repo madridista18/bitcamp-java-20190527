@@ -21,7 +21,7 @@ public class Servlet02 extends HttpServlet {
       throws ServletException, IOException {
     
     // 테스트 방법:
-    // => http://localhost:8888/bitcamp-java-web/ex11/s2
+    // => http://localhost:8080/java-web/ex11/s2
     //
     
     // 세션 아이디 보내기
@@ -30,31 +30,19 @@ public class Servlet02 extends HttpServlet {
     // => HTTP 요청 프로토콜
 /*
 GET /java-web/ex11/s2 HTTP/1.1
-Host: localhost:8888
+Host: localhost:8080
 ...
 Cookie: JSESSIONID=9909D09693CE9E0B8D23BE824313C834    <--- 서버에 세션 아이디 보낸다.
  */
     
-    HttpSession session = request.getSession(); 
-    // getSession : 
-    // 1) 쿠키에서 세션 ID가 있다면?
-    //    그 세션 ID의 HttpSession 객체를 찾는다. 
-    //    객체가 있다면, 유효여부를 검사한다. 
-    //    유효하다면, 그 객체를 리턴한다. 
-    //    유효하지 않다면, 새 HttpSession 객체를 만들어 리턴한다. 
-    //    객체가 없다면, 새 HttpSession 객체를 만들어 리턴한다.
-    // 2) 쿠키에 세션 ID가 없다면? 
-    //    새 HttpSession 객체를 만들어 리턴한다.
-    //
-    // => 만약, 새 HttpSession 객체를 만들었다면, 
-    //    세션 ID를 쿠키로 전송한다. 
+    HttpSession session = request.getSession();
     
     response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
     
     // 세션에서 값 꺼내기
     // => 웹 브라우저를 종료하면 이전에 /ex11/s1 을 실행했을 때 
-    //    서버로부터 받은 세션 아이디 쿠키가 삭제된다.
+    //    서버로부터 받은 세션 아이디 쿠기가 삭제된다.
     // => 그런 후에 웹 브라우저에서 이 서블릿을 요청하면
     //    getSession() 메서드를 새 세션 객체를 생성한 후 리턴한다.
     //    따라서 새 세션에는 v1 이라는 이름으로 저장된 값이 없기 때문에 

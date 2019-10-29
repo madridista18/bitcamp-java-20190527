@@ -9,9 +9,8 @@ import com.eomcs.lms.domain.PhotoFile;
 public class PhotoFileDaoImpl implements PhotoFileDao {
 
   SqlSessionFactory sqlSessionFactory;
-
-  public PhotoFileDaoImpl(
-      SqlSessionFactory sqlSessionFactory) {
+  
+  public PhotoFileDaoImpl(SqlSessionFactory sqlSessionFactory) {
     this.sqlSessionFactory = sqlSessionFactory;
   }
 
@@ -37,12 +36,6 @@ public class PhotoFileDaoImpl implements PhotoFileDao {
   }
 
 }
-
-
-
-
-
-
 
 
 

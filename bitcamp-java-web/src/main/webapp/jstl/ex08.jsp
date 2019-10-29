@@ -20,7 +20,7 @@
 pageContext.setAttribute("names1", "홍길동,임꺽정,유관순,김구");
 
 /*
-String str = (String) pageContext.getAttribute("name1");
+String str = (String) pageContext.getAttribute("names1");
 String[] values = str.split(",");
 for (String n : values) {
   out.println("<li>" + n + "</li>");
@@ -38,9 +38,6 @@ for (String n : values) {
 <h2>Query String 문자열</h2>
 <%
 pageContext.setAttribute("qs", "name=홍길동&age=20&tel=1111-2222");
-/*
-token : 잘라진 문자열 
-*/
 %>
 
 <ul>
@@ -48,6 +45,7 @@ token : 잘라진 문자열
     <li>${n}</li>
 </c:forTokens>
 </ul>
+
 
 
 </body>

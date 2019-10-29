@@ -15,16 +15,16 @@ import com.eomcs.lms.domain.Board;
 @WebServlet("/board/list")
 public class BoardListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private BoardDao boardDao;
-
+  
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
         (ApplicationContext) getServletContext().getAttribute("iocContainer");
     boardDao = appCtx.getBean(BoardDao.class);
   }
-
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
@@ -57,16 +57,15 @@ public class BoardListServlet extends HttpServlet {
             board.getViewCount());
       }
       out.println("</table>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
-
+      
     } finally {
       out.println("</div>");
       request.getRequestDispatcher("/footer").include(request, response);
       out.println("</body></html>");
     }
   }
-
 }

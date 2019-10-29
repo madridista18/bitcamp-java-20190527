@@ -2,6 +2,8 @@ package com.eomcs.lms.web.json;
 
 import java.util.List;
 import javax.annotation.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.lms.domain.Lesson;
@@ -14,7 +16,7 @@ public class LessonController {
   @Resource
   private LessonService lessonService;
 
-  @RequestMapping("add")
+  @PostMapping("add")
   public JsonResult add(Lesson lesson) throws Exception {
     try {
       lessonService.insert(lesson);
@@ -27,7 +29,7 @@ public class LessonController {
     }
   }
 
-  @RequestMapping("delete")
+  @GetMapping("delete")
   public JsonResult delete(int no) throws Exception {
     try {
       lessonService.delete(no);
@@ -40,7 +42,7 @@ public class LessonController {
     }
   }
 
-  @RequestMapping("detail")
+  @GetMapping("detail")
   public JsonResult detail(int no) throws Exception {
     try {
       Lesson lesson = lessonService.get(no);
@@ -55,7 +57,7 @@ public class LessonController {
     }
   }
 
-  @RequestMapping("list")
+  @GetMapping("list")
   public JsonResult list() throws Exception {
     try {
       List<Lesson> lessons = lessonService.list();
@@ -70,13 +72,12 @@ public class LessonController {
     }
   }
 
-
-  @RequestMapping("update")
+  @PostMapping("update")
   public JsonResult update(Lesson lesson) throws Exception {
     try {
       lessonService.update(lesson);
       return new JsonResult().setState(JsonResult.SUCCESS);
-      
+
     } catch (Exception e) {
       return new JsonResult()
           .setState(JsonResult.FAILURE)

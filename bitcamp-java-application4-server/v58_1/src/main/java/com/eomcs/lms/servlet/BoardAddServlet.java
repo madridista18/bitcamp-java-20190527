@@ -37,6 +37,7 @@ public class BoardAddServlet extends HttpServlet {
       Board board = new Board();
       board.setContents(request.getParameter("contents"));
       boardDao.insert(board);
+      
       request.setAttribute("viewUrl", "redirect:list");
       
     } catch (Exception e) {

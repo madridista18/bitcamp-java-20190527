@@ -16,13 +16,12 @@ public class MybatisConfig {
   @Bean
   public SqlSessionFactory sqlSessionFactory(
       DataSource dataSource, ApplicationContext appCtx) throws Exception {
-   
+
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSource);
     sqlSessionFactoryBean.setTypeAliasesPackage("com.eomcs.lms.domain");
     sqlSessionFactoryBean.setMapperLocations(
         appCtx.getResources("classpath:com/eomcs/lms/mapper/*Mapper.xml"));
-    
     return sqlSessionFactoryBean.getObject();
   }
 }

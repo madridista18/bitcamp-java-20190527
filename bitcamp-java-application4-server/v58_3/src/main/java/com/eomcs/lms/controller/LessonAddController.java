@@ -18,7 +18,6 @@ public class LessonAddController {
   @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/lesson/form.jsp";
     }
@@ -32,8 +31,8 @@ public class LessonAddController {
     lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
 
     lessonDao.insert(lesson);
-    return "redirect:list";
 
+    return "redirect:list";
   }
 }
 

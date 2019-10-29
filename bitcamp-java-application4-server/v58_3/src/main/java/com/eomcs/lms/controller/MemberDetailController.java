@@ -11,14 +11,13 @@ import com.eomcs.lms.domain.Member;
 @Component("/member/detail")
 public class MemberDetailController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
 
   @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     int no = Integer.parseInt(request.getParameter("no"));
 
     Member member = memberDao.findBy(no);

@@ -36,7 +36,7 @@ public class DefaultMemberService implements MemberService {
     } 
     return member;
   }
-
+  
   @Override
   public Member get(String email, String password) throws Exception {
     HashMap<String,Object> params = new HashMap<>();
@@ -48,7 +48,7 @@ public class DefaultMemberService implements MemberService {
     } 
     return member;
   }
-  
+
   @Override
   public List<Member> list() throws Exception {
     return memberDao.findAll();

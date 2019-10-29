@@ -3,9 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="PhotoFileDao">
-  <select id="findAll" 
-           parameterType="int"
-           resultType="com.eomcs.lms.domain.PhotoFile">
+
+  <select id="findAll"
+          parameterType="int" 
+          resultType="com.eomcs.lms.domain.PhotoFile">
     select 
       photo_file_id no, 
       photo_id boardNo, 
@@ -13,16 +14,14 @@
     from 
       lms_photo_file
     where 
-      photo_id =#{value}
+      photo_id=#{value}
     order by 
       photo_file_id asc
   </select>
   
   <insert id="insert" 
-           parameterType="com.eomcs.lms.domain.PhotoFile">
-    insert into lms_photo_file(
-    photo_id, 
-    file_path)
+          parameterType="com.eomcs.lms.domain.PhotoFile">
+    insert into lms_photo_file(photo_id, file_path)
     values(#{boardNo},#{filePath})
   </insert>
   
@@ -30,14 +29,8 @@
     delete from lms_photo_file
     where photo_id=#{value}
   </delete>
-  
+
 </mapper>
-
-
-
-
-
-
 
 
 

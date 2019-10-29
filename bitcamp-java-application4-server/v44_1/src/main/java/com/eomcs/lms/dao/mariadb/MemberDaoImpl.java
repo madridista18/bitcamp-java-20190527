@@ -9,12 +9,11 @@ import com.eomcs.lms.domain.Member;
 public class MemberDaoImpl implements MemberDao {
 
   SqlSessionFactory sqlSessionFactory;
-
-  public MemberDaoImpl(
-      SqlSessionFactory sqlSessionFactory) {
+  
+  public MemberDaoImpl(SqlSessionFactory sqlSessionFactory) {
     this.sqlSessionFactory = sqlSessionFactory;
   }
-
+  
   @Override
   public int insert(Member member) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
@@ -35,7 +34,7 @@ public class MemberDaoImpl implements MemberDao {
       return sqlSession.selectOne("MemberDao.findBy", no);
     }
   }
-
+  
   @Override
   public List<Member> findByKeyword(String keyword) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
@@ -56,23 +55,15 @@ public class MemberDaoImpl implements MemberDao {
       return sqlSession.delete("MemberDao.delete", no);
     }
   }
-
+  
   @Override
   public Member findByEmailPassword(String email, String password) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       Member member = new Member();
       member.setEmail(email);
       member.setPassword(password);
-     return sqlSession.selectOne("MemberDao.findByEmailPassword", member);
+      return sqlSession.selectOne("MemberDao.findByEmailPassword", member);
     }
   }
 
 }
-
-
-
-
-
-
-
-

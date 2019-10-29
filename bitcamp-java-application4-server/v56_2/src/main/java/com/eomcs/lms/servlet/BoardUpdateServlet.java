@@ -14,9 +14,9 @@ import com.eomcs.lms.domain.Board;
 @WebServlet("/board/update")
 public class BoardUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private BoardDao boardDao;
-
+  
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
@@ -36,14 +36,16 @@ public class BoardUpdateServlet extends HttpServlet {
       Board board = new Board();
       board.setNo(Integer.parseInt(request.getParameter("no")));
       board.setContents(request.getParameter("contents"));
-
+      
       boardDao.update(board);
       out.println("<p>변경 했습니다</p>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 변경에 실패했습니다!</p>");
       throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
 }

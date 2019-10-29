@@ -28,7 +28,6 @@ public class MemberSearchServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
     
-    response.setContentType("text/html;charset=UTF-8");
     try {
       List<Member> members = memberDao.findByKeyword(
           request.getParameter("keyword"));

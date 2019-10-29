@@ -30,31 +30,40 @@ public class MemberDetailServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원 상세</title></head>");
     out.println("<body><h1>회원 상세</h1>");
-
+    
     try {
       int no = Integer.parseInt(request.getParameter("no"));
+     
       Member member = memberDao.findBy(no);
-
       if (member == null) {
         out.println("<p>해당 번호의 데이터가 없습니다!</p>");
+
       } else {
         out.println("<form action='/member/update' method='post'>");
-        out.printf("번호 : <input type='text' name='no' value='%d' readonly><br>\n",
+        out.printf("번호: <input type='text' name='no' value='%d' readonly><br>\n",
             member.getNo());
-        out.printf("이름: <input type='text' name='name' value='%s'><br>\n", member.getName());
-        out.printf("이메일: <input type='text' name='email' value='%s'><br>\n", member.getEmail());
-        out.printf("암호: <input type='text' name='password' value='%s' readonly><br>\n", member.getPassword());
-        out.printf("사진: <input type='text' name='photo' value='%s'><br>\n", member.getPhoto());
-        out.printf("전화: <input type='text' name='tel' value='%s'><br>\n", member.getTel());
-        out.printf("가입일: <input type='text' name='registeredDate' value='%s' readonly><br>\n", member.getRegisteredDate());
+        out.printf("이름: <input type='text' name='name' value='%s'><br>\n",
+            member.getName());
+        out.printf("이메일: <input type='text' name='email' value='%s'><br>\n",
+            member.getEmail());
+        out.printf("암호: <input type='text' name='password' value='%s'><br>\n",
+            member.getPassword());
+        out.printf("사진: <input type='text' name='photo' value='%s'><br>\n",
+            member.getPhoto());
+        out.printf("전화: <input type='text' name='tel' value='%s'><br>\n",
+            member.getTel());
+        out.printf("가입일: %s<br>\n",
+            member.getRegisteredDate());
         out.println("<button>변경</button>");
         out.printf("<a href='/member/delete?no=%d'>삭제</a>\n", member.getNo());
         out.println("</form>");
-      }
+      } 
     } catch (Exception e) {
       out.println("<p>데이터 조회에 실패했습니다!</p>");
-      System.out.println(e.getMessage());
+      throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
 }

@@ -1,4 +1,4 @@
-// v54_1 : Apache의 HttpClient를 이용하여 HTTP 서버 만들기   
+// v54_1 : Apache의 HttpClient를 이용하여 HTTP 서버 만들기
 package com.eomcs.lms;
 
 import java.io.IOException;
@@ -37,7 +37,7 @@ import com.eomcs.util.ServletResponse;
 
 public class App implements HttpRequestHandler {
 
-  // Log4j의 로그 출력 도구를 준비한다. 
+  // Log4j의 로그 출력 도구를 준비한다.
   private static final Logger logger = LogManager.getLogger(App.class);
 
   ApplicationContext appCtx;
@@ -47,70 +47,74 @@ public class App implements HttpRequestHandler {
   public App() throws Exception {
     appCtx = new AnnotationConfigApplicationContext(AppConfig.class);
 
-    // Spring IoC 컨테이너에 들어 있는(Spring IoC 컨테이너가 생성한) 객체 알아내기 
+    // Spring IoC 컨테이너에 들어 있는(Spring IoC 컨테이너가 생성한) 객체 알아내기
     String[] beanNames = appCtx.getBeanDefinitionNames();
-    logger.debug("[Spring IoC 컨테이너 객체들]-----------------");
+    logger.debug("[Spring IoC 컨테이너 객체들]------------");
     for (String beanName : beanNames) {
-      logger.debug(String.format("%s(%s)", 
-          appCtx.getBean(beanName).getClass().getSimpleName(), 
+      logger.debug(String.format("%s(%s)",
+          appCtx.getBean(beanName).getClass().getSimpleName(),
           beanName));
     }
-    logger.debug("--------------------------------------------------");
+    logger.debug("------------------------------------");
 
     handlerMapping = createRequestMappingHandlerMapping();
   }
 
   private RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
+
     RequestMappingHandlerMapping mapping = 
         new RequestMappingHandlerMapping();
 
-    // 객체풀에서 @Component 애노테이션이 붙은 객체 목록을 꺼낸다. 
+    // 객체풀에서 @Component 애노테이션이 붙은 객체 목록을 꺼낸다.
     Map<String,Object> components = appCtx.getBeansWithAnnotation(Component.class);
 
-    logger.trace("[요청 핸들러] ========================================");
-    // 객체 안에 선언된 메서드 중에서 @RequestMapping이 붙은 메서드를 찾아낸다. 
+    logger.trace("[요청 핸들러] ===========================");
+
+    // 객체 안에 선언된 메서드 중에서 @RequestMapping이 붙은 메서드를 찾아낸다.
     Collection<Object> objList = components.values();
     objList.forEach(obj -> {
 
       Method[] methods = null;
-      if (AopUtils.isAopProxy(obj)) { // 원본이 아니라 프록시 객체라면 
+
+      if (AopUtils.isAopProxy(obj)) { // 원본이 아니라 프록시 객체라면
         try {
-          // 프록시 객체의 클래스가 아니라 원본 개체의 클래스 정보를 가져온다.
+          // 프록시 객체의 클래스가 아니라 원본 객체의 클래스 정보를 가져온다.
           Class<?> originClass = 
-              (Class<?>)obj.getClass().getMethod("getTargetClass").invoke(obj);
+              (Class<?>) obj.getClass().getMethod("getTargetClass").invoke(obj);
           methods = originClass.getMethods();
         } catch (Exception e) {
           e.printStackTrace();
         }
-      } else { // 원본 객체일 경우, 
-        // 원본 객체의 클로스로부터 메서드 목록을 가져온다. 
+      } else { // 원본 객체일 경우,
+        // 원본 객체의 클래스로부터 메서드 목록을 가져온다.
         methods = obj.getClass().getMethods();
       }
 
       for (Method m : methods) {
         RequestMapping anno = m.getAnnotation(RequestMapping.class);
-        if (anno == null) 
+        if (anno == null)
           continue;
-        // @RequestMapping이 붙은 메서드를 찾으면 mapping 객체에 보관한다. 
+        // @RequestMapping 이 붙은 메서드를 찾으면 mapping 객체에 보관한다.
         mapping.addRequestHandler(anno.value()[0], obj, m);
         logger.trace(String.format("%s ==> %s.%s()", anno.value()[0], 
             obj.getClass().getSimpleName(),
             m.getName()));
       }
+
     });
+
     return mapping;
   }
 
   @SuppressWarnings("static-access")
   private void service() throws Exception {
 
-    // 소켓 통신을 위한 기본 정보 
     SocketConfig socketConfig = SocketConfig.custom()
         .setSoTimeout(15000)
         .setTcpNoDelay(true)
         .build();
 
-    final HttpServer server = ServerBootstrap.bootstrap() 
+    final HttpServer server = ServerBootstrap.bootstrap()
         .setListenerPort(8888)
         .setServerInfo("Bitcamp/1.1")
         .setSocketConfig(socketConfig)
@@ -138,51 +142,51 @@ public class App implements HttpRequestHandler {
         server.shutdown(5, TimeUnit.SECONDS);
       }
     });
-  } 
+  }
 
   @Override
   public void handle(HttpRequest request, HttpResponse response, HttpContext context)
       throws HttpException, IOException {
 
-    // 클라이언트가 요청한 방식을 알아낸다. 
+    // 클라이언트가 요청한 방식을 알아 낸다.
     String method = request.getRequestLine().getMethod().toUpperCase(Locale.ROOT);
-    if (!method.equals("GET")) { // GET 요청이 아니라면 오류 내용을 응답한다. 
+    if (!method.equals("GET")) { // GET 요청이 아니라면 오류 내용을 응답한다.
       throw new MethodNotSupportedException(method + " method not supported");
     }
 
-    // Command 객체에 있는 request handler 를 호출할 때 넘겨 줄 파라미터 객체 준비 
-    ServletRequest servletRequest  = new ServletRequest(); 
+    // 커맨드 객체에 있는 request handler를 호출할 때 넘겨 줄 파라미터 객체 준비
+    ServletRequest servletRequest = new ServletRequest();
     ServletResponse servletResponse = new ServletResponse();
-
-    // 클라이언트가 요청한 명령 알아내기 
+    
+    // 클라이언트가 요청한 명령 알아내기
     // [request line]
-    // => GET /member/add?name=aa&email=aaa@test.com&password=1111&tel=1111-1111 Http 1.1
-    // [uri] 
-    // => /member/add?name=aa&email=aaa@test.com&password=1111&tel=1111-1111
+    // => GET /member/add?name=aaa&email=aaa@test.com&password=1111&tel=1111-1111 HTTP/1.1
+    // [uri]
+    // => /member/add?name=aaa&email=aaa@test.com&password=1111&tel=1111-1111
     String uriStr = request.getRequestLine().getUri();
     String[] values = uriStr.split("\\?");
-
-    // /member/add
+    
+    // => /member/add
     String command = values[0];
     logger.info(command);
-
+    
     if (values.length > 1) {
-      // => name=aa&email=aaa@test.com&password=1111&tel=1111-1111
-      String queryString = values[1]; // 출력용
+      // => name=aaa&email=aaa@test.com&password=1111&tel=1111-1111
+      String queryString = values[1]; // 출력 용.
       logger.info(queryString);
     }
-
+    
     try {
       RequestHandler requestHandler = 
           handlerMapping.getRequestHandler(command);
 
       if (requestHandler != null) {
-        // 클라이언트 요청을 처리하기 위해 메서드를 호출한다. 
+        // 클라이언트 요청을 처리하기 위해 메서드를 호출한다.
         servletRequest.setUri(uriStr); // URL에 포함된 파라미터 값을 추출하여 보관한다.
         requestHandler.method.invoke(requestHandler.bean, 
             servletRequest, servletResponse);
 
-        // 클라이언트에게 응답 
+        // 클라이언트에게 응답
         response.setStatusCode(HttpStatus.SC_OK);
         StringEntity entity = new StringEntity(
             servletResponse.getResponseEntity(),
@@ -193,23 +197,25 @@ public class App implements HttpRequestHandler {
       } else {
         response.setStatusCode(HttpStatus.SC_NOT_FOUND);
         StringEntity entity = new StringEntity(
-            "<html><body><h1>해당 명령을 찾을 수 없습니다!!!!</h1></body></html>",
+            "<html><body><h1>해당 명령을 찾을 수 없습니다.</h1></body></html>",
             ContentType.create("text/html", "UTF-8"));
         response.setEntity(entity);
         logger.info("실패!");
       }
-    } catch (Exception e) {
-      logger.info("클라이언트 요청 처리 중 오류 발생!!!!");
 
-      StringWriter out2 = new StringWriter(); 
+    } catch (Exception e) {
+      logger.info("클라이언트 요청 처리 중 오류 발생!");
+
+      StringWriter out2 = new StringWriter();
       e.printStackTrace(new PrintWriter(out2));
       logger.debug(out2.toString());
 
       response.setStatusCode(HttpStatus.SC_OK);
       StringEntity entity = new StringEntity(
-          "<html><body><h1>요청 처리 중 오류 발생!!!!</h1></body></html>",
+          "<html><body><h1>요청 처리 중 오류 발생!</h1></body></html>",
           ContentType.create("text/html", "UTF-8"));
       response.setEntity(entity);
+
     }
   }
 
@@ -221,17 +227,12 @@ public class App implements HttpRequestHandler {
     } catch (Exception e) {
       logger.info("시스템 실행 중 오류 발생!");
 
-      StringWriter out2 = new StringWriter(); // 메모리에 보관
+      StringWriter out2 = new StringWriter();
       e.printStackTrace(new PrintWriter(out2));
       logger.debug(out2.toString());
     }
   }
 }
-
-
-
-
-
 
 
 

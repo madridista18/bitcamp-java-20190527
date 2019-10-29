@@ -193,3 +193,10 @@ public class ApplicationContext {
     objPool.put("photoFileDao", daoFactory.createDao(PhotoFileDao.class));
   }
 }
+
+
+
+
+
+
+

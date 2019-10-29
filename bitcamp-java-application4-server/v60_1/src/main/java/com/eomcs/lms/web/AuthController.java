@@ -5,6 +5,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.service.MemberService;
@@ -16,16 +18,17 @@ public class AuthController {
   @Resource
   private MemberService memberService;
 
-  @RequestMapping("form")
+  @GetMapping("form")
   public void form() {
   }
-
-  @RequestMapping("login")
+  
+  @PostMapping("login")
   public String login(
-      HttpServletResponse response, 
+      HttpServletResponse response,
       HttpSession session,
-      String email, 
-      String password) throws Exception {
+      String email,
+      String password) 
+      throws Exception {
 
     // 응답할 때 클라이언트가 입력한 이메일을 쿠키로 보낸다.
     Cookie cookie = new Cookie("email", email);
@@ -37,13 +40,12 @@ public class AuthController {
     session.setAttribute("loginUser", member);
     return "redirect:../board/list";
   }
-
-  @RequestMapping("logout")
-  public String logout(HttpSession session) throws Exception {
+  
+  @GetMapping("logout")
+  public String logout(HttpSession session) 
+      throws Exception {
     session.invalidate();
     return "redirect:form";
   }
 
 }
-
-

@@ -9,8 +9,9 @@ import com.eomcs.lms.dao.MemberDao;
 @Component("/member/delete")
 public class MemberDeleteController implements PageController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
+
 
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
@@ -21,6 +22,5 @@ public class MemberDeleteController implements PageController {
       throw new Exception("해당 데이터가 없습니다.");
     }
     return "redirect:list";
-
   }
 }

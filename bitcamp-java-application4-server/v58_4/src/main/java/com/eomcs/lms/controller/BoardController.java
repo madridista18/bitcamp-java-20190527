@@ -10,7 +10,7 @@ import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 @Controller
-public class BoardController  {
+public class BoardController {
 
   @Resource
   private BoardDao boardDao;
@@ -18,7 +18,7 @@ public class BoardController  {
   @RequestMapping("/board/add")
   public String add(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-    
+
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/board/form.jsp";
     }
@@ -26,6 +26,7 @@ public class BoardController  {
     Board board = new Board();
     board.setContents(request.getParameter("contents"));
     boardDao.insert(board);
+
     return "redirect:list";
   }
   
@@ -49,6 +50,7 @@ public class BoardController  {
     if (board == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
     } 
+
     boardDao.increaseViewCount(no);
 
     request.setAttribute("board", board);
@@ -58,7 +60,7 @@ public class BoardController  {
   @RequestMapping("/board/list")
   public String list(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
+    
     List<Board> boards = boardDao.findAll();
     request.setAttribute("boards", boards);
     return "/jsp/board/list.jsp";
@@ -74,4 +76,5 @@ public class BoardController  {
 
     return "redirect:list";
   }
+
 }

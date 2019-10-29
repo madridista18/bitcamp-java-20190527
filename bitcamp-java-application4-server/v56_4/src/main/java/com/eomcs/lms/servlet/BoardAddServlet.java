@@ -14,17 +14,20 @@ import com.eomcs.lms.domain.Board;
 @WebServlet("/board/add")
 public class BoardAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private BoardDao boardDao;
-
+  
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
         (ApplicationContext) getServletContext().getAttribute("iocContainer");
     boardDao = appCtx.getBean(BoardDao.class);
   }
+  
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws IOException, ServletException {
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>게시물 등록폼</title>"
@@ -32,7 +35,7 @@ public class BoardAddServlet extends HttpServlet {
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
-    
+
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
@@ -45,7 +48,7 @@ public class BoardAddServlet extends HttpServlet {
     request.getRequestDispatcher("/footer").include(request, response);
     out.println("</body></html>");
   }
-
+  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
@@ -55,12 +58,13 @@ public class BoardAddServlet extends HttpServlet {
       board.setContents(request.getParameter("contents"));
       boardDao.insert(board);
       response.sendRedirect("/board/list");
-
+      
     } catch (Exception e) {
       request.setAttribute("message", "데이터 저장에 실패했습니다!");
       request.setAttribute("refresh", "/board/list");
       request.setAttribute("error", e);
       request.getRequestDispatcher("/error").forward(request, response);
-    }
+    } 
   }
+
 }

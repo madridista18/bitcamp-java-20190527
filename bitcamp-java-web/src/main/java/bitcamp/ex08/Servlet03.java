@@ -20,7 +20,7 @@ public class Servlet03 extends HttpServlet {
       throws ServletException, IOException {
     
     // 테스트 방법:
-    // => http://localhost:8888/bitcamp-java-web/ex08/s2
+    // => http://localhost:8080/java-web/ex08/s2
     //
     // 리다이렉트
     // => 클라이언트의 요청을 받은 후 콘텐트를 보내는 대신 
@@ -68,4 +68,5 @@ Date: Tue, 02 Apr 2019 03:38:45 GMT
     // => 이미 응답했기 때문에 리다이렉트는 동작되지 않는다.
   }
 }
+
 

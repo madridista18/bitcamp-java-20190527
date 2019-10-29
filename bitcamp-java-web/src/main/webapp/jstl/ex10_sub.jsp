@@ -9,7 +9,7 @@
 <title>JSTL</title>
 </head>
 <body>
-<h1>JSTL - c:import test</h1>
+<h1>JSTL - c:import 테스트</h1>
 name = ${param.name}<br>
 age = ${param.age}<br>
 gender = ${param.gender}<br>

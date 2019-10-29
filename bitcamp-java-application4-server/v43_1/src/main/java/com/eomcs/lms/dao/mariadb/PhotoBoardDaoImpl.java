@@ -9,9 +9,8 @@ import com.eomcs.lms.domain.PhotoBoard;
 public class PhotoBoardDaoImpl implements PhotoBoardDao {
 
   SqlSessionFactory sqlSessionFactory;
-
-  public PhotoBoardDaoImpl(
-      SqlSessionFactory sqlSessionFactory) {
+  
+  public PhotoBoardDaoImpl(SqlSessionFactory sqlSessionFactory) {
     this.sqlSessionFactory = sqlSessionFactory;
   }
 
@@ -41,7 +40,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
   }
 
   @Override
-  public int update(PhotoBoard photoBoard) throws Exception { 
+  public int update(PhotoBoard photoBoard) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
       return sqlSession.update("PhotoBoardDao.update", photoBoard);
     }
@@ -53,10 +52,8 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
       return sqlSession.delete("PhotoBoardDao.delete", no);
     }
   }
-
+  
 }
-
-
 
 
 

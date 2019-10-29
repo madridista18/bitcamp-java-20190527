@@ -28,85 +28,71 @@
   </resultMap>
   
   <sql id="select1">
-   select  
+    select
       photo_id,
       titl,
       cdt,
       vw_cnt,
-      lesson_id 
+      lesson_id
     from 
       lms_photo 
   </sql>
   
-  <sql id="where1">
-    where photo_id=#{no}
-  </sql>
-  
-
   <select id="findAll" resultMap="PhotoBoardMap">
-   <include refid="select1"/>
+    <include refid="select1"/>
     order by 
       photo_id desc
   </select>
   
   <select id="findBy" parameterType="int" resultMap="PhotoBoardMap">
-   <include refid="select1"/>
-   <include refid="where1"/>
+    <include refid="select1"/>
+    where 
+      photo_id=#{value}
   </select>
   
-  <select id="findWithFilesBy" parameterType="int" resultMap="PhotoBoardWithFilesMap">
-     select  
+  <select id="findWithFilesBy" 
+          parameterType="int" 
+          resultMap="PhotoBoardWithFilesMap">
+    select
       p.photo_id,
       p.titl,
       p.cdt,
       p.vw_cnt,
       p.lesson_id,
       f.photo_file_id,
-      f.file_path 
+      f.file_path
     from 
       lms_photo p 
         left outer join lms_photo_file f on p.photo_id=f.photo_id
-    where
+    where 
       p.photo_id=#{value}
   </select>
   
   <update id="increaseViewCount" parameterType="int">
     update lms_photo set
-      vw_cnt=vw_cnt + 1
-      <include refid="where1"/>
+      vw_cnt=vw_cnt + 1 
+    where 
+      photo_id=#{value}
   </update>
   
   <insert id="insert" 
-           parameterType="PhotoBoard"
-           useGeneratedKeys="true"
-           keyColumn="photo_id"
-           keyProperty="no">
-    insert into lms_photo(
-	    lesson_id,
-	    titl)
-    values(
-      #{lessonNo},#{title})
+          parameterType="PhotoBoard"
+          useGeneratedKeys="true"
+          keyColumn="photo_id"
+          keyProperty="no">
+    insert into lms_photo(lesson_id,titl)
+    values(#{lessonNo},#{title})
   </insert>
   
   <update id="update" parameterType="PhotoBoard">
     update lms_photo set
       titl=#{title}
-    <include refid="where1"/>
+    where photo_id=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
     delete from lms_photo 
-    <include refid="where1"/>
+    where photo_id=#{no}
   </delete>
-   
+
 </mapper>
-
-
-
-
-
-
-
-
-
-

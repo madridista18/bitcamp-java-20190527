@@ -21,7 +21,7 @@ public class Servlet12 extends HttpServlet {
       throws ServletException, IOException {
     
     // 테스트 방법:
-    // => http://localhost:8888/bitcamp-java-web/ex10/s12
+    // => http://localhost:8080/java-web/ex10/s12
     //
     
     // 클라이언트 보낸 쿠키 읽기

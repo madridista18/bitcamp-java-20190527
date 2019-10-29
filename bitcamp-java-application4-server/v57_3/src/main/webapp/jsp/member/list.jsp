@@ -31,7 +31,7 @@
     <td>${member.tel}</td>
     <td>${member.registeredDate}</td>
   </tr>
-</c:forEach>
+</c:forEach> 
 </table>
 <form action='/member/search'>
   검색어: <input type='text' name='keyword'>

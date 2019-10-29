@@ -16,7 +16,7 @@ public class BoardAddController implements PageController {
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-    
+
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/board/form.jsp";
     }
@@ -24,6 +24,8 @@ public class BoardAddController implements PageController {
     Board board = new Board();
     board.setContents(request.getParameter("contents"));
     boardDao.insert(board);
+
     return "redirect:list";
   }
+
 }

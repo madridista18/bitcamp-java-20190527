@@ -36,14 +36,14 @@ public class BoardDaoImpl implements BoardDao {
             "select * from lms_board order by board_id desc")) {
 
       ArrayList<Board> list = new ArrayList<>();
-
+      
       while (rs.next()) {
         Board board = new Board();
         board.setNo(rs.getInt("board_id"));
         board.setContents(rs.getString("conts"));
         board.setCreatedDate(rs.getDate("cdt"));
         board.setViewCount(rs.getInt("vw_cnt"));
-
+        
         list.add(board);
       }
       return list;
@@ -63,22 +63,21 @@ public class BoardDaoImpl implements BoardDao {
         board.setContents(rs.getString("conts"));
         board.setCreatedDate(rs.getDate("cdt"));
         board.setViewCount(rs.getInt("vw_cnt"));
-
-        // 게시글 찾았으면 조회수를 증가 시킨다. 
+        
+        // 게시글을 찾았으면 조회수를 증가시킨다.
         stmt.executeUpdate("update lms_board set"
             + " vw_cnt=vw_cnt + 1 where board_id=" + no);
         
         return board;
-
+        
       } else {
         return null;
       }
     }
-
   }
 
   @Override
-  public int update(Board board) throws Exception { 
+  public int update(Board board) throws Exception {
     try (Connection con = conFactory.getConnection();
         Statement stmt = con.createStatement()) {
 
@@ -98,19 +97,3 @@ public class BoardDaoImpl implements BoardDao {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

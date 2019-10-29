@@ -83,6 +83,7 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
       }
       
       txManager.commit(status);
+      
       request.setAttribute("viewUrl", "redirect:list");
       
     } catch (Exception e) {

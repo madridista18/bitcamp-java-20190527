@@ -14,7 +14,6 @@
 <h1>JSP 액션 태그 - jsp:include</h1>
 
 <jsp:include page="ex19_header.jsp"/>
-                  <%--서블릿 or JSP --%>
 
 <p>테스트</p>
 

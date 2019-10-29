@@ -3,7 +3,6 @@ package com.eomcs.lms.controller;
 import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -12,24 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @Controller
 public class MemberController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
-  String uploadDir;
 
   @RequestMapping("/member/add")
   public String add(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
-    uploadDir = request.getServletContext().getRealPath("/upload/member");
-
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/member/form.jsp";
     }
 
+    String uploadDir = request.getServletContext().getRealPath("/upload/member");
     Member member = new Member();
 
     member.setName(request.getParameter("name"));
@@ -64,7 +59,6 @@ public class MemberController {
   public String detail(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     int no = Integer.parseInt(request.getParameter("no"));
 
     Member member = memberDao.findBy(no);
@@ -79,31 +73,29 @@ public class MemberController {
   @RequestMapping("/member/list")
   public String list(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-    
-    response.setContentType("text/html;charset=UTF-8");
-      List<Member> members = memberDao.findAll();
-      
-      request.setAttribute("members", members);
-      return "/jsp/member/list.jsp";
+
+    List<Member> members = memberDao.findAll();
+
+    request.setAttribute("members", members);
+    return "/jsp/member/list.jsp";
   }
   
   @RequestMapping("/member/search")
   public String search(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     List<Member> members = memberDao.findByKeyword(
         request.getParameter("keyword"));
 
     request.setAttribute("members", members);
     return "/jsp/member/search.jsp";
-
   }
   
   @RequestMapping("/member/update")
   public String update(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-    uploadDir = request.getServletContext().getRealPath("/upload/member");
+    String uploadDir = request.getServletContext().getRealPath("/upload/member");
+
     Member member = new Member();
     member.setNo(Integer.parseInt(request.getParameter("no")));
     member.setName(request.getParameter("name"));
@@ -122,9 +114,4 @@ public class MemberController {
     memberDao.update(member);
     return "redirect:list";
   }
-  
-  
 }
-
-
-

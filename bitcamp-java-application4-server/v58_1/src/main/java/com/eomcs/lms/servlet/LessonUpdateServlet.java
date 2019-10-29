@@ -38,6 +38,7 @@ public class LessonUpdateServlet extends HttpServlet {
       lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
       
       lessonDao.update(lesson);
+      
       request.setAttribute("viewUrl", "redirect:list");
       
     } catch (Exception e) {

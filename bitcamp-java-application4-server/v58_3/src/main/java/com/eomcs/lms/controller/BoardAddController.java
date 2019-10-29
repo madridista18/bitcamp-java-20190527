@@ -9,7 +9,7 @@ import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 @Component("/board/add")
-public class BoardAddController  {
+public class BoardAddController {
 
   @Resource
   private BoardDao boardDao;
@@ -17,7 +17,7 @@ public class BoardAddController  {
   @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-    
+
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/board/form.jsp";
     }
@@ -25,6 +25,8 @@ public class BoardAddController  {
     Board board = new Board();
     board.setContents(request.getParameter("contents"));
     boardDao.insert(board);
+
     return "redirect:list";
   }
+
 }

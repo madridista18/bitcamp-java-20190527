@@ -26,19 +26,18 @@ public class MemberUpdateServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    
     try {
       Member member = new Member();
       member.setNo(Integer.parseInt(request.getParameter("no")));
       member.setName(request.getParameter("name"));
       member.setEmail(request.getParameter("email"));
       member.setPassword(request.getParameter("password"));
-      member.setTel(request.getParameter("tel"));
       member.setPhoto(request.getParameter("photo"));
-
+      member.setTel(request.getParameter("tel"));
+      
       memberDao.update(member);
       response.sendRedirect("/member/list");
-
+      
     } catch (Exception e) {
       request.setAttribute("message", "데이터 변경에 실패했습니다!");
       request.setAttribute("refresh", "/member/list");

@@ -14,9 +14,9 @@ import com.eomcs.lms.domain.Board;
 @WebServlet("/board/detail")
 public class BoardDetailServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private BoardDao boardDao;
-
+  
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
@@ -25,7 +25,9 @@ public class BoardDetailServlet extends HttpServlet {
   }
   
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws IOException, ServletException {
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>게시물 상세</title>"
@@ -33,7 +35,7 @@ public class BoardDetailServlet extends HttpServlet {
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
-    
+
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
@@ -41,7 +43,7 @@ public class BoardDetailServlet extends HttpServlet {
     try {
       int no = Integer.parseInt(request.getParameter("no"));
       Board board = boardDao.findBy(no);
-
+      
       if (board == null) {
         out.println("<p>해당 번호의 데이터가 없습니다!</p>");
 
@@ -59,16 +61,15 @@ public class BoardDetailServlet extends HttpServlet {
         out.println("</form>");
         boardDao.increaseViewCount(no);
       }
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
       
-    }finally {
+    } finally {
       out.println("</div>");
       request.getRequestDispatcher("/footer").include(request, response);
       out.println("</body></html>");
     }
   }
-
 }

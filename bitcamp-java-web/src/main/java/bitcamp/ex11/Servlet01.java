@@ -21,7 +21,7 @@ public class Servlet01 extends HttpServlet {
       throws ServletException, IOException {
     
     // 테스트 방법:
-    // => http://localhost:8888/bitcamp-java-web/ex11/s1
+    // => http://localhost:8080/java-web/ex11/s1
     //
     
     // 세션
@@ -34,11 +34,11 @@ public class Servlet01 extends HttpServlet {
     //    이 고유 번호를 '세션 아이디'라 부른다.
     // => 웹 브라우저는 세션 아이디를 보관해 두었다가 그 서버에 요청할 때 마다 
     //    세션 아이디를 보낸다. 
-    //    왜? 세션 아이디는 쿠키이다.
+    //    왜? 세셔 아이디는 쿠키이다.
     // => 세션 아이디 쿠키는 유효기간을 설정하지 않았기 때문에 
     //    웹 브라우저를 종료하면 세션 아이디 쿠키는 삭제된다.
     // => 세션 아이디 쿠키의 사용 범위는 웹 애플리케이션이다.
-    //    예) /bitcamp-java-web
+    //    예) /java-web
     //    따라서 같은 웹 애플리케이션의 서블릿을 실행할 때는 무조건 세션 아이디를 보낸다.
     // 
     // 세션 아이디는 언제 발급하는가?

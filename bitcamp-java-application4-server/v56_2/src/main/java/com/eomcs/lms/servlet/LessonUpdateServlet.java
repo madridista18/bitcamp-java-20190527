@@ -17,7 +17,7 @@ public class LessonUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
   private LessonDao lessonDao;
-  
+
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
@@ -33,7 +33,6 @@ public class LessonUpdateServlet extends HttpServlet {
         + "<meta http-equiv='Refresh' content='1;url=/lesson/list'>"
         + "</head>");
     out.println("<body><h1>수업 변경</h1>");
-
     try {
       Lesson lesson = new Lesson();
       lesson.setNo(Integer.parseInt(request.getParameter("no")));
@@ -43,15 +42,17 @@ public class LessonUpdateServlet extends HttpServlet {
       lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
       lesson.setTotalHours(Integer.parseInt(request.getParameter("totalHours")));
       lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
-
+      
       lessonDao.update(lesson);
-      out.println("<p>데이터를 변경하였습니다.</p>");
-
+      out.println("<p>변경 했습니다</p>");
+      
     } catch (Exception e) {
       out.println("<p>데이터 변경에 실패했습니다!</p>");
       throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
 }
 

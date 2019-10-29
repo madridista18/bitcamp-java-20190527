@@ -11,23 +11,22 @@
     <result column="vw_cnt" property="viewCount"/>
     <result column="lesson_id" property="lessonNo"/>
   </resultMap>
-
+  
   <select id="findAll" resultMap="PhotoBoardMap">
-    select  
+    select
       photo_id,
       titl,
       cdt,
       vw_cnt,
-      lesson_id 
+      lesson_id
     from 
       lms_photo 
     order by 
       photo_id desc
   </select>
   
-  <select id="findBy" parameterType="int" 
-				   resultMap="PhotoBoardMap">
-    select 
+  <select id="findBy" parameterType="int" resultMap="PhotoBoardMap">
+    select
       photo_id,
       titl,
       cdt,
@@ -36,26 +35,23 @@
     from 
       lms_photo 
     where 
-      photo_id=#{no}
+      photo_id=#{value}
   </select>
   
   <update id="increaseViewCount" parameterType="int">
     update lms_photo set
-      vw_cnt=vw_cnt + 1
+      vw_cnt=vw_cnt + 1 
     where 
       photo_id=#{value}
   </update>
   
   <insert id="insert" 
-           parameterType="PhotoBoard"
-           useGeneratedKeys="true"
-           keyColumn="photo_id"
-           keyProperty="no">
-    insert into lms_photo(
-	    lesson_id,
-	    titl)
-    values(
-      #{lessonNo},#{title})
+          parameterType="PhotoBoard"
+          useGeneratedKeys="true"
+          keyColumn="photo_id"
+          keyProperty="no">
+    insert into lms_photo(lesson_id,titl)
+    values(#{lessonNo},#{title})
   </insert>
   
   <update id="update" parameterType="PhotoBoard">
@@ -68,15 +64,5 @@
     delete from lms_photo 
     where photo_id=#{no}
   </delete>
-   
+
 </mapper>
-
-
-
-
-
-
-
-
-
-

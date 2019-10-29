@@ -12,13 +12,13 @@ import com.eomcs.lms.domain.Board;
 
 @Component
 public class BoardCommand {
-
+  
   private BoardDao boardDao;
-
+  
   public BoardCommand(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
-
+  
   @RequestMapping("/board/form")
   public void form(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
@@ -30,8 +30,8 @@ public class BoardCommand {
     out.println("</form>");
     out.println("</body></html>");
   }
-
-  @RequestMapping("/board/add") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
+  
+  @RequestMapping("/board/add")
   public void add(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>게시물 등록</title>"
@@ -44,15 +44,17 @@ public class BoardCommand {
 
       boardDao.insert(board);
       out.println("<p>저장하였습니다.</p>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 저장에 실패했습니다!</p>");
       throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
-
-  @RequestMapping("/board/delete") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
+  
+  @RequestMapping("/board/delete") 
   public void delete(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>게시물 삭제</title>"
@@ -66,15 +68,17 @@ public class BoardCommand {
       } else {
         out.println("<p>해당 데이터가 없습니다.</p>");
       }
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 삭제에 실패했습니다!</p>");
       throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
-
-  @RequestMapping("/board/detail") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
+  
+  @RequestMapping("/board/detail") 
   public void detail(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>게시물 상세</title></head>");
@@ -82,7 +86,7 @@ public class BoardCommand {
     try {
       int no = Integer.parseInt(request.getParameter("no"));
       Board board = boardDao.findBy(no);
-
+      
       if (board == null) {
         out.println("<p>해당 번호의 데이터가 없습니다!</p>");
 
@@ -100,15 +104,17 @@ public class BoardCommand {
         out.println("</form>");
         boardDao.increaseViewCount(no);
       }
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
-
-  @RequestMapping("/board/list") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
+  
+  @RequestMapping("/board/list") 
   public void list(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>게시물 목록</title>"
@@ -131,15 +137,17 @@ public class BoardCommand {
             board.getViewCount());
       }
       out.println("</table>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
 
-  @RequestMapping("/board/update") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping("/board/update") 
   public void update(ServletRequest request, ServletResponse response) throws IOException {
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>게시물 변경</title>"
@@ -150,14 +158,16 @@ public class BoardCommand {
       Board board = new Board();
       board.setNo(Integer.parseInt(request.getParameter("no")));
       board.setContents(request.getParameter("contents"));
-
+      
       boardDao.update(board);
       out.println("<p>변경 했습니다</p>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 변경에 실패했습니다!</p>");
       throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
 }

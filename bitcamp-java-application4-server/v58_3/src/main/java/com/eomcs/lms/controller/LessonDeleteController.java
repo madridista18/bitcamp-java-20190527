@@ -9,14 +9,14 @@ import com.eomcs.lms.dao.LessonDao;
 
 @Component("/lesson/delete")
 public class LessonDeleteController {
-
+  
   @Resource
   private LessonDao lessonDao;
 
   @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
+    
     int no = Integer.parseInt(request.getParameter("no"));
     if (lessonDao.delete(no) == 0) {
       throw new Exception("해당 데이터가 없습니다.");
@@ -24,6 +24,12 @@ public class LessonDeleteController {
     return "redirect:list";
   }
 }
+
+
+
+
+
+
 
 
 

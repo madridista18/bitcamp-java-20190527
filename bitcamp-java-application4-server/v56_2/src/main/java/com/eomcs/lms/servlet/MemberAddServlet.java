@@ -31,16 +31,16 @@ public class MemberAddServlet extends HttpServlet {
     out.println("<html><head><title>회원 등록폼</title></head>");
     out.println("<body><h1>회원 등록폼</h1>");
     out.println("<form action='/member/add' method='post'>");
-    out.println("이름 : <input type='text' name='name'><br>\n");
-    out.println("이메일 : <input type='text' name='email'></textarea><br>\n");
-    out.println("비밀번호: <input type='text' name='password'><br>\n");
-    out.println("전화번호: <input type='text' name='tel'><br>\n");
-    out.println("사진: <input type='text' name='photo'><br>\n");
+    out.println("이름: <input type='text' name='name'><br>");
+    out.println("이메일: <input type='text' name='email'><br>");
+    out.println("암호: <input type='text' name='password'><br>");
+    out.println("사진: <input type='text' name='photo'><br>");
+    out.println("전화: <input type='text' name='tel'><br>");
     out.println("<button>등록</button>");
     out.println("</form>");
     out.println("</body></html>");
   }
-
+  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;charset=UTF-8");
@@ -49,23 +49,25 @@ public class MemberAddServlet extends HttpServlet {
         + "<meta http-equiv='Refresh' content='1;url=/member/list'>"
         + "</head>");
     out.println("<body><h1>회원 등록</h1>");
-
+    
     try {
       Member member = new Member();
+      
       member.setName(request.getParameter("name"));
       member.setEmail(request.getParameter("email"));
       member.setPassword(request.getParameter("password"));
       member.setPhoto(request.getParameter("photo"));
       member.setTel(request.getParameter("tel"));
-
+      
       memberDao.insert(member);
       out.println("<p>저장하였습니다.</p>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 저장에 실패했습니다!</p>");
-      System.out.println(e.getMessage());
+      throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
 }
-

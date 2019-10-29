@@ -3,7 +3,6 @@ package com.eomcs.lms.controller;
 import java.util.Collection;
 import java.util.UUID;
 import javax.annotation.Resource;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -18,22 +17,19 @@ import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
 
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @Component("/photoboard/update")
 public class PhotoBoardUpdateController {
 
-  @Resource
-  private PlatformTransactionManager txManager;
-  @Resource
-  private PhotoBoardDao photoBoardDao;
-  @Resource
-  private PhotoFileDao photoFileDao;
+  @Resource private PlatformTransactionManager txManager;
+  @Resource private PhotoBoardDao photoBoardDao;
+  @Resource private PhotoFileDao photoFileDao;
 
   @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
     String uploadDir = request.getServletContext().getRealPath("/upload/photoboard");
+
     // 트랜잭션 동작을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
     def.setName("tx1");
@@ -42,13 +38,14 @@ public class PhotoBoardUpdateController {
     // 정의된 트랜잭션 동작에 따라 작업을 수행할 트랜잭션 객체를 준비한다. 
     TransactionStatus status = txManager.getTransaction(def);
 
-    PhotoBoard photoBoard = new PhotoBoard();
-    photoBoard.setNo(Integer.parseInt(request.getParameter("no")));
-    photoBoard.setTitle(request.getParameter("title"));
-
-    photoBoardDao.update(photoBoard);
-    photoFileDao.deleteAll(photoBoard.getNo());
     try {
+      PhotoBoard photoBoard = new PhotoBoard();
+      photoBoard.setNo(Integer.parseInt(request.getParameter("no")));
+      photoBoard.setTitle(request.getParameter("title"));
+
+      photoBoardDao.update(photoBoard);
+      photoFileDao.deleteAll(photoBoard.getNo());
+
       int count = 0;
       Collection<Part> parts = request.getParts();
       for (Part part : parts) {
@@ -74,9 +71,10 @@ public class PhotoBoardUpdateController {
       txManager.commit(status);
       return "redirect:list";
 
-    } catch (Exception e) { 
+    } catch (Exception e) {
       txManager.rollback(status);
       throw e;
     }
   }
+
 }

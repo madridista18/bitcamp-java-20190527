@@ -18,10 +18,10 @@ import com.eomcs.lms.domain.Lesson;
 @WebServlet("/lesson/add")
 public class LessonAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private static final Logger logger = 
       LogManager.getLogger(LessonAddServlet.class);
-
+  
   private LessonDao lessonDao;
 
   @Override
@@ -31,24 +31,24 @@ public class LessonAddServlet extends HttpServlet {
     lessonDao = appCtx.getBean(LessonDao.class);
   }
 
-  @Override 
+  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>수업 등록폼</title></head>");
     out.println("<body><h1>수업 등록폼</h1>");
     out.println("<form action='/lesson/add' method='post'>");
-    out.println("수업명 : <input type='text' name='title'><br>\n");
-    out.println("설명 : <textarea name='contents' rows='5' cols='50'></textarea><br>\n");
-    out.println("시작일: <input type='text' name='startDate'><br>\n");
-    out.println("종료일: <input type='text' name='endDate'><br>\n");
-    out.println("총 수업시간: <input type='text' name='totalHours'><br>\n");
-    out.println("일 수업시간: <input type='text' name='dayHours'><br>\n");
+    out.println("수업명: <input type='text' name='title'><br>");
+    out.println("설명 : <textarea name='contents' rows='5' cols='50'></textarea><br>");
+    out.println("시작일: <input type='text' name='startDate'><br>");
+    out.println("종료일: <input type='text' name='endDate'><br>");
+    out.println("총 수업시간: <input type='text' name='totalHours'><br>");
+    out.println("일 수업시간: <input type='text' name='dayHours'><br>");
     out.println("<button>등록</button>");
     out.println("</form>");
     out.println("</body></html>");
   }
-
+  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     try {
@@ -59,10 +59,10 @@ public class LessonAddServlet extends HttpServlet {
       lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
       lesson.setTotalHours(Integer.parseInt(request.getParameter("totalHours")));
       lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
-
+      
       lessonDao.insert(lesson);
       response.sendRedirect("/lesson/list");
-
+      
     } catch (Exception e) {
       response.setContentType("text/html;charset=UTF-8");
       PrintWriter out = response.getWriter();
@@ -72,7 +72,7 @@ public class LessonAddServlet extends HttpServlet {
       out.println("</body></html>");
       response.setHeader("Refresh", "1;url=/lesson/list");
 
-      // 왜 오류가 발생했는지 자세한 사항은 로그로 남긴다. 
+      // 왜 오류가 발생했는지 자세한 사항은 로그로 남긴다.
       StringWriter strOut = new StringWriter();
       e.printStackTrace(new PrintWriter(strOut));
       logger.error(strOut.toString());

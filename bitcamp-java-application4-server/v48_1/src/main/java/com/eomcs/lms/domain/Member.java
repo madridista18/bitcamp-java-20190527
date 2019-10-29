@@ -6,12 +6,12 @@ import java.sql.Date;
 public class Member implements Serializable {
   private static final long serialVersionUID = 1L;
   
-  private int no; 
-  private String name; 
-  private String email; 
-  private String password; 
-  private String photo; 
+  private int no;
+  private String name;
+  private String email;
+  private String password;
   private String tel;
+  private String photo;
   private Date registeredDate;
   
   public int getNo() {
@@ -38,17 +38,17 @@ public class Member implements Serializable {
   public void setPassword(String password) {
     this.password = password;
   }
-  public String getPhoto() {
-    return photo;
-  }
-  public void setPhoto(String photo) {
-    this.photo = photo;
-  }
   public String getTel() {
     return tel;
   }
   public void setTel(String tel) {
     this.tel = tel;
+  }
+  public String getPhoto() {
+    return photo;
+  }
+  public void setPhoto(String photo) {
+    this.photo = photo;
   }
   public Date getRegisteredDate() {
     return registeredDate;
@@ -56,6 +56,5 @@ public class Member implements Serializable {
   public void setRegisteredDate(Date registeredDate) {
     this.registeredDate = registeredDate;
   }
-  
   
 }

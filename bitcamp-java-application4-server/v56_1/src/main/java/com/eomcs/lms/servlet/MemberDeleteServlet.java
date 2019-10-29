@@ -31,19 +31,22 @@ public class MemberDeleteServlet extends HttpServlet {
         + "<meta http-equiv='Refresh' content='1;url=/member/list'>"
         + "</head>");
     out.println("<body><h1>회원 삭제</h1>");
+    
     try {
       int no = Integer.parseInt(request.getParameter("no"));
+      
       if (memberDao.delete(no) > 0) {
         out.println("<p>데이터를 삭제하였습니다.</p>");
       } else {
         out.println("<p>해당 데이터가 없습니다.</p>");
       }
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 삭제에 실패했습니다!</p>");
-      System.out.println(e.getMessage());
+      throw new RuntimeException(e);
+      
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
-
   }
 }

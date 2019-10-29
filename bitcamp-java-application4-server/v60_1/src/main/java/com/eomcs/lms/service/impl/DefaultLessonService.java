@@ -7,7 +7,7 @@ import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
 import com.eomcs.lms.service.LessonService;
 
-// LessonDao 기본 구현체 
+// LessonService 기본 구현체 
 //
 @Service
 public class DefaultLessonService implements LessonService {

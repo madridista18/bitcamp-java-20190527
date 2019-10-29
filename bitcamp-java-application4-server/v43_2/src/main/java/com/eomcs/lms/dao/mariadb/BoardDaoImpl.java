@@ -9,7 +9,7 @@ import com.eomcs.lms.domain.Board;
 public class BoardDaoImpl implements BoardDao {
 
   SqlSessionFactory sqlSessionFactory;
-
+  
   public BoardDaoImpl(SqlSessionFactory sqlSessionFactory) {
     this.sqlSessionFactory = sqlSessionFactory;
   }
@@ -19,7 +19,7 @@ public class BoardDaoImpl implements BoardDao {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       int count = sqlSession.insert("BoardDao.insert", board);
       return count;
-    } 
+    }
   }
 
   @Override
@@ -34,14 +34,14 @@ public class BoardDaoImpl implements BoardDao {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       Board board = sqlSession.selectOne("BoardDao.findBy", no);
       if (board != null) {
-        sqlSession.update("BoardDao.increaseViewCount", no);
+          sqlSession.update("BoardDao.increaseViewCount", no);
       }
       return board;
-    } 
+    }
   }
 
   @Override
-  public int update(Board board) throws Exception { 
+  public int update(Board board) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.update("BoardDao.update", board);
     }
@@ -50,25 +50,8 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int delete(int no) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-
       return sqlSession.delete("BoardDao.delete", no);
     }
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

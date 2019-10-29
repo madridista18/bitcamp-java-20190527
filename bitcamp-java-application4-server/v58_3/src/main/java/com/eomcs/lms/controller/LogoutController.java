@@ -13,6 +13,6 @@ public class LogoutController {
       throws Exception {
     
     request.getSession().invalidate();
-    return "redirect:/app/auth/login";
+    return "redirect:login";
   }
 }

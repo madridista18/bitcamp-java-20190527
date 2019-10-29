@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import org.springframework.context.ApplicationContext;
-import org.springframework.transaction.annotation.Transactional;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
@@ -21,11 +20,11 @@ import com.eomcs.lms.domain.PhotoFile;
 @WebServlet("/photoboard/update")
 public class PhotoBoardUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   String uploadDir;
   private PhotoBoardDao photoBoardDao;
   private PhotoFileDao photoFileDao;
-
+  
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
@@ -35,11 +34,9 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
     uploadDir = getServletContext().getRealPath("/upload/photoboard");
   }
 
-  @Transactional
-  @Override 
+  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-
     try {
       PhotoBoard photoBoard = new PhotoBoard();
       photoBoard.setNo(Integer.parseInt(request.getParameter("no")));
@@ -54,29 +51,30 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
         if (!part.getName().equals("filePath") || part.getSize() == 0) {
           continue;
         }
-        // 클라이언트가 보낸 파일을 디스크에 저장한다. 
+        // 클라이언트가 보낸 파일을 디스크에 저장한다.
         String filename = UUID.randomUUID().toString();
         part.write(uploadDir + "/" + filename);
-
-        // 저장한 파일명을 DB에 입력한다. 
+        
+        // 저장한 파일명을 DB에 입력한다.
         PhotoFile photoFile = new PhotoFile();
         photoFile.setFilePath(filename);
         photoFile.setBoardNo(photoBoard.getNo());
         photoFileDao.insert(photoFile);
         count++;
       }
-
+      
       if (count == 0) {
         throw new Exception("사진 파일 없음!");
       }
+      
       response.sendRedirect("/photoboard/list");
-
+      
     } catch (Exception e) {
       request.setAttribute("message", "데이터 변경에 실패했습니다!");
       request.setAttribute("refresh", "/photoboard/list");
       request.setAttribute("error", e);
       request.getRequestDispatcher("/error").forward(request, response);
-    } 
+    }
   }
-}
 
+}

@@ -24,6 +24,7 @@ public class BoardDetailController {
     if (board == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
     } 
+
     boardDao.increaseViewCount(no);
 
     request.setAttribute("board", board);

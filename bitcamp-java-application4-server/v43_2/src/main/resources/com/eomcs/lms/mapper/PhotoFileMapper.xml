@@ -9,9 +9,8 @@
     <result column="photo_id" property="boardNo"/>
     <result column="file_path" property="filePath"/>
   </resultMap>
-
-  <select id="findAll" parameterType="int"
-           resultMap="PhotoFileMap">
+  
+  <select id="findAll" parameterType="int" resultMap="PhotoFileMap">
     select 
       photo_file_id, 
       photo_id, 
@@ -19,16 +18,13 @@
     from 
       lms_photo_file
     where 
-      photo_id =#{value}
+      photo_id=#{value}
     order by 
       photo_file_id asc
   </select>
   
-  <insert id="insert" 
-           parameterType="PhotoFile">
-    insert into lms_photo_file(
-    photo_id, 
-    file_path)
+  <insert id="insert" parameterType="PhotoFile">
+    insert into lms_photo_file(photo_id, file_path)
     values(#{boardNo},#{filePath})
   </insert>
   
@@ -36,14 +32,8 @@
     delete from lms_photo_file
     where photo_id=#{value}
   </delete>
-  
+
 </mapper>
-
-
-
-
-
-
 
 
 

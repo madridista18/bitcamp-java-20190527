@@ -22,15 +22,15 @@ public class Servlet02 extends HttpServlet {
       throws ServletException, IOException {
     
     // 테스트 방법:
-    // => http://localhost:8888/bitcamp-java-web/ex10/s2
+    // => http://localhost:8080/java-web/ex10/s2
     //
     
     // 클라이언트 보낸 쿠키 읽기
     // => 요청 헤더에 포함된 쿠키를 읽는다.
     // => HTTP 요청 프로토콜
 /*
-GET /bitcamp-java-web/ex10/s2 HTTP/1.1
-Host: localhost:8888
+GET /java-web/ex10/s2 HTTP/1.1
+Host: localhost:8080
 Connection: keep-alive
 ...
 Cookie: name=hong; age=20; working=true; name2=홍길동; name3=%ED%99%8D%EA%B8%B8%EB%8F%99

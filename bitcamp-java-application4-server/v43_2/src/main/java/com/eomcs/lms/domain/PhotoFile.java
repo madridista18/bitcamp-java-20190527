@@ -8,12 +8,11 @@ public class PhotoFile implements Serializable {
   private int no;
   private String filePath;
   private int boardNo;
-
+  
   @Override
   public String toString() {
     return "PhotoFile [no=" + no + ", filePath=" + filePath + ", boardNo=" + boardNo + "]";
   }
-
   public int getNo() {
     return no;
   }
@@ -32,5 +31,6 @@ public class PhotoFile implements Serializable {
   public void setBoardNo(int boardNo) {
     this.boardNo = boardNo;
   }
-
+  
+  
 }

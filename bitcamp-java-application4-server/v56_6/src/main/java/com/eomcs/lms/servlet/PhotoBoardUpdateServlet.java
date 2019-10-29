@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
-import org.springframework.transaction.annotation.Transactional;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
@@ -16,10 +15,10 @@ import com.eomcs.lms.domain.PhotoFile;
 @WebServlet("/photoboard/update")
 public class PhotoBoardUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private PhotoBoardDao photoBoardDao;
   private PhotoFileDao photoFileDao;
-
+  
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
@@ -28,11 +27,9 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
     photoFileDao = appCtx.getBean(PhotoFileDao.class);
   }
 
-  @Transactional
-  @Override 
+  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    
     try {
       PhotoBoard photoBoard = new PhotoBoard();
       photoBoard.setNo(Integer.parseInt(request.getParameter("no")));
@@ -42,7 +39,7 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
       photoFileDao.deleteAll(photoBoard.getNo());
 
       int count = 0;
-      for (int i = 1; i <= 5; i++) {
+      for (int i = 1; i <= 6; i++) {
         String filepath = request.getParameter("filePath" + i);
         if (filepath.length() == 0) {
           continue;
@@ -53,9 +50,11 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
         photoFileDao.insert(photoFile);
         count++;
       }
+      
       if (count == 0) {
-        throw new Exception("최소 한 개의 사진 파일을 등록해야 합니다. ");
+        throw new Exception("최소 한 개의 사진 파일을 등록해야 합니다.");
       }
+      
       response.sendRedirect("/photoboard/list");
       
     } catch (Exception e) {
@@ -63,7 +62,7 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
       request.setAttribute("refresh", "/photoboard/list");
       request.setAttribute("error", e);
       request.getRequestDispatcher("/error").forward(request, response);
-    } 
+    }
   }
-}
 
+}

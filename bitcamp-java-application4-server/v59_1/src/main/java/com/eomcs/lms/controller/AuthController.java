@@ -15,17 +15,17 @@ public class AuthController {
 
   @Resource
   private MemberDao memberDao;
-  
+
   @RequestMapping("/auth/form")
   public String form() {
     return "/jsp/auth/form.jsp";
   }
-
+  
   @RequestMapping("/auth/login")
   public String login(
-      HttpServletResponse response, 
+      HttpServletResponse response,
       HttpSession session,
-      String email, 
+      String email,
       String password) 
       throws Exception {
 
@@ -44,17 +44,14 @@ public class AuthController {
     } 
 
     session.setAttribute("loginUser", member);
-    return "redirect:/app/board/list";
+    return "redirect:../board/list";
   }
   
   @RequestMapping("/auth/logout")
   public String logout(HttpSession session) 
       throws Exception {
-    
     session.invalidate();
     return "redirect:form";
   }
-  
+
 }
-
-

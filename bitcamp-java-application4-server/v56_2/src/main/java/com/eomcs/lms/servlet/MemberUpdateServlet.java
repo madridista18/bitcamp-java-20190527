@@ -38,16 +38,18 @@ public class MemberUpdateServlet extends HttpServlet {
       member.setName(request.getParameter("name"));
       member.setEmail(request.getParameter("email"));
       member.setPassword(request.getParameter("password"));
-      member.setTel(request.getParameter("tel"));
       member.setPhoto(request.getParameter("photo"));
-
+      member.setTel(request.getParameter("tel"));
+      
       memberDao.update(member);
       out.println("<p>변경 했습니다</p>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 변경에 실패했습니다!</p>");
-      System.out.println(e.getMessage());
+      throw new RuntimeException(e);
+    
+    } finally {
+      out.println("</body></html>");
     }
-    out.println("</body></html>");
   }
 }

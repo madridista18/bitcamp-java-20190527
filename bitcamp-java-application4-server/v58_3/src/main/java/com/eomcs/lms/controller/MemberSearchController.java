@@ -12,19 +12,18 @@ import com.eomcs.lms.domain.Member;
 @Component("/member/search")
 public class MemberSearchController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
+
 
   @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     List<Member> members = memberDao.findByKeyword(
         request.getParameter("keyword"));
 
     request.setAttribute("members", members);
     return "/jsp/member/search.jsp";
-
   }
 }

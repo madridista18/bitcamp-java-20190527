@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 // com.eomcs.lms 패키지에서 @Component가 붙은 클래스를 찾아 인스턴스를 자동으로 생성하게 한다.
 @ComponentScan("com.eomcs.lms")
-@EnableWebMvc // Spring WebMVC 관련 애노테이션을 처리할 객체를 추가한다. 
+@EnableWebMvc // Spring WebMVC 관련 애노테이션을 처리할 객체를 추가한다.
 public class AppConfig {
 }
 

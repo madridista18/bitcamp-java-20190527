@@ -9,12 +9,11 @@ import com.eomcs.lms.domain.Lesson;
 public class LessonDaoImpl implements LessonDao {
 
   SqlSessionFactory sqlSessionFactory;
-
-  public LessonDaoImpl(
-      SqlSessionFactory sqlSessionFactory) {
+  
+  public LessonDaoImpl(SqlSessionFactory sqlSessionFactory) {
     this.sqlSessionFactory = sqlSessionFactory;
   }
-
+  
   @Override
   public int insert(Lesson lesson) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
@@ -37,7 +36,7 @@ public class LessonDaoImpl implements LessonDao {
   }
 
   @Override
-  public int update(Lesson lesson) throws Exception { 
+  public int update(Lesson lesson) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.update("LessonDao.update", lesson);
     }
@@ -49,15 +48,4 @@ public class LessonDaoImpl implements LessonDao {
       return sqlSession.delete("LessonDao.delete", no);
     }
   }
-
 }
-
-
-
-
-
-
-
-
-
-

@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
     
-    response.setContentType("text/html;charset=UTF-8");
     try {
       HashMap<String,Object> params = new HashMap<>();
       params.put("email", request.getParameter("email"));
@@ -54,7 +53,7 @@ public class LoginServlet extends HttpServlet {
       
       HttpSession session = request.getSession();
       session.setAttribute("loginUser", member);
-      request.setAttribute("viewUrl", "redirect:/app/board/list");
+      request.setAttribute("viewUrl", "redirect:../board/list");
       
     } catch (Exception e) {
       request.setAttribute("error", e);

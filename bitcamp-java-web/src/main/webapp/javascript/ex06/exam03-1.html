@@ -14,7 +14,6 @@
 // 리스너가 일반 함수나 익명 함수일 경우,
 // this가 가리키는 객체가 이벤트가 발생된 객체이다.
 //
-// arrow fuction에서 this는 window 객체를 가리킨다. 헷갈리지 말 것!
 document.getElementById("btn1").addEventListener("click", function(e) {
 	console.log(this);
 	// 이벤트가 발생한 객체의 속성 값 알아내기

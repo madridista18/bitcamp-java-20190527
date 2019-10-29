@@ -9,7 +9,7 @@ import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 @Controller
-public class BoardController  {
+public class BoardController {
 
   @Resource
   private BoardDao boardDao;
@@ -18,14 +18,14 @@ public class BoardController  {
   public String form() {
     return "/jsp/board/form.jsp";
   }
-
+  
   @RequestMapping("/board/add")
   public String add(Board board) 
       throws Exception {
     boardDao.insert(board);
     return "redirect:list";
   }
-
+  
   @RequestMapping("/board/delete")
   public String delete(int no) 
       throws Exception {
@@ -34,7 +34,7 @@ public class BoardController  {
     }
     return "redirect:list";
   }
-
+  
   @RequestMapping("/board/detail")
   public String detail(Map<String,Object> model, int no) 
       throws Exception {
@@ -48,21 +48,21 @@ public class BoardController  {
     model.put("board", board);
     return "/jsp/board/detail.jsp";
   }
-
+  
   @RequestMapping("/board/list")
   public String list(Map<String,Object> model) 
       throws Exception {
-
+    
     List<Board> boards = boardDao.findAll();
     model.put("boards", boards);
     return "/jsp/board/list.jsp";
   }
-
+  
   @RequestMapping("/board/update")
   public String update(Board board) 
       throws Exception {
     boardDao.update(board);
-
     return "redirect:list";
   }
+
 }

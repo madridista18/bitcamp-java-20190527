@@ -22,10 +22,6 @@ public class Servlet03 extends HttpServlet {
   // HttpServlet 클래스를 상속 받는 이 클래스도 마찬가지로
   // serialVersionUID 변수 값을 설정해야 한다.
   private static final long serialVersionUID = 1L;
-  
-  public Servlet03() {
-    System.out.println("Servlet03()");
-  }
 
   // service()를 오버라이딩 하는 대신에
   // doGet(), doPost(), doHead() 등을 오버라이딩 하라.

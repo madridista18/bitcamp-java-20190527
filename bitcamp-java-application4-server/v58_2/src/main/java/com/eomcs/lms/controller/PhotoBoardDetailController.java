@@ -10,14 +10,12 @@ import com.eomcs.lms.domain.PhotoBoard;
 @Component("/photoboard/detail")
 public class PhotoBoardDetailController implements PageController {
 
-  @Resource
-  private PhotoBoardDao photoBoardDao;
+  @Resource private PhotoBoardDao photoBoardDao;
 
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     int no = Integer.parseInt(request.getParameter("no"));
 
     PhotoBoard photoBoard = photoBoardDao.findWithFilesBy(no);
@@ -28,6 +26,5 @@ public class PhotoBoardDetailController implements PageController {
 
     request.setAttribute("photoBoard", photoBoard);
     return "/jsp/photoboard/detail.jsp";
-
   }
 }

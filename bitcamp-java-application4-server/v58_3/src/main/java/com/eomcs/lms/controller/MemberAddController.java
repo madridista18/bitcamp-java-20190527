@@ -2,7 +2,6 @@ package com.eomcs.lms.controller;
 
 import java.util.UUID;
 import javax.annotation.Resource;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -11,24 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @Component("/member/add")
 public class MemberAddController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
-  String uploadDir;
 
   @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
-    uploadDir = request.getServletContext().getRealPath("/upload/member");
-
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/member/form.jsp";
     }
 
+    String uploadDir = request.getServletContext().getRealPath("/upload/member");
     Member member = new Member();
 
     member.setName(request.getParameter("name"));
@@ -46,7 +41,5 @@ public class MemberAddController {
 
     memberDao.insert(member);
     return "redirect:list";
-
   }
 }
-

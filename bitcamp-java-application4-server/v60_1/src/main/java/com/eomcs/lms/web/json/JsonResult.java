@@ -34,10 +34,4 @@ public class JsonResult {
     this.result = result;
     return this;
   }
-  
-  
-  
-
-  
-  
 }

@@ -12,7 +12,7 @@ import com.eomcs.lms.dao.MemberDao;
 @WebServlet("/member/delete")
 public class MemberDeleteServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private MemberDao memberDao;
 
   @Override
@@ -23,22 +23,22 @@ public class MemberDeleteServlet extends HttpServlet {
   }
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-
+    
     try {
       int no = Integer.parseInt(request.getParameter("no"));
+      
       if (memberDao.delete(no) == 0) {
-        throw new Exception("해당 데이터가 없습니다!");
+        throw new Exception("해당 데이터가 없습니다.");
       }
       response.sendRedirect("/member/list");
-
+      
     } catch (Exception e) {
       request.setAttribute("message", "데이터 삭제에 실패했습니다!");
       request.setAttribute("refresh", "/member/list");
       request.setAttribute("error", e);
       request.getRequestDispatcher("/error").forward(request, response);
     }
-
   }
 }

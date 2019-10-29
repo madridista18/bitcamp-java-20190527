@@ -17,10 +17,10 @@ public class MybatisConfig {
   @Bean
   public SqlSessionFactory sqlSessionFactory(
       DataSource dataSource, ApplicationContext appCtx) throws Exception {
-    
+
     // Mybatis의 Log4j를 활성화시키기 
     LogFactory.useLog4JLogging();
-   
+    
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSource);
     sqlSessionFactoryBean.setTypeAliasesPackage("com.eomcs.lms.domain");

@@ -3,8 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="PhotoBoardDao">
+
   <select id="findAll" resultType="com.eomcs.lms.domain.PhotoBoard">
-    select  
+    select
       photo_id no,
       titl title,
       cdt createdDate,
@@ -17,9 +18,9 @@
   </select>
   
   <select id="findBy" 
-				   parameterType="int" 
-				   resultType="com.eomcs.lms.domain.PhotoBoard">
-    select 
+          parameterType="int" 
+          resultType="com.eomcs.lms.domain.PhotoBoard">
+    select
       photo_id no,
       titl title,
       cdt createdDate,
@@ -28,26 +29,23 @@
     from 
       lms_photo 
     where 
-      photo_id=#{no}
+      photo_id=#{value}
   </select>
   
   <update id="increaseViewCount" parameterType="int">
     update lms_photo set
-      vw_cnt=vw_cnt + 1
+      vw_cnt=vw_cnt + 1 
     where 
       photo_id=#{value}
   </update>
   
   <insert id="insert" 
-           parameterType="com.eomcs.lms.domain.PhotoBoard"
-           useGeneratedKeys="true"
-           keyColumn="photo_id"
-           keyProperty="no">
-    insert into lms_photo(
-	    lesson_id,
-	    titl)
-    values(
-      #{lessonNo},#{title})
+          parameterType="com.eomcs.lms.domain.PhotoBoard"
+          useGeneratedKeys="true"
+          keyColumn="photo_id"
+          keyProperty="no">
+    insert into lms_photo(lesson_id,titl)
+    values(#{lessonNo},#{title})
   </insert>
   
   <update id="update" parameterType="com.eomcs.lms.domain.PhotoBoard">
@@ -60,16 +58,5 @@
     delete from lms_photo 
     where photo_id=#{no}
   </delete>
-   
-  
+
 </mapper>
-
-
-
-
-
-
-
-
-
-

@@ -24,7 +24,6 @@ public class AuthController {
       return "/jsp/auth/form.jsp";
     }
 
-    response.setContentType("text/html;charset=UTF-8");
     HashMap<String,Object> params = new HashMap<>();
     params.put("email", request.getParameter("email"));
     params.put("password", request.getParameter("password"));
@@ -41,7 +40,7 @@ public class AuthController {
 
     HttpSession session = request.getSession();
     session.setAttribute("loginUser", member);
-    return "redirect:/app/board/list";
+    return "redirect:../board/list";
   }
   
   @RequestMapping("/auth/logout")
@@ -49,9 +48,7 @@ public class AuthController {
       throws Exception {
     
     request.getSession().invalidate();
-    return "redirect:/app/auth/login";
+    return "redirect:login";
   }
-  
+
 }
-
-

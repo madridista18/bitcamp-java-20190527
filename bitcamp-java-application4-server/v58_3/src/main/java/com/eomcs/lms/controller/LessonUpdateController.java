@@ -28,6 +28,7 @@ public class LessonUpdateController {
     lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
 
     lessonDao.update(lesson);
+
     return "redirect:list";
   }
 }

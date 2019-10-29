@@ -7,38 +7,32 @@ import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.util.Input;
 
 public class PhotoBoardDetailCommand implements Command {
-
+  
   private PhotoBoardDao photoBoardDao;
-
-  // BoardHandler가 사용하는 Input 객체를 반드시 설정하도록 강제해보자!
-  // => Input 객체처럼 어떤 작업을 실행하기 위해 반드시 있어야 하는 객체를 
-  //   "의존 객체(dependency)"라 부른다. 
-  // => 의존 객체를 강제로 설정하게 만드는 방법? 
-  //   다음과 같이 의존 객체를 넘겨 받는 생성자를 정의하는 것이다.
+  
   public PhotoBoardDetailCommand(PhotoBoardDao photoBoardDao) {
     this.photoBoardDao = photoBoardDao;
   }
-
+  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {
-    // 클라이언트에게 번호를 요구하여 받는다. 
-    int no = Input.getIntValue(in, out, "번호? ");
-
+      // 클라이언트에게 번호를 요구하여 받는다.
+      int no = Input.getIntValue(in, out, "번호? ");
+      
       PhotoBoard photoBoard = photoBoardDao.findBy(no);
-
       if (photoBoard == null) {
-        out.println("해당 번호의 데이터가 없습니다. ");
+        out.println("해당 번호의 데이터가 없습니다!");
         return;
       }
-
-      out.println("제목: " + photoBoard.getTitle());
-      out.println("작성일: " + photoBoard.getCreatedDate());
-      out.println("조회수: " + photoBoard.getViewCount());
-      out.println("수업: " + photoBoard.getLessonNo());
-
+      
+      out.printf("제목: %s\n", photoBoard.getTitle());
+      out.printf("작성일: %s\n", photoBoard.getCreatedDate());
+      out.printf("조회수: %d\n", photoBoard.getViewCount());
+      out.printf("수업: %d\n", photoBoard.getLessonNo());
+      
     } catch (Exception e) {
-      out.println("데이터 조회에 실패했습니다.");
+      out.println("데이터 조회에 실패했습니다!");
       System.out.println(e.getMessage());
     }
   }

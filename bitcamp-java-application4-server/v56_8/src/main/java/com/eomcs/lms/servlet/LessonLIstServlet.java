@@ -13,11 +13,11 @@ import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
 
 @WebServlet("/lesson/list")
-public class LessonLIstServlet extends HttpServlet {
+public class LessonListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
   private LessonDao lessonDao;
-  
+
   @Override
   public void init() throws ServletException {
     ApplicationContext appCtx = 
@@ -36,34 +36,33 @@ public class LessonLIstServlet extends HttpServlet {
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
-    
+
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
     out.println("<h1>수업 목록</h1>");
     out.println("<a href='/lesson/add'>새 수업</a><br>");
-
     try {
       out.println("<table class='table table-hover'>");
-      out.println("<tr><th>번호</th><th>제목</th><th>시작일</th><th>종료일</th><th>총수업시간</th></tr>");
+      out.println("<tr><th>번호</th><th>수업</th><th>기간</th><th>총수업시간</th></tr>");
       List<Lesson> lessons = lessonDao.findAll();
       for (Lesson lesson : lessons) {
-        out.printf("<tr><td>%d</td>"
+        out.printf("<tr>"
+            + "<td>%d</td>"
             + "<td><a href='/lesson/detail?no=%d'>%s</a></td>"
-            + "<td>%s</td>"
-            + "<td>%s</td>"
-            + "<td>%s</td></tr>\n", 
+            + "<td>%s ~ %s</td>"
+            + "<td>%d</td></tr>\n", 
             lesson.getNo(),
             lesson.getNo(),
-            lesson.getTitle(),
-            lesson.getStartDate(),
-            lesson.getEndDate(),
-            lesson.getTotalHours()
-            );
+            lesson.getTitle(), 
+            lesson.getStartDate(), 
+            lesson.getEndDate(), 
+            lesson.getTotalHours());
       }
       out.println("</table>");
       
     } catch (Exception e) {
+      out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
       
     } finally {

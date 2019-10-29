@@ -58,12 +58,11 @@ btn2.onclick = function() {
 // => 주의! 
 //    클릭 이벤트의 이름은 "onclick"이 아니라, "click"이다.
 //
-//var btn3 = document.getElementById("btn3");
 var btn3 = document.querySelector("#btn3");
 btn3.addEventListener("click", () => {
     console.log(this); // arrow function 문법으로 정의한 리스너의 소속은 window 객체이다.
     var str = "Hi1!!";
-    window.alert(str);
+    window.alert(str); 
 });
 btn3.addEventListener("click", () => {
     console.log(this);

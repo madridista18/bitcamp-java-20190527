@@ -17,7 +17,6 @@ public class LessonDetailController implements PageController {
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     int no = Integer.parseInt(request.getParameter("no"));
 
     Lesson lesson = lessonDao.findBy(no);
@@ -29,6 +28,12 @@ public class LessonDetailController implements PageController {
     return "/jsp/lesson/detail.jsp";
   }
 }
+
+
+
+
+
+
 
 
 

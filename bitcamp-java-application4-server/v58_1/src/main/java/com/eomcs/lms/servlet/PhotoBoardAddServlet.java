@@ -43,7 +43,6 @@ public class PhotoBoardAddServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    
     request.setAttribute("viewUrl", "/jsp/photoboard/form.jsp");
   }
  

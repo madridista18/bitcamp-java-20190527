@@ -19,7 +19,6 @@ public class LessonController {
   @RequestMapping("/lesson/add")
   public String add(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
     if (request.getMethod().equalsIgnoreCase("GET")) {
       return "/jsp/lesson/form.jsp";
     }
@@ -33,13 +32,14 @@ public class LessonController {
     lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
 
     lessonDao.insert(lesson);
+
     return "redirect:list";
   }
   
   @RequestMapping("/lesson/delete")
   public String delete(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-
+    
     int no = Integer.parseInt(request.getParameter("no"));
     if (lessonDao.delete(no) == 0) {
       throw new Exception("해당 데이터가 없습니다.");
@@ -51,7 +51,6 @@ public class LessonController {
   public String detail(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     int no = Integer.parseInt(request.getParameter("no"));
 
     Lesson lesson = lessonDao.findBy(no);
@@ -67,10 +66,8 @@ public class LessonController {
   public String list(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     List<Lesson> lessons = lessonDao.findAll();
     request.setAttribute("lessons", lessons);
-    
     return "/jsp/lesson/list.jsp";
   }
   
@@ -87,6 +84,7 @@ public class LessonController {
     lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
 
     lessonDao.update(lesson);
+
     return "redirect:list";
   }
 }

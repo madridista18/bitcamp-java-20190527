@@ -13,7 +13,7 @@
 <jsp:include page="../header.jsp"/>
 
 <div id='content'>
-<h1>사진게시물 목록</h1>
+<h1>사진게시물 목록</h1> 
 <a href='/photoboard/add'>새 사진게시물</a><br>
 <table class='table table-hover'>
 <tr>
@@ -23,7 +23,6 @@
   <th>조회수</th>
   <th>수업</th>
 </tr>
-
 <c:forEach items="${photoBoards}" var="photoBoard">
   <tr>
     <td>${photoBoard.no}</td>
@@ -32,7 +31,7 @@
     <td>${photoBoard.viewCount}</td>
     <td>${photoBoard.lessonNo}</td>
   </tr>
-</c:forEach>
+</c:forEach> 
 </table>
 </div>
 

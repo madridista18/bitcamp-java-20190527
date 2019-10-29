@@ -24,7 +24,7 @@ public class MemberListServlet extends HttpServlet {
         (ApplicationContext) getServletContext().getAttribute("iocContainer");
     memberDao = appCtx.getBean(MemberDao.class);
   }
-
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
@@ -36,16 +36,16 @@ public class MemberListServlet extends HttpServlet {
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
-    
+
     request.getRequestDispatcher("/header").include(request, response);
     
     out.println("<div id='content'>");
     out.println("<h1>회원 목록</h1>");
-    out.println("<a href='/member/add'>새 회원 등록</a><br>");
-    out.println("<form action='/member/search'>검색어:<input type='text' name='keyword'><button>검색</button></form><br>");
+    out.println("<a href='/member/add'>새 회원</a><br>");
+    
     try {
       out.println("<table class='table table-hover'>");
-      out.println("<tr><th>번호</th><th>이름</th><th>메일</th><th>전화번호</th><th>등록일</th></tr>");
+      out.println("<tr><th>번호</th><th>이름</th><th>이메일</th><th>전화</th><th>등록일</th></tr>");
       List<Member> members = memberDao.findAll();
       for (Member member : members) {
         out.printf("<tr>"
@@ -62,12 +62,16 @@ public class MemberListServlet extends HttpServlet {
             member.getRegisteredDate());
       }
       out.println("</table>");
-
+      out.println("<form action='/member/search'>");
+      out.println("검색어: <input type='text' name='keyword'>");
+      out.println("<button>검색</button>");
+      out.println("</form>");
+      
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
-      
-    }finally {
+    
+    } finally {
       out.println("</div>");
       request.getRequestDispatcher("/footer").include(request, response);
       out.println("</body></html>");

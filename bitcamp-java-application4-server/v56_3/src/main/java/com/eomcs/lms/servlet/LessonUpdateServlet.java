@@ -18,10 +18,10 @@ import com.eomcs.lms.domain.Lesson;
 @WebServlet("/lesson/update")
 public class LessonUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
+  
   private static final Logger logger = 
       LogManager.getLogger(LessonUpdateServlet.class);
-
+  
   private LessonDao lessonDao;
 
   @Override
@@ -33,8 +33,6 @@ public class LessonUpdateServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-
     try {
       Lesson lesson = new Lesson();
       lesson.setNo(Integer.parseInt(request.getParameter("no")));
@@ -44,10 +42,10 @@ public class LessonUpdateServlet extends HttpServlet {
       lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
       lesson.setTotalHours(Integer.parseInt(request.getParameter("totalHours")));
       lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
-
+      
       lessonDao.update(lesson);
       response.sendRedirect("/lesson/list");
-
+      
     } catch (Exception e) {
       response.setContentType("text/html;charset=UTF-8");
       PrintWriter out = response.getWriter();
@@ -57,9 +55,10 @@ public class LessonUpdateServlet extends HttpServlet {
       out.println("</body></html>");
       response.setHeader("Refresh", "1;url=/lesson/list");
 
+      // 왜 오류가 발생했는지 자세한 사항은 로그로 남긴다.
       StringWriter strOut = new StringWriter();
       e.printStackTrace(new PrintWriter(strOut));
-      logger.error(strOut);
+      logger.error(strOut.toString());
     }
   }
 }

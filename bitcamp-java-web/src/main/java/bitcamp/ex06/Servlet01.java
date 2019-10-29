@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
     value="/ex06/s1"
     ,loadOnStartup=1
 )
-
 @SuppressWarnings("serial")
 public class Servlet01 extends HttpServlet {
   

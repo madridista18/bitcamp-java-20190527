@@ -11,7 +11,7 @@
     <result column="cdt" property="createdDate"/>
     <result column="vw_cnt" property="viewCount"/>
   </resultMap>
-  
+
   <sql id="sql1">
     select 
       board_id,
@@ -27,7 +27,7 @@
   </select>
   
   <select id="findBy" parameterType="int" resultMap="BoardMap">
-   <include refid="sql1"/>
+    <include refid="sql1"/>
     where board_id=#{haha} 
   </select>
   
@@ -54,28 +54,3 @@
   </delete>
   
 </mapper>
-
-  <!-- Mybatis가 컬럼값을 객체에 담을 때 컬럼 이름으로 셋터를 찾아 호출한다. -->
-  <!--  
-  <select id="findAll" resultType="com.eomcs.lms.domain.Board">
-    select 
-    board_id, /* Board의 setBoard_id(컬럼값) 호출하여 컬럼값을 Board 객체에 담는다. */
-    conts, /* Board의 setConts(컬럼값) 호출 */
-    cdt, /* Board의 setCdt(컬럼값) 호출 */
-    vw_cnt /* Board의 setVw_cnt(컬럼값) 호출 */
-    from lms_board 
-    order by board_id desc
-  </select>
-  -->
-  <!-- 만약 컬럼에 별명이 있다면 셋터를 호출할 때도 그 별명과 일치하는 셋터를 호출한다.
-    컬럼의 이름과 셋터의 이름이 다르다면 다음과 같이 
-    셋터 이름과 같은 이름으로 컬럼에 별명을 부여하라!
-    그래야만 컬럼의 값을 객체에 제대로 담을 수 있다. -->
-
-
-
-
-
-
-
-

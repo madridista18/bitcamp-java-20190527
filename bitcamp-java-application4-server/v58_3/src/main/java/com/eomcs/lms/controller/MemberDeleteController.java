@@ -10,7 +10,7 @@ import com.eomcs.lms.dao.MemberDao;
 @Component("/member/delete")
 public class MemberDeleteController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
 
   @RequestMapping
@@ -22,6 +22,5 @@ public class MemberDeleteController {
       throw new Exception("해당 데이터가 없습니다.");
     }
     return "redirect:list";
-
   }
 }

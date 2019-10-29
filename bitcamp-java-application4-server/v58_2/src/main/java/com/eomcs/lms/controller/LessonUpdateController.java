@@ -27,6 +27,7 @@ public class LessonUpdateController implements PageController {
     lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
 
     lessonDao.update(lesson);
+
     return "redirect:list";
   }
 }

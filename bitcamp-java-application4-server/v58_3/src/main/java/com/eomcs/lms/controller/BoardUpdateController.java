@@ -23,6 +23,5 @@ public class BoardUpdateController {
     boardDao.update(board);
 
     return "redirect:list";
-
   }
 }

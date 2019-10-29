@@ -11,12 +11,12 @@ import com.eomcs.util.ConnectionFactory;
 
 public class MemberDaoImpl implements MemberDao {
 
-ConnectionFactory conFactory;
+  ConnectionFactory conFactory;
   
   public MemberDaoImpl(ConnectionFactory conFactory) {
     this.conFactory = conFactory;
   }
-
+  
   @Override
   public int insert(Member member) throws Exception {
     try (Connection con = conFactory.getConnection();
@@ -24,13 +24,13 @@ ConnectionFactory conFactory;
 
       return stmt.executeUpdate(
           "insert into lms_member(name,email,pwd,cdt,tel,photo)"
-              + " values('" + member.getName()
-              + "','" + member.getEmail()
-              + "',password('" + member.getPassword()
-              + "'),now()"
-              + ",'" + member.getTel()
-              + "','" + member.getPhoto()
-              + "')");
+          + " values('" + member.getName()
+          + "','" + member.getEmail()
+          + "',password('" + member.getPassword()
+          + "'),now()"
+          + ",'" + member.getTel()
+          + "','" + member.getPhoto()
+          + "')");
     }
   }
 
@@ -40,11 +40,11 @@ ConnectionFactory conFactory;
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select member_id,name,email,tel,cdt"
-                + " from lms_member"
-                + " order by name asc")) {
+            + " from lms_member"
+            + " order by name asc")) {
 
       ArrayList<Member> list = new ArrayList<>();
-
+      
       while (rs.next()) {
         Member member = new Member();
         member.setNo(rs.getInt("member_id"));
@@ -52,7 +52,7 @@ ConnectionFactory conFactory;
         member.setEmail(rs.getString("email"));
         member.setTel(rs.getString("tel"));
         member.setRegisteredDate(rs.getDate("cdt"));
-
+        
         list.add(member);
       }
       return list;
@@ -65,8 +65,8 @@ ConnectionFactory conFactory;
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select *"
-                + " from lms_member"
-                + " where member_id=" + no)) {
+            + " from lms_member"
+            + " where member_id=" + no)) {
 
       if (rs.next()) {
         Member member = new Member();
@@ -76,9 +76,9 @@ ConnectionFactory conFactory;
         member.setRegisteredDate(rs.getDate("cdt"));
         member.setTel(rs.getString("tel"));
         member.setPhoto(rs.getString("photo"));
-
+        
         return member;
-
+        
       } else {
         return null;
       }
@@ -91,15 +91,15 @@ ConnectionFactory conFactory;
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select member_id,name,email,tel,cdt"
-                + " from lms_member"
-                + " where name like '%" + keyword
-                + "%' or email like '%" + keyword
-                + "%' or tel like '%" + keyword
-                + "%'"
-                + " order by name asc")) {
+            + " from lms_member"
+            + " where name like '%" + keyword
+            + "%' or email like '%" + keyword
+            + "%' or tel like '%" + keyword
+            + "%'"
+            + " order by name asc")) {
 
       ArrayList<Member> list = new ArrayList<>();
-
+      
       while (rs.next()) {
         Member member = new Member();
         member.setNo(rs.getInt("member_id"));
@@ -107,7 +107,7 @@ ConnectionFactory conFactory;
         member.setEmail(rs.getString("email"));
         member.setTel(rs.getString("tel"));
         member.setRegisteredDate(rs.getDate("cdt"));
-
+        
         list.add(member);
       }
       return list;

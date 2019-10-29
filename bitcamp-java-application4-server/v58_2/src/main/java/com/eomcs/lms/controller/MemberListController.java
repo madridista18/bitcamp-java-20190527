@@ -11,17 +11,17 @@ import com.eomcs.lms.domain.Member;
 @Component("/member/list")
 public class MemberListController implements PageController {
 
-  @Resource
+  @Resource 
   private MemberDao memberDao;
+
 
   @Override
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
-    
-    response.setContentType("text/html;charset=UTF-8");
-      List<Member> members = memberDao.findAll();
-      
-      request.setAttribute("members", members);
-      return "/jsp/member/list.jsp";
+
+    List<Member> members = memberDao.findAll();
+
+    request.setAttribute("members", members);
+    return "/jsp/member/list.jsp";
   }
 }

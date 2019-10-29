@@ -12,14 +12,12 @@ import com.eomcs.lms.domain.PhotoBoard;
 @Component("/photoboard/list")
 public class PhotoBoardListController {
 
-  @Resource
-  private PhotoBoardDao photoBoardDao;
+  @Resource private PhotoBoardDao photoBoardDao;
 
   @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
     List<PhotoBoard> photoBoards = photoBoardDao.findAll();
     request.setAttribute("photoBoards", photoBoards);
     return "/jsp/photoboard/list.jsp";
